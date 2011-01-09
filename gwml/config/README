@@ -1,0 +1,13 @@
+This directory contains my configuration (ie my ~/.gwml directory).
+You can modify this file as a start to make your own configuration.
+Most modifiable options can be found in Stdconfig (colors, font, etc ...).
+
+NOTE: At start up, gwml will look for gwmlrc.cmo in
+
+~/
+~/.gwml-$(VERSION)
+~/.gwml
+etc ...
+
+Try not to use the .gwml directory if you want to often change your gwml version, 
+else problems may appear if your configuration files have not been updated.

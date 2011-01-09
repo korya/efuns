@@ -1,0 +1,15 @@
+
+prefix=/usr/local
+bindir=/usr/local/bin
+efunsdir=/usr/local/lib/efuns
+gwmldir=/usr/local/lib/gwml
+xlibdir=/usr/local/lib/xlib
+srcdir=.
+byte_threads=nothreads
+opt_threads=nothreads
+efunsdyn=dynlink
+gwmldyn=dynlink
+cc=gcc
+do_depend=no
+use_imlib=yes
+use_esd=yes

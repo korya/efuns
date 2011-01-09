@@ -1,0 +1,102 @@
+conv_event.cmo: xbuffer.cmi xtypes.cmi conv_event.cmi 
+conv_event.cmx: xbuffer.cmx xtypes.cmx conv_event.cmi 
+display.cmo: ../concur/concur.cmi conv_event.cmi equeue.cmi jeton.cmi \
+    ll_trans.cmi xbuffer.cmi xdebug.cmi xfifo.cmi xtypes.cmi display.cmi 
+display.cmx: ../concur/concur.cmi conv_event.cmx equeue.cmx jeton.cmx \
+    ll_trans.cmx xbuffer.cmx xdebug.cmx xfifo.cmx xtypes.cmx display.cmi 
+eloop.cmo: ../concur/concur.cmi wintbl.cmi xlib.cmi xtypes.cmi eloop.cmi 
+eloop.cmx: ../concur/concur.cmi wintbl.cmx xlib.cmx xtypes.cmx eloop.cmi 
+equeue.cmo: xfifo.cmi equeue.cmi 
+equeue.cmx: xfifo.cmx equeue.cmi 
+icccm.cmo: x.cmi xA.cmi xbuffer.cmi xlib.cmi xtypes.cmi icccm.cmi 
+icccm.cmx: x.cmx xA.cmx xbuffer.cmx xlib.cmx xtypes.cmx icccm.cmi 
+jeton.cmo: ../concur/concur.cmi jeton.cmi 
+jeton.cmx: ../concur/concur.cmi jeton.cmi 
+keyBind.cmo: x.cmi xK.cmo xtypes.cmi 
+keyBind.cmx: x.cmx xK.cmx xtypes.cmx 
+ll_trans.cmo: ../concur/concur.cmi xauth.cmi xtypes.cmi ll_trans.cmi 
+ll_trans.cmx: ../concur/concur.cmi xauth.cmx xtypes.cmx ll_trans.cmi 
+selection.cmo: ../concur/concur.cmi x.cmi xlib.cmi xtypes.cmi selection.cmi 
+selection.cmx: ../concur/concur.cmi x.cmx xlib.cmx xtypes.cmx selection.cmi 
+shape.cmo: conv_event.cmi display.cmi jeton.cmi x.cmi xbuffer.cmi xproto.cmi \
+    xtypes.cmi shape.cmi 
+shape.cmx: conv_event.cmx display.cmx jeton.cmx x.cmx xbuffer.cmx xproto.cmx \
+    xtypes.cmx shape.cmi 
+test.cmo: xrm.cmi 
+test.cmx: xrm.cmx 
+wintbl.cmo: xtypes.cmi wintbl.cmi 
+wintbl.cmx: xtypes.cmx wintbl.cmi 
+xA.cmo: xtypes.cmi xA.cmi 
+xA.cmx: xtypes.cmx xA.cmi 
+xasync.cmo: display.cmi jeton.cmi xbuffer.cmi xproto.cmi xtypes.cmi \
+    xasync.cmi 
+xasync.cmx: display.cmx jeton.cmx xbuffer.cmx xproto.cmx xtypes.cmx \
+    xasync.cmi 
+xauth.cmo: xtypes.cmi xauth.cmi 
+xauth.cmx: xtypes.cmx xauth.cmi 
+xbuffer.cmo: equeue.cmi xfifo.cmi xtypes.cmi xbuffer.cmi 
+xbuffer.cmx: equeue.cmx xfifo.cmx xtypes.cmx xbuffer.cmi 
+xC.cmo: xC.cmi 
+xC.cmx: xC.cmi 
+xdebug.cmo: xdebug.cmi 
+xdebug.cmx: xdebug.cmi 
+xfifo.cmo: xfifo.cmi 
+xfifo.cmx: xfifo.cmi 
+xGraphics.cmo: eloop.cmi icccm.cmi keyBind.cmo x.cmi xlib.cmi xpm.cmi \
+    xsync.cmi xtext.cmi xtypes.cmi zpixmap.cmi xGraphics.cmi 
+xGraphics.cmx: eloop.cmx icccm.cmx keyBind.cmx x.cmx xlib.cmx xpm.cmx \
+    xsync.cmx xtext.cmx xtypes.cmx zpixmap.cmx xGraphics.cmi 
+xlib_config.cmo: /home/cremant/lefessan/devel/efuns/common/version.cmi 
+xlib_config.cmx: /home/cremant/lefessan/devel/efuns/common/version.cmi 
+xlib.cmo: ../concur/concur.cmi display.cmi equeue.cmi x.cmi xasync.cmi \
+    xtypes.cmi xlib.cmi 
+xlib.cmx: ../concur/concur.cmi display.cmx equeue.cmx x.cmx xasync.cmx \
+    xtypes.cmx xlib.cmi 
+x.cmo: display.cmi jeton.cmi xbuffer.cmi xproto.cmi xtypes.cmi x.cmi 
+x.cmx: display.cmx jeton.cmx xbuffer.cmx xproto.cmx xtypes.cmx x.cmi 
+xmu.cmo: x.cmi xlib.cmi xtypes.cmi xmu.cmi 
+xmu.cmx: x.cmx xlib.cmx xtypes.cmx xmu.cmi 
+xpm.cmo: x.cmi xtypes.cmi zpixmap.cmi xpm.cmi 
+xpm.cmx: x.cmx xtypes.cmx zpixmap.cmx xpm.cmi 
+xproto.cmo: conv_event.cmi display.cmi xbuffer.cmi xtypes.cmi xproto.cmi 
+xproto.cmx: conv_event.cmx display.cmx xbuffer.cmx xtypes.cmx xproto.cmi 
+xrm.cmo: xA.cmi xlib.cmi xtypes.cmi xrm.cmi 
+xrm.cmx: xA.cmx xlib.cmx xtypes.cmx xrm.cmi 
+xsync.cmo: display.cmi jeton.cmi x.cmi xbuffer.cmi xproto.cmi xtypes.cmi \
+    xsync.cmi 
+xsync.cmx: display.cmx jeton.cmx x.cmx xbuffer.cmx xproto.cmx xtypes.cmx \
+    xsync.cmi 
+xterm.cmo: eloop.cmi icccm.cmi keyBind.cmo selection.cmi x.cmi xA.cmi xC.cmi \
+    xlib.cmi xsync.cmi xtypes.cmi xterm.cmi 
+xterm.cmx: eloop.cmx icccm.cmx keyBind.cmx selection.cmx x.cmx xA.cmx xC.cmx \
+    xlib.cmx xsync.cmx xtypes.cmx xterm.cmi 
+xtext.cmo: xtypes.cmi xtext.cmi 
+xtext.cmx: xtypes.cmx xtext.cmi 
+xtypes.cmo: ../concur/concur.cmi equeue.cmi xfifo.cmi xtypes.cmi 
+xtypes.cmx: ../concur/concur.cmi equeue.cmx xfifo.cmx xtypes.cmi 
+zpixmap.cmo: x.cmi xtypes.cmi zpixmap.cmi 
+zpixmap.cmx: x.cmx xtypes.cmx zpixmap.cmi 
+conv_event.cmi: xtypes.cmi 
+display.cmi: jeton.cmi xtypes.cmi 
+eloop.cmi: ../concur/concur.cmi xtypes.cmi 
+icccm.cmi: display.cmi xtypes.cmi 
+jeton.cmi: ../concur/concur.cmi 
+selection.cmi: xtypes.cmi 
+shape.cmi: jeton.cmi xtypes.cmi 
+wintbl.cmi: xtypes.cmi 
+xA.cmi: xtypes.cmi 
+xasync.cmi: jeton.cmi xtypes.cmi 
+xauth.cmi: xtypes.cmi 
+xbuffer.cmi: xtypes.cmi 
+xGraphics.cmi: xtypes.cmi 
+xlib.cmi: jeton.cmi xtypes.cmi 
+x.cmi: xtypes.cmi 
+xmu.cmi: xtypes.cmi 
+xpm.cmi: xtypes.cmi 
+xproto.cmi: xtypes.cmi 
+xrm.cmi: xtypes.cmi 
+xsync.cmi: xtypes.cmi 
+xterm.cmi: xtypes.cmi 
+xtext.cmi: xtypes.cmi 
+xtypes.cmi: ../concur/concur.cmi equeue.cmi xfifo.cmi 
+zpixmap.cmi: xtypes.cmi 

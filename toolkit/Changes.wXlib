@@ -1,0 +1,38 @@
+
+Version 017+1:
+===========
+* WX_text: 
+  - Font and color attributes are now correctly handled.
+
+Version 016:
+===========
+* WX_text: 
+  - Modifications to be used by Efuns Text module (functors).
+* wX_config: new program to specify all the flags to compile with WXlib.
+  For example:
+     ocamlopt `wX_config -opt` -o demo_appli.exe demo_appli.ml
+* WX_types:
+  - new reliefs ReliefInRaised, ReliefIn..., to draw the relief inside the 
+     padding.
+* WX_notebook:
+  - new container to display widgets selected through a list of label.
+  - new example [examples/demo_notebook.ml].
+* WX_swap:
+  - new container to display widgets in a window one at a time.
+  - used in [wX_notebook.ml].
+* WX_table:
+  - new container to pack widgets with a table (more flexible then WX_bar).
+  - new example [examples/demo_table.ml].
+* WX_tree:
+  - new container to display widgets in a vertical tree (with zoom by click
+     on branches).
+  - new example [examples/demo_tree.ml] and [efuns/efuns_texbrowser.ml].
+* WX_panel:
+  - new class [separator] to drag the frontier in the panel.
+* Calculator example [examples/demo_calc.ml].
+* Bug fixes:
+ - Size computed only once per widget.
+
+Version 015:
+===========
+* First release

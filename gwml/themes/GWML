@@ -1,0 +1,244 @@
+From bfulgham@flashcom.net  Wed Jun 28 07:51:27 2000
+X-VM-Summary-Format: "%n %a %2d %-3.3m %4y  %-22.22F  %I%s\n"
+X-VM-Labels: nil
+X-VM-VHeader: ("From" "Subject" "To" "Cc" "Date" "Organi[sz]ation" "X-Mailer" "X-URL" "MIME-Version" "Content-Type" "Content-Transfer-Encoding" "Newsgroups?" "Resent-To" "Resent-From" "Resent-Date") nil
+X-VM-Last-Modified: (14683 6942 851817)
+X-VM-IMAP-Retrieved: nil
+X-VM-POP-Retrieved: nil
+X-VM-Bookmark: 1
+X-VM-v5-Data: ([nil nil nil nil t nil nil nil nil]
+	[nil "Tuesday" "27" "June" "2000" "22:57:01" "-0700" "Brent Fulgham" "bfulgham@debian.org" nil nil "Re: On to GwML... (Again...)" "^From:" nil nil "6" nil nil (number "   R  27 Jun 2000  Brent Fulgham           " thread-indent "Re: On to GwML... (Again...)\n") nil nil]
+	nil)
+Received: from concorde.inria.fr by beaune.inria.fr (8.8.8/1.1.22.3/14Sep99-0328PM)
+	id HAA0000010720; Wed, 28 Jun 2000 07:51:27 +0200 (MET DST)
+Received: from tif.inria.fr (tif.inria.fr [128.93.11.73])
+	by concorde.inria.fr (8.10.0/8.10.0) with ESMTP id e5S5pRX05820
+	for <lefessan@beaune.inria.fr>; Wed, 28 Jun 2000 07:51:27 +0200 (MET DST)
+Received: from nez-perce.inria.fr (nez-perce.inria.fr [192.93.2.78])
+	by tif.inria.fr (8.8.8/8.8.8) with ESMTP id HAA14313
+	for <lefessan@tif.inria.fr>; Wed, 28 Jun 2000 07:51:26 +0200 (MET DST)
+Received: from c014.sfo.cp.net (c014-h003.c014.sfo.cp.net [209.228.12.67])
+	by nez-perce.inria.fr (8.10.0/8.10.0) with SMTP id e5S5pPn26020
+	for <fabrice.le_fessant@inria.fr>; Wed, 28 Jun 2000 07:51:26 +0200 (MET DST)
+Received: (cpmta 26578 invoked from network); 27 Jun 2000 22:51:19 -0700
+Received: from d83b036a.dsl.flashcom.net (HELO hopper) (216.59.3.106)
+  by smtp.flashcom.net with SMTP; 27 Jun 2000 22:51:19 -0700
+X-Sent: 28 Jun 2000 05:51:19 GMT
+Received: from bfulgham by hopper with local (Exim 3.12 #1 (Debian))
+	for fabrice.le_fessant@inria.fr
+	id 137AqL-0002Bo-00; Tue, 27 Jun 2000 22:57:01 -0700
+Message-ID: <20000627225701.A3666@earthlink.net>
+References: <E134cs5-0002aT-00@hopper> <14673.50283.654060.677209@cremant.inria.fr> <20000625175628.A473@earthlink.net> <14679.3156.981370.23581@cremant.inria.fr>
+Content-Disposition: inline
+User-Agent: Mutt/1.2i
+In-Reply-To: <14679.3156.981370.23581@cremant.inria.fr>; from fabrice.le_fessant@inria.fr on Mon, Jun 26, 2000 at 09:55:00AM +0200
+Sender: "Brent A. Fulgham" <bfulgham@flashcom.net>
+From: Brent Fulgham <bfulgham@debian.org>
+Subject: Re: On to GwML... (Again...)
+To: Fabrice Le Fessant <fabrice.le_fessant@inria.fr>
+Date: Tue, 27 Jun 2000 22:57:01 -0700
+Mime-Version: 1.0
+Content-Type: multipart/mixed; boundary="vtzGhvizbBRQ85DL"
+
+
+--vtzGhvizbBRQ85DL
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+On Mon, Jun 26, 2000 at 09:55:00AM +0200, Fabrice Le Fessant wrote:
+> So, the most simple is now to save the new config 
+> (Root Menu -> Configure -> Save Options + Help), and then edit it:
+> 
+> There should be a line:
+> decorations = [
+>   (hubble_deco, ...)]
+> 
+> Then modify the following line:
+> decorate = [
+>   (standard, [ ("","") ]);
+>   (no_deco, [ (Xbuffy, ""); ... ])]
+> 
+> to:
+> 
+> decorate = [
+>   (hubble_deco, [ ("","") ]);
+>   (no_deco, [ (Xbuffy, ""); ... ])]
+> 
+> (replace standard deco by hubble_deco). Then save, and restart GwML 
+> (the shortcut is CTRL+ALT+r).
+
+I seem to have messed something up.  I tried to incororate the 
+brushed-metal stanzas into the "gwmlrc.ml" module, but I get lots
+of complaints upon loading it of undefined values for such things
+as "brushed_button1_action", etc.
+
+I don't see why there is a problem when loading these files in the
+gwmlrc.cmo at startup, but not when parsing them from the .gwmlrc.
+I made sure to do the "add_decorations" after Stdgwmlrc.Init() was 
+called but still had trouble:
+
+============================================================
+This is GwML, the Generic Window Manager in ML
+Version 017+3
+Loading configuration file gwmlrc.cmo
+Wmaker: I/O error: menu: No such file or directory
+
+Gwmlrc (Debian Master) loaded
+Loading Debian default theme file.
+Uncaught exception in /etc/X11/gwml/gwml-site.rc: Characters 398-410:
+Unbound value brushed_deco
+
+Loaded
+Loading configuration file: .gwmlrc.ml
+
+Decorating screens...
+Failure
+...Screen decorated
+Entering Event loop
+=============================================================
+
+So, I'm clearly missing something, but I'm not sure what. :-(
+
+I've attached the gwml-site.rc I used, and the gwmlrc.ml (as
+modified by me).  I'm sure it's a pretty stupid error...
+
+Thanks,
+
+-Brent
+
+
+
+--vtzGhvizbBRQ85DL
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: attachment; filename="gwml-site.rc"
+
+(***********************************************************************)
+(*                                                                     *)
+(*                 Default Debian GwML Configuration                   *)
+(*                                                                     *)
+(***********************************************************************)
+
+ add_decorations = [
+     (brushed_deco, [
+      (top_bar, [
+          (button, [
+              (name, "/usr/share/gwml/GwML/brushed-metal/t1.png");
+              (actions, brushed_button1_actions);
+              (shaped, true)
+	  ]);
+          (label, [
+              (fg, white);
+              (active_fg, black);
+              (min_width, 200);
+              (min_height, 20);
+              (justify, left);
+              (simage, "/usr/share/gwml/GwML/brushed-metal/t2.png");
+              (active_simage, "/usr/share/gwml/GwML/brushed-metal/t2-.png")
+	  ]);
+          (button, [
+              (name, "/usr/share/gwml/GwML/brushed-metal/t3.png");
+              (actions, brushed_button2_actions)
+              (shaped, true)
+          ]);
+          (button, [
+              (name, "/usr/share/gwml/GwML/brushed-metal/t4.png");
+              (actions, brushed_button3_actions);
+              (shaped, true)
+	  ]);
+          (button, [
+              (name, "/usr/share/gwml/GwML/brushed-metal/t5.png");
+              (actions, brushed_button4_actions);
+              (shaped, true)
+	  ]);
+          (null, [
+              (removed, true);
+              (shaped, true)
+	  ])
+      ]);
+      (*
+      (left_bar, [
+          (null, [
+              (min_width, 20);
+              (min_height, 20);
+              (removed, true)
+	  ])
+      ])
+      *)
+      
+     ]);
+   ]
+
+(*add_actions = [
+  (brushed_button1_actions, [(Button1, false, window_menu)])
+  (brushed_button2_actions, [(Button1, false, iconify_window)])
+  (brushed_button3_actions, [(Button1, false, maximize_y)])
+  (brushed_button4_actions, [(Button1, false, delete_window)])
+   ]*)
+
+--vtzGhvizbBRQ85DL
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: attachment; filename="gwmlrc.ml"
+
+(***********************************************************************)
+(*                                                                     *)
+(*                            GwML                                     *)
+(*                                                                     *)
+(*       Fabrice Le Fessant, projet Para/SOR, INRIA Rocquencourt       *)
+(*                                                                     *)
+(*  Copyright 1999 Institut National de Recherche en Informatique et   *)
+(*  Automatique.  Distributed only by permission.                      *)
+(*                                                                     *)
+(***********************************************************************)
+
+open Themes
+open Options
+open Gwml_args
+open Xtypes
+open Gwml
+open Stdconfig
+open AppMgr
+open Stddeco
+open Wob
+open Stdgwmlrc
+      
+let _ = 
+  add_to_path graphics_path "/usr/share/icons";
+  add_to_path graphics_path "/usr/share/icons/mini";
+  add_to_path graphics_path "/usr/X11R6/lib/X11/mini-icons";
+  add_to_path graphics_path "/usr/share/gwml/GwML/mini-icons";
+  Printf.printf "Gwmlrc (Debian Master) loaded"; print_newline ();
+
+  (**********************************
+  The following command MUST be executed in your gwmlrc, so that the
+  default configuration can be extended. Otherwise, some basic 
+  functionalities might not be available, and windows might not be
+  decorated at all.
+  ************************************)
+  Stdgwmlrc.init ();
+
+  (* Load the Debian system menu file *)
+  if (not !batch_mode) || !gwml_talk then
+    Utils.catchexn "/etc/X11/gwml/gwml-site.rc" (fun _ ->
+        Printf.printf "Loading Debian site-menu file."; 
+        print_newline ();
+        
+  	let file = "/etc/X11/gwml/gwml-site.rc" in
+        let ic = open_in file in
+        let s = ref "" in
+        
+        let b = String.create 1000 in
+        let rec iter () =
+          let len = input ic b 0 1000 in
+          if len > 0 then
+            (s := !s ^ (String.sub b 0 len); iter ())
+        in
+        iter ();
+        let s = Dyneval.eval (!s ^ " ;;") in
+        let len = min 300 (String.length s) in
+        Printf.printf "gwml-site.rc:%s" (String.sub s 0 len);
+        print_newline ()
+    );
+
+
+--vtzGhvizbBRQ85DL--
+

@@ -1,0 +1,52 @@
+(***********************************************************************)
+(*                                                                     *)
+(*                        Efuns Package                                *)
+(*                                                                     *)
+(*       Fabrice Le Fessant, projet Para/SOR, INRIA Rocquencourt       *)
+(*                                                                     *)
+(*  Copyright 1999 Institut National de Recherche en Informatique et   *)
+(*  Automatique.  Distributed only by permission.                      *)
+(*                                                                     *)
+(***********************************************************************)
+
+Version 018:
+-----------
+* Compatibility with Ocaml 2.99+18 pre 3.00
+
+Version 017:
+-----------
+* Added detection of Imlib for GwML in configure.
+* Integrated bug fix from Hendrik Tews
+
+Version 016:
+-----------
+* Added a configure script
+* Move examples to xlib/examples and toolkit/examples
+* New ocamlsrc directory to build the Objective-Caml compiler library.
+* Added a *beta* optimizer for i386 assembly code in inliner (can only be
+ used with a patch applied to ocaml 2.02).
+* Compatibility with Olabl added.
+
+Version 015:
+-----------
+* Added new library WXlib, toolkit of X widgets.
+
+Version 006:
+-----------
+* Added new library Toplevel, to compile and load toplevel phrases in native
+   code and bytecode programs (using Dynlink).
+
+Version 005:
+-----------
+* Added new program Gwml, Generic Window-manager in ML.
+
+Version 002:
+-----------
+* Added new library Dynlink, to dynamically load bytecode modules in native
+   code programs.
+
+Version 001:
+-----------
+* Program Efuns, editor clone of Emacs.
+* Library Xlib, implementing the X protocol.
+* Demo programs.

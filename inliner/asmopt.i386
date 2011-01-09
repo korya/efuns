@@ -1,0 +1,204 @@
+# These are standard peephole optimizations occuring frequently in Ocaml
+# programs:
+#
+# - block_type_test:  3 ins   -> 1 ins, 2 regs -> 1 reg
+# - double_mov:       stall removed
+# - generic_movb:     2 ins   -> 1 ins, 2 regs -> 1 reg
+# - obj_tag:          3/4 ins -> 4 ins, c_call removed
+# - obj_is_block:     3/4 ins -> 4 ins, c_call removed
+# - generic_div:      3 ins   -> 2 ins, 2 regs -> 1 reg
+# - op_on_addr:       2 ins   -> 1 ins, 2 regs -> 1 reg
+# - add2lea:          2 ins   -> 1 ins
+# - commute_op:       2 ins   -> 1 ins
+# - double_add/sub:   2 ins   -> 1 ins
+# - simple_add:       3 ins   -> 2 ins
+# - op_on_mem:        3 ins   -> 1 ins, 1 reg -> 0 reg
+#
+# Note that the combiner (option -do_combine) is able to perform some of
+# these peepholes optimizations. Moreover, it can use used_by information,
+# and not only consecutive instructions.
+
+peephole block_type_test {
+            movl   %r1, %r2
+            andl   $%n1, %r2b
+( . %i1)    cmpl   $%n2, %r2c
+}
+DEAD(%i1: %r2)
+SAMEREG(%r2, %r2b, %r2c)
+DISTINCT(%r1, %edi, %esi, %ebp)
+EQUAL(%n1, 255)
+{
+            cmpb $%n2, LOWBYTE %r1
+}
+
+peephole generic_div {
+           movl %r1, %ecx
+           cltd
+           idivl %ecx
+}
+{
+           cltd
+           idivl %r1
+}
+
+#peephole double_mov {
+#           movl %r1, %r2
+#           movl %r2b, %v1
+#}
+#    DISTINCT(%r1, %r2, %esp)
+#    SAMEREG(%r2, %r2b)
+#{
+#           movl %r1, %v1
+#           movl %r1, %r2
+#}
+
+
+peephole generic_movb {
+           movl %r1, %r2
+           movb LOWBYTE %r2b, %v1
+}
+    DISTINCT(%r1, %r2, %esi, %edi, %ebp, %esp)
+    SAMEREG(%r2, %r2b)
+{
+           movl %r1, %r2
+           movb LOWBYTE %r1, %v1
+}
+
+peephole obj_tag {
+    pushl %r1
+    call obj_tag
+    addl $4, %esp
+}
+{
+    movl -4(%r1), %eax
+    andl $255, %eax
+    lea 1(,%eax,2), %eax
+}
+
+peephole obj_tag_alloc {
+    pushl %r1
+    movl $obj_tag, %eax
+    call caml_c_call
+    addl $4, %esp
+}
+{
+    movl -4(%r1), %eax
+    andl $255, %eax
+    lea 1(,%eax,2), %eax
+}
+
+peephole obj_is_block_alloc {
+    pushl %r1
+    movl $obj_is_block, %eax
+    call caml_c_call
+    addl $4, %esp
+}
+{
+    movl %r1, %eax
+    andl $1, %eax
+    sall $1, %eax
+    xorl $3, %eax
+}
+
+peephole obj_is_block_alloc {
+    pushl %r1
+    call obj_is_block
+    addl $4, %esp
+}
+{
+    movl %r1, %eax
+    andl $1, %eax
+    sall $1, %eax
+    xorl $3, %eax
+}
+
+peephole op_on_addr_src {
+         movl %v1, %r1
+(. %i1)  %bin1 %r1b, %r2
+}
+SAMEREG(%r1, %r1b)
+DISTINCT(%r1, %r2)
+DEAD(%i1: %r1)
+INSTR2(%bin1: addl, subl, orl, xorl, andl, cmpl, testl, imull)
+{
+  %bin1 %v1, %r2
+}
+
+peephole op_on_addr_src2 {
+         movl (%r3), %r1
+(. %i1)  %bin1 %r2, %r1b
+}
+SAMEREG(%r1, %r1b)
+DEAD(%i1: %r1)
+DISTINCT(%r1, %r2)
+INSTR2(%bin1: cmpl, testl)
+{
+  %bin1 %r2, (%r3)
+}
+
+peephole add2lea {
+         addl %r1, %r2
+(. %i1)  movl %r2b, %r3
+}
+DEAD(%i1: %r2)
+SAMEREG(%r2, %r2b)
+{
+         leal (%r1,%r2), %r3
+}
+
+peephole commute_op {
+         %bin1 %r1, %r2
+(. %i1)  movl %r2b, %r1b
+}
+DEAD(%i1: %r2)
+SAMEREG(%r1, %r1b)
+SAMEREG(%r2, %r2b)
+INSTR2(%bin1: andl, orl, xorl, addl, imull)
+{
+         %bin1 %r2, %r1
+}
+
+peephole double_add {
+         addl $%n1, %r1
+         addl $%n2, %r1b
+}
+SAMEREG(%r1, %r1b)
+{
+         addl $%n1+%n2, %r1
+}
+
+
+peephole double_sub {
+         subl $%n1, %r1
+         subl $%n2, %r1b
+}
+SAMEREG(%r1, %r1b)
+{
+         subl $%n1+%n2, %r1
+}
+peephole simple_add {
+        orl     $1, %r1
+        addl    %r1b, %r2
+(. %i1) decl    %r2b
+}
+SAMEREG(%r1, %r1b)
+SAMEREG(%r2, %r2b)
+DEAD(%i1: %r1)
+{
+        andl $-2, %r1
+        addl %r1, %r2
+}
+
+peephole op_on_mem {
+        movl %n1(%r1), %r2
+        %bin1 $%n2, %r2b
+(. %i1) movl %r2c, %n1b(%r1b)
+}
+DEAD(%i1: %r2)
+SAMEREG(%r1, %r1b)
+SAMEREG(%r2, %r2b, %r2c)
+EQUAL(%n1, %n1b)
+INSTR2(%bin1: addl, subl, andl, xorl, orl, sall, shrl, sarl, imull)
+{
+        %bin1 $%n2, %n1(%r1)
+}

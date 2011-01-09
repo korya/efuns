@@ -1,0 +1,211 @@
+Les directives:
+
+  Elles doivent permettent d'ajouter suffisament d'information dans le
+code pour pouvoir gerer correctement certaines informations cachees:
+
+- labels de debut et de fin de section (ne correspondant pas a une donnee
+ ou une fonction, et devant toujours rester a la meme position)
+- conventions d'appel
+- variables vivantes
+
+L'interet de l'optimizer est de pouvoir decrire les optimisations dans un 
+fichier separe pour chaque fichier: compilation dirigee.
+
+L'optimizer prend deux sources d'informations:
+- un mode decrivant le compilateur (gcc, ocamlopt).
+- des directives dans le code inserees par le compilateur.
+
+L'optimizer sauvegarde les informations recuperees dans un module pour etre
+utilisees dans une autre phase.
+
+------------------------------
+Ce que optimizer apporte a ocamlopt:
+- peephole optimisations.
+- optimisations inter-modules et inter-fonctions au niveau des registres
+- inlining plus aggressif (dependant du code assembleur et non du code
+    Cmm).
+- fonctions ecrites en assembleur.
+
+------------------------------
+A FAIRE:
+
+Problemes:
+1) ne pas faire de distinction entre:
+
+instrs... 
+link: Some Node2
+
+et
+
+instrs...
+Jmp Node2
+link: None
+
+ce qui permet de partager beaucoup plus d'instructions.
+
+2) Supprimer les switches branchant sur des switch ayant le meme registre
+comme index.
+
+  shrl $1, %eax
+  jmp .L0(, %eax, 4)
+.data
+.L0:
+  .long .L1
+  .long .L2
+  .long .L1
+.text
+.L1:
+  shrl $1, %eax
+  jmp .L3(, %eax, 4)
+.data
+.L3
+  .long .L4
+  .long .L5
+  .long .L6
+text
+
+  peut etre remplace par:
+ shrl $1, %eax
+ jmp .L0(, %eax, 4)
+.data
+.L0
+  .long L4
+  .long L5
+  .long L6
+.text
+
+  ce qui permet en plus de supprimer le label .L5 inutile.
+
+3) Permettre l'inlining de fonctions complexes (plusieurs nodes)
+
+4) Essayer de remplacer les raises par des jumps quand ils ont lieu dans:
+try
+  if ... then raise Exit else ...
+with Exit -> ...
+
+5) Inliner de force List_iter:
+
+List_iter_73:
+.L67:
+        subl    $8, %esp
+.L68:
+        movl    %eax, %edx
+        cmpl    $1, %ebx
+        je      .L69
+.L70:
+        movl    %edx, 4(%esp)
+        movl    %ebx, (%esp)
+        movl    (%ebx), %eax
+        movl    (%edx), %ecx
+        movl    %edx, %ebx
+        call    *%ecx
+.L71:
+        movl    (%esp), %eax
+        movl    4(%eax), %ebx
+        movl    4(%esp), %eax
+        jmp     .L68
+.L69:
+        movl    $1, %eax
+        addl    $8, %esp
+        ret
+
+Et essayer d'eviter d'allouer la fermeture.
+
+===============================
+Pour l'instant:
+
+1) Peut lire un fichier de macros <name>.i386 contenant:
+     define <symbol> {
+       <asm code>
+     }
+et:
+     inline <symbol>
+
+ou <symbol> peut etre suffixe' d'une * pour signifier n'importe quel suffix
+(necessaire pour les symboles d'Ocaml: 
+  Xbuffer.setCard32 ---> Xbuffer_setCard32*
+
+"define" remplace le code d'une fonction, tandis que "inline" inline le code
+d'une fonction a toutes ses occurences (la fonction doit etre tres simple:
+un seul block).
+
+2) Genere un fichier <name>.asx contenant le code symbolique de tous les
+symboles definis dans le fichier. Ce fichier est lu quand un fichier
+dependant de ce module est optimise'.
+
+3) Remplace les switchs (resultant d'un match...with) chargeant des constantes
+dans un registre pour tous les cas en un load.
+
+===============================
+On peut reconnaitre ces sequences comme une seule instruction pour 
+permettre une meilleure interpretation abstraite du code.
+
+r2 = length (r1, int)
+     <=>
+movl -4(%r1), %r2
+shrl $9, %r2
+orl  $1, %r2
+
+
+r2 = length (r1, float)
+     <=>
+movl -4(%r1), %r2
+shrl $10, %r2
+orl  $1, %r2
+
+r2 = length (r1, unknown) [r3 destroyed]
+     <=>
+movl    -4(%r1), %r2
+movl    %r2, %r3
+andl    $255, %r3
+cmpl    $254, %r3
+je      .L1
+shrl    $9, %r2
+jmp     .L2
+.L1
+shrl    $10, %r2
+.L2
+orl     $1, %r2
+
+================================
+
+En Caml, les valeurs accedees depuis un nom symbolique ne peuvent pas etre
+aliasees entre elles:
+
+movl Toto+4, %eax
+movl %ebx, Papa + 8
+movl Toto+4, %esi
+
+peut donc etre simplifie en
+
+movl Toto+4, %eax
+movl %ebx, Papa + 8
+movl %eax, %esi
+
+On peut donc placer toutes ces valeurs dans une sorte de store permanent.
+On obtient donc 3 stores:
+
+- alloc_store: blocs venant d'etre alloues et dont les adresses ne peuvent
+pas etre aliasees. Les adresses pointant vers ces objets peuvent se situer
+uniquement dans des registres, la pile, ces blocs, des locations connues dans
+les autres stores.
+
+- immutable store: blocs ne pouvant pas etre modifies (immutable). Ce sont
+les closures (blocs contenant un pointeur de code en position 1) et les blocs
+ obtenus par des noms symboliques (sauf certains, comme "young_ptr" et 
+"young_limit").
+
+- global_store: comme les adresses vers ces blocs sont aliasees, il faut
+etre tres prudent. Ce store peut contenir plusieurs blocs dont les valeurs sont
+connues, et est vide en cas d'ecriture dans la memoire, pour se reduire au
+seul bloc ecrit, et aux headers des autres blocs.
+
+Une allocation peut etre evitee si il existe une instruction ou:
+- le bloc est present dans l'alloc_store
+- l'adresse du bloc n'est presente dans aucune autre location, excepte
+  un registre mort.
+
+===============================
+
+Il faut utiliser un combiner pour simplifier les procedures de xproto.Sopt
+apres inlining et propagation des constantes.

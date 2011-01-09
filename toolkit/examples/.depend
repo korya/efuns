@@ -1,0 +1,392 @@
+demo_appli.cmo: /home/cremant/lefessan/devel/efuns/toolkit/wX_adjust.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_appli.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_bar.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_dialog.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_display.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_root.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_scrollbar.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_text.cmo \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_types.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_viewport.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xK.cmo 
+demo_appli.cmx: /home/cremant/lefessan/devel/efuns/toolkit/wX_adjust.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_appli.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_bar.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_dialog.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_display.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_root.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_scrollbar.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_text.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_types.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_viewport.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xK.cmx 
+demo_bar.cmo: /home/cremant/lefessan/devel/efuns/toolkit/wX_bar.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_button.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_root.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_text.cmo \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_top.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_types.cmi 
+demo_bar.cmx: /home/cremant/lefessan/devel/efuns/toolkit/wX_bar.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_button.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_root.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_text.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_top.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_types.cmx 
+demo_button.cmo: /home/cremant/lefessan/devel/efuns/xlib/icccm.cmi \
+    /home/cremant/lefessan/devel/efuns/common/utils.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_button.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_display.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_parent.cmo \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_pixmap.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_root.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_types.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_wmtop.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi 
+demo_button.cmx: /home/cremant/lefessan/devel/efuns/xlib/icccm.cmx \
+    /home/cremant/lefessan/devel/efuns/common/utils.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_button.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_display.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_parent.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_pixmap.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_root.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_types.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_wmtop.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmx 
+demo_calc.cmo: /home/cremant/lefessan/devel/efuns/toolkit/wX_bar.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_button.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_display.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_label.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_root.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_types.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_wmtop.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xK.cmo \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi 
+demo_calc.cmx: /home/cremant/lefessan/devel/efuns/toolkit/wX_bar.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_button.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_display.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_label.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_root.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_types.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_wmtop.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xK.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmx 
+demo_complex.cmo: /home/cremant/lefessan/devel/efuns/toolkit/wX_adjust.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_appli.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_bar.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_button.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_dialog.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_display.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_label.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_ledit.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_panel.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_pixmap.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_popup.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_radiobutton.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_root.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_scale.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_scrollbar.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_selector.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_text.cmo \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_types.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_viewport.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xC.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xK.cmo 
+demo_complex.cmx: /home/cremant/lefessan/devel/efuns/toolkit/wX_adjust.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_appli.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_bar.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_button.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_dialog.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_display.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_label.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_ledit.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_panel.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_pixmap.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_popup.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_radiobutton.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_root.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_scale.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_scrollbar.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_selector.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_text.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_types.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_viewport.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xC.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xK.cmx 
+demo_cursors.cmo: /home/cremant/lefessan/devel/efuns/toolkit/wX_adjust.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_bar.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_display.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_label.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_root.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_scrollbar.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_top.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_types.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_viewport.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xC.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xK.cmo 
+demo_cursors.cmx: /home/cremant/lefessan/devel/efuns/toolkit/wX_adjust.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_bar.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_display.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_label.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_root.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_scrollbar.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_top.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_types.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_viewport.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xC.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xK.cmx 
+demo_file.cmo: /home/cremant/lefessan/devel/efuns/toolkit/wX_adjust.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_bar.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_button.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_display.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_pixmap.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_popup.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_root.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_scrollbar.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_selector.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_text.cmo \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_top.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_types.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_viewport.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xK.cmo 
+demo_file.cmx: /home/cremant/lefessan/devel/efuns/toolkit/wX_adjust.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_bar.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_button.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_display.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_pixmap.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_popup.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_root.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_scrollbar.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_selector.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_text.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_top.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_types.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_viewport.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xK.cmx 
+demo_filesel.cmo: /home/cremant/lefessan/devel/efuns/toolkit/wX_display.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_filesel.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_root.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_types.cmi 
+demo_filesel.cmx: /home/cremant/lefessan/devel/efuns/toolkit/wX_display.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_filesel.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_root.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_types.cmx 
+demo_graphics.cmo: /home/cremant/lefessan/devel/efuns/toolkit/wX_Graphics.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_appli.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_dialog.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_display.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_root.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_types.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xGraphics.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xK.cmo 
+demo_graphics.cmx: /home/cremant/lefessan/devel/efuns/toolkit/wX_Graphics.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_appli.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_dialog.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_display.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_root.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_types.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xGraphics.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xK.cmx 
+demo_hello2.cmo: /home/cremant/lefessan/devel/efuns/toolkit/wX_button.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_root.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_types.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_wmtop.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xK.cmo \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi 
+demo_hello2.cmx: /home/cremant/lefessan/devel/efuns/toolkit/wX_button.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_root.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_types.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_wmtop.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xK.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmx 
+demo_hello.cmo: /home/cremant/lefessan/devel/efuns/toolkit/wX_label.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_root.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_types.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_wmtop.cmi 
+demo_hello.cmx: /home/cremant/lefessan/devel/efuns/toolkit/wX_label.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_root.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_types.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_wmtop.cmx 
+demo_notebook.cmo: /home/cremant/lefessan/devel/efuns/toolkit/wX_display.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_notebook.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_root.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_text.cmo \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_types.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_wmtop.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi 
+demo_notebook.cmx: /home/cremant/lefessan/devel/efuns/toolkit/wX_display.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_notebook.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_root.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_text.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_types.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_wmtop.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmx 
+demo_panel.cmo: /home/cremant/lefessan/devel/efuns/toolkit/wX_adjust.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_bar.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_panel.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_root.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_scrollbar.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_text.cmo \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_types.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_viewport.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_wmtop.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xK.cmo 
+demo_panel.cmx: /home/cremant/lefessan/devel/efuns/toolkit/wX_adjust.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_bar.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_panel.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_root.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_scrollbar.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_text.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_types.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_viewport.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_wmtop.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xK.cmx 
+demo_table.cmo: /home/cremant/lefessan/devel/efuns/toolkit/wX_button.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_display.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_object.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_root.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_table.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_types.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_wmtop.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi 
+demo_table.cmx: /home/cremant/lefessan/devel/efuns/toolkit/wX_button.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_display.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_object.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_root.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_table.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_types.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_wmtop.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmx 
+demo_test.cmo: /home/cremant/lefessan/devel/efuns/toolkit/wX_adjust.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_bar.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_display.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_label.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_pixmap.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_root.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_scrollbar.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_top.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_types.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_viewport.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xK.cmo 
+demo_test.cmx: /home/cremant/lefessan/devel/efuns/toolkit/wX_adjust.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_bar.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_display.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_label.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_pixmap.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_root.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_scrollbar.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_top.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_types.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_viewport.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xK.cmx 
+demo_tex.cmo: /home/cremant/lefessan/devel/efuns/common/utils.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_button.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_display.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_root.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_tree.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_types.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_wmtop.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi 
+demo_tex.cmx: /home/cremant/lefessan/devel/efuns/common/utils.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_button.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_display.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_root.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_tree.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_types.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_wmtop.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmx 
+demo_text.cmo: /home/cremant/lefessan/devel/efuns/toolkit/wX_adjust.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_bar.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_button.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_display.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_pixmap.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_popup.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_root.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_scrollbar.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_selector.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_text.cmo \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_top.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_types.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_viewport.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xK.cmo 
+demo_text.cmx: /home/cremant/lefessan/devel/efuns/toolkit/wX_adjust.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_bar.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_button.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_display.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_pixmap.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_popup.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_root.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_scrollbar.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_selector.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_text.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_top.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_types.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_viewport.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xK.cmx 
+demo_tree.cmo: /home/cremant/lefessan/devel/efuns/toolkit/wX_display.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_label.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_root.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_tree.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_types.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_wmtop.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi 
+demo_tree.cmx: /home/cremant/lefessan/devel/efuns/toolkit/wX_display.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_label.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_root.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_tree.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_types.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_wmtop.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmx 
+demo_treesel.cmo: /home/cremant/lefessan/devel/efuns/concur/concur.cmi \
+    /home/cremant/lefessan/devel/efuns/common/utils.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_adjust.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_appli.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_bar.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_button.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_display.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_filesel.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_label.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_notebook.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_root.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_scale.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_scrollbar.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_tree.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_types.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_viewport.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xK.cmo \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi 
+demo_treesel.cmx: /home/cremant/lefessan/devel/efuns/concur/concur.cmi \
+    /home/cremant/lefessan/devel/efuns/common/utils.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_adjust.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_appli.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_bar.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_button.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_display.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_filesel.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_label.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_notebook.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_root.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_scale.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_scrollbar.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_tree.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_types.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_viewport.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xK.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmx 
+demo_viewport.cmo: /home/cremant/lefessan/devel/efuns/toolkit/wX_adjust.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_bar.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_root.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_scrollbar.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_text.cmo \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_types.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_viewport.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_wmtop.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xK.cmo 
+demo_viewport.cmx: /home/cremant/lefessan/devel/efuns/toolkit/wX_adjust.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_bar.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_root.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_scrollbar.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_text.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_types.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_viewport.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_wmtop.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xK.cmx 

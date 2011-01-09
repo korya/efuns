@@ -1,0 +1,5 @@
+*.cfg
+*.ps
+*.idx
+*.s
+dynlink.ml

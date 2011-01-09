@@ -1,0 +1,660 @@
+afterstep.cmo: gwml.cmi /home/cremant/lefessan/devel/efuns/common/options.cmi \
+    stdconfig.cmi stddeco.cmi themes.cmo \
+    /home/cremant/lefessan/devel/efuns/common/utils.cmi wob.cmi 
+afterstep.cmx: gwml.cmx /home/cremant/lefessan/devel/efuns/common/options.cmx \
+    stdconfig.cmx stddeco.cmx themes.cmx \
+    /home/cremant/lefessan/devel/efuns/common/utils.cmx wob.cmx 
+animate.cmo: gwml.cmi /home/cremant/lefessan/devel/efuns/common/options.cmi \
+    stdconfig.cmi wob.cmi /home/cremant/lefessan/devel/efuns/xlib/x.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xlib.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi animate.cmi 
+animate.cmx: gwml.cmx /home/cremant/lefessan/devel/efuns/common/options.cmx \
+    stdconfig.cmx wob.cmx /home/cremant/lefessan/devel/efuns/xlib/x.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xlib.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmx animate.cmi 
+appMgr.cmo: bar.cmi /home/cremant/lefessan/devel/efuns/xlib/eloop.cmi \
+    gwml.cmi /home/cremant/lefessan/devel/efuns/xlib/keyBind.cmo label.cmi \
+    /home/cremant/lefessan/devel/efuns/common/log.cmo \
+    /home/cremant/lefessan/devel/efuns/common/options.cmi stdconfig.cmi \
+    top.cmi /home/cremant/lefessan/devel/efuns/xlib/wintbl.cmi wob.cmi \
+    wobenv.cmi /home/cremant/lefessan/devel/efuns/xlib/x.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xA.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xK.cmo \
+    /home/cremant/lefessan/devel/efuns/xlib/xlib.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi appMgr.cmi 
+appMgr.cmx: bar.cmx /home/cremant/lefessan/devel/efuns/xlib/eloop.cmx \
+    gwml.cmx /home/cremant/lefessan/devel/efuns/xlib/keyBind.cmx label.cmx \
+    /home/cremant/lefessan/devel/efuns/common/log.cmx \
+    /home/cremant/lefessan/devel/efuns/common/options.cmx stdconfig.cmx \
+    top.cmx /home/cremant/lefessan/devel/efuns/xlib/wintbl.cmx wob.cmx \
+    wobenv.cmx /home/cremant/lefessan/devel/efuns/xlib/x.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xA.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xK.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xlib.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmx appMgr.cmi 
+bar.cmo: /home/cremant/lefessan/devel/efuns/xlib/eloop.cmi gwml.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/shape.cmi wob.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/x.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xlib.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi bar.cmi 
+bar.cmx: /home/cremant/lefessan/devel/efuns/xlib/eloop.cmx gwml.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/shape.cmx wob.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/x.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xlib.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmx bar.cmi 
+client.cmo: /home/cremant/lefessan/devel/efuns/xlib/eloop.cmi gwml.cmi \
+    gwml_args.cmo /home/cremant/lefessan/devel/efuns/xlib/icccm.cmi \
+    /home/cremant/lefessan/devel/efuns/common/log.cmo \
+    /home/cremant/lefessan/devel/efuns/common/options.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/shape.cmi top.cmi \
+    /home/cremant/lefessan/devel/efuns/common/utils.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/wintbl.cmi wob.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/x.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xA.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xbuffer.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xlib.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xsync.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi client.cmi 
+client.cmx: /home/cremant/lefessan/devel/efuns/xlib/eloop.cmx gwml.cmx \
+    gwml_args.cmx /home/cremant/lefessan/devel/efuns/xlib/icccm.cmx \
+    /home/cremant/lefessan/devel/efuns/common/log.cmx \
+    /home/cremant/lefessan/devel/efuns/common/options.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/shape.cmx top.cmx \
+    /home/cremant/lefessan/devel/efuns/common/utils.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/wintbl.cmx wob.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/x.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xA.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xbuffer.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xlib.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xsync.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmx client.cmi 
+configurator.cmo: client.cmi gradients.cmi gwml.cmi gwml_args.cmo \
+    /home/cremant/lefessan/devel/efuns/common/options.cmi sound.cmi \
+    stdconfig.cmi /home/cremant/lefessan/devel/efuns/common/utils.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_adjust.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_appli.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_bar.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_button.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_dialog.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_display.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_filesel.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_label.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_ledit.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_root.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_scrollbar.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_selector.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_text.cmo \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_types.cmi \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_viewport.cmi wob.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/x.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xK.cmo \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi 
+configurator.cmx: client.cmx gradients.cmx gwml.cmx gwml_args.cmx \
+    /home/cremant/lefessan/devel/efuns/common/options.cmx sound.cmx \
+    stdconfig.cmx /home/cremant/lefessan/devel/efuns/common/utils.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_adjust.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_appli.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_bar.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_button.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_dialog.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_display.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_filesel.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_label.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_ledit.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_root.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_scrollbar.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_selector.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_text.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_types.cmx \
+    /home/cremant/lefessan/devel/efuns/toolkit/wX_viewport.cmx wob.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/x.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xK.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmx 
+cpp.cmo: /home/cremant/lefessan/devel/efuns/common/utils.cmi 
+cpp.cmx: /home/cremant/lefessan/devel/efuns/common/utils.cmx 
+dvroom.cmo: gwml.cmi gwml_args.cmo \
+    /home/cremant/lefessan/devel/efuns/xlib/icccm.cmi \
+    /home/cremant/lefessan/devel/efuns/common/log.cmo \
+    /home/cremant/lefessan/devel/efuns/common/options.cmi stdconfig.cmi \
+    /home/cremant/lefessan/devel/efuns/common/utils.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/wintbl.cmi wob.cmi wobenv.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/x.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xlib.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi 
+dvroom.cmx: gwml.cmx gwml_args.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/icccm.cmx \
+    /home/cremant/lefessan/devel/efuns/common/log.cmx \
+    /home/cremant/lefessan/devel/efuns/common/options.cmx stdconfig.cmx \
+    /home/cremant/lefessan/devel/efuns/common/utils.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/wintbl.cmx wob.cmx wobenv.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/x.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xlib.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmx 
+fvwm.cmo: bar.cmi client.cmi ../concur/concur.cmi gwml.cmi gwml_args.cmo \
+    label.cmi /home/cremant/lefessan/devel/efuns/common/log.cmo modules.cmo \
+    null.cmi /home/cremant/lefessan/devel/efuns/common/options.cmi pixmap.cmi \
+    stdconfig.cmi stddeco.cmi user.cmi \
+    /home/cremant/lefessan/devel/efuns/common/utils.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/wintbl.cmi wob.cmi wobenv.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/x.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xA.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xC.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xlib.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi 
+fvwm.cmx: bar.cmx client.cmx ../concur/concur.cmi gwml.cmx gwml_args.cmx \
+    label.cmx /home/cremant/lefessan/devel/efuns/common/log.cmx modules.cmx \
+    null.cmx /home/cremant/lefessan/devel/efuns/common/options.cmx pixmap.cmx \
+    stdconfig.cmx stddeco.cmx user.cmx \
+    /home/cremant/lefessan/devel/efuns/common/utils.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/wintbl.cmx wob.cmx wobenv.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/x.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xA.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xC.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xlib.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmx 
+gnome.cmo: gwml.cmi /home/cremant/lefessan/devel/efuns/xlib/icccm.cmi \
+    stdconfig.cmi /home/cremant/lefessan/devel/efuns/common/version.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/wintbl.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/x.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xA.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xbuffer.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xlib.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi 
+gnome.cmx: gwml.cmx /home/cremant/lefessan/devel/efuns/xlib/icccm.cmx \
+    stdconfig.cmx /home/cremant/lefessan/devel/efuns/common/version.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/wintbl.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/x.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xA.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xbuffer.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xlib.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmx 
+gradients.cmo: gwml.cmi /home/cremant/lefessan/devel/efuns/common/options.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/x.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xlib.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi gradients.cmi 
+gradients.cmx: gwml.cmx /home/cremant/lefessan/devel/efuns/common/options.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/x.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xlib.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmx gradients.cmi 
+group.cmo: gwml.cmi stdconfig.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/wintbl.cmi wob.cmi wobenv.cmi 
+group.cmx: gwml.cmx stdconfig.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/wintbl.cmx wob.cmx wobenv.cmx 
+gwml_args.cmo: /home/cremant/lefessan/devel/efuns/dynlink/dyneval.cmo \
+    /home/cremant/lefessan/devel/efuns/common/log.cmo \
+    /home/cremant/lefessan/devel/efuns/common/options.cmi \
+    /home/cremant/lefessan/devel/efuns/common/utils.cmi \
+    /home/cremant/lefessan/devel/efuns/common/version.cmi 
+gwml_args.cmx: /home/cremant/lefessan/devel/efuns/dynlink/dyneval.cmx \
+    /home/cremant/lefessan/devel/efuns/common/log.cmx \
+    /home/cremant/lefessan/devel/efuns/common/options.cmx \
+    /home/cremant/lefessan/devel/efuns/common/utils.cmx \
+    /home/cremant/lefessan/devel/efuns/common/version.cmx 
+gwml.cmo: ../concur/concur.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/eloop.cmi gwml_args.cmo \
+    imager.cmi /home/cremant/lefessan/devel/efuns/common/log.cmo \
+    /home/cremant/lefessan/devel/efuns/common/options.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/shape.cmi \
+    /home/cremant/lefessan/devel/efuns/common/utils.cmi \
+    /home/cremant/lefessan/devel/efuns/common/version.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/wintbl.cmi wobenv.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/x.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xC.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xlib.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xpm.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xrm.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xsync.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi gwml.cmi 
+gwml.cmx: ../concur/concur.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/eloop.cmx gwml_args.cmx \
+    imager.cmx /home/cremant/lefessan/devel/efuns/common/log.cmx \
+    /home/cremant/lefessan/devel/efuns/common/options.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/shape.cmx \
+    /home/cremant/lefessan/devel/efuns/common/utils.cmx \
+    /home/cremant/lefessan/devel/efuns/common/version.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/wintbl.cmx wobenv.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/x.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xC.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xlib.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xpm.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xrm.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xsync.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmx gwml.cmi 
+gwmlrc.cmo: appMgr.cmi gwml.cmi gwml_args.cmo \
+    /home/cremant/lefessan/devel/efuns/common/options.cmi stdconfig.cmi \
+    stddeco.cmi stdgwmlrc.cmo themes.cmo wob.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi 
+gwmlrc.cmx: appMgr.cmx gwml.cmx gwml_args.cmx \
+    /home/cremant/lefessan/devel/efuns/common/options.cmx stdconfig.cmx \
+    stddeco.cmx stdgwmlrc.cmx themes.cmx wob.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmx 
+image.cmo: /home/cremant/lefessan/devel/efuns/xlib/eloop.cmi gwml.cmi \
+    gwml_args.cmo imager.cmi wob.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/x.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xlib.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi 
+image.cmx: /home/cremant/lefessan/devel/efuns/xlib/eloop.cmx gwml.cmx \
+    gwml_args.cmx imager.cmx wob.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/x.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xlib.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmx 
+imager.cmo: gwml_args.cmo /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi \
+    imager.cmi 
+imager.cmx: gwml_args.cmx /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmx \
+    imager.cmi 
+label.cmo: /home/cremant/lefessan/devel/efuns/xlib/eloop.cmi gwml.cmi wob.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/x.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xlib.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtext.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi label.cmi 
+label.cmx: /home/cremant/lefessan/devel/efuns/xlib/eloop.cmx gwml.cmx wob.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/x.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xlib.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xtext.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmx label.cmi 
+ledit.cmo: /home/cremant/lefessan/devel/efuns/xlib/eloop.cmi gwml.cmi \
+    label.cmi wob.cmi /home/cremant/lefessan/devel/efuns/xlib/x.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xC.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xK.cmo \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi ledit.cmi 
+ledit.cmx: /home/cremant/lefessan/devel/efuns/xlib/eloop.cmx gwml.cmx \
+    label.cmx wob.cmx /home/cremant/lefessan/devel/efuns/xlib/x.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xC.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xK.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmx ledit.cmi 
+main.cmo: ../concur/concur.cmi \
+    /home/cremant/lefessan/devel/efuns/dynlink/dyneval.cmo \
+    /home/cremant/lefessan/devel/efuns/xlib/eloop.cmi gwml.cmi gwml_args.cmo \
+    /home/cremant/lefessan/devel/efuns/common/log.cmo \
+    /home/cremant/lefessan/devel/efuns/common/options.cmi screen.cmo \
+    /home/cremant/lefessan/devel/efuns/common/utils.cmi \
+    /home/cremant/lefessan/devel/efuns/common/version.cmi wob.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xlib.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi 
+main.cmx: ../concur/concur.cmi \
+    /home/cremant/lefessan/devel/efuns/dynlink/dyneval.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/eloop.cmx gwml.cmx gwml_args.cmx \
+    /home/cremant/lefessan/devel/efuns/common/log.cmx \
+    /home/cremant/lefessan/devel/efuns/common/options.cmx screen.cmx \
+    /home/cremant/lefessan/devel/efuns/common/utils.cmx \
+    /home/cremant/lefessan/devel/efuns/common/version.cmx wob.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xlib.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmx 
+modules.cmo: ../concur/concur.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/eloop.cmi gwml.cmi \
+    /home/cremant/lefessan/devel/efuns/common/options.cmi stdconfig.cmi \
+    /home/cremant/lefessan/devel/efuns/common/utils.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/wintbl.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xbuffer.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi 
+modules.cmx: ../concur/concur.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/eloop.cmx gwml.cmx \
+    /home/cremant/lefessan/devel/efuns/common/options.cmx stdconfig.cmx \
+    /home/cremant/lefessan/devel/efuns/common/utils.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/wintbl.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xbuffer.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmx 
+null.cmo: /home/cremant/lefessan/devel/efuns/xlib/eloop.cmi gwml.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/shape.cmi wob.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/x.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xlib.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi null.cmi 
+null.cmx: /home/cremant/lefessan/devel/efuns/xlib/eloop.cmx gwml.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/shape.cmx wob.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/x.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xlib.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmx null.cmi 
+opttable.cmo: opttable.cmi 
+opttable.cmx: opttable.cmi 
+pixmap.cmo: /home/cremant/lefessan/devel/efuns/xlib/eloop.cmi gwml.cmi \
+    /home/cremant/lefessan/devel/efuns/common/options.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/shape.cmi wob.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/x.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xlib.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi pixmap.cmi 
+pixmap.cmx: /home/cremant/lefessan/devel/efuns/xlib/eloop.cmx gwml.cmx \
+    /home/cremant/lefessan/devel/efuns/common/options.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/shape.cmx wob.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/x.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xlib.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmx pixmap.cmi 
+plug.cmo: /home/cremant/lefessan/devel/efuns/xlib/eloop.cmi gwml.cmi wob.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/x.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xlib.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi 
+plug.cmx: /home/cremant/lefessan/devel/efuns/xlib/eloop.cmx gwml.cmx wob.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/x.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xlib.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmx 
+screen.cmo: client.cmi /home/cremant/lefessan/devel/efuns/xlib/eloop.cmi \
+    gwml.cmi gwml_args.cmo /home/cremant/lefessan/devel/efuns/xlib/jeton.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/keyBind.cmo \
+    /home/cremant/lefessan/devel/efuns/common/log.cmo \
+    /home/cremant/lefessan/devel/efuns/common/options.cmi \
+    /home/cremant/lefessan/devel/efuns/common/utils.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/wintbl.cmi wob.cmi wobenv.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/x.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xlib.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi 
+screen.cmx: client.cmx /home/cremant/lefessan/devel/efuns/xlib/eloop.cmx \
+    gwml.cmx gwml_args.cmx /home/cremant/lefessan/devel/efuns/xlib/jeton.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/keyBind.cmx \
+    /home/cremant/lefessan/devel/efuns/common/log.cmx \
+    /home/cremant/lefessan/devel/efuns/common/options.cmx \
+    /home/cremant/lefessan/devel/efuns/common/utils.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/wintbl.cmx wob.cmx wobenv.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/x.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xlib.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmx 
+sendEvent.cmo: gwml.cmi /home/cremant/lefessan/devel/efuns/xlib/keyBind.cmo \
+    /home/cremant/lefessan/devel/efuns/common/utils.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/x.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xK.cmo \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi 
+sendEvent.cmx: gwml.cmx /home/cremant/lefessan/devel/efuns/xlib/keyBind.cmx \
+    /home/cremant/lefessan/devel/efuns/common/utils.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/x.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xK.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmx 
+session.cmo: fvwm.cmo gwml.cmi modules.cmo 
+session.cmx: fvwm.cmx gwml.cmx modules.cmx 
+sound.cmo: ../concur/concur.cmi \
+    /home/cremant/lefessan/devel/efuns/common/options.cmi \
+    /home/cremant/lefessan/devel/efuns/common/utils.cmi sound.cmi 
+sound.cmx: ../concur/concur.cmi \
+    /home/cremant/lefessan/devel/efuns/common/options.cmx \
+    /home/cremant/lefessan/devel/efuns/common/utils.cmx sound.cmi 
+stdconfig.cmo: bar.cmi client.cmi ../concur/concur.cmi \
+    /home/cremant/lefessan/devel/efuns/dynlink/dyneval.cmo \
+    /home/cremant/lefessan/devel/efuns/xlib/eloop.cmi gwml.cmi gwml_args.cmo \
+    label.cmi ledit.cmi /home/cremant/lefessan/devel/efuns/common/log.cmo \
+    /home/cremant/lefessan/devel/efuns/common/options.cmi opttable.cmi \
+    top.cmi /home/cremant/lefessan/devel/efuns/common/utils.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/wintbl.cmi wob.cmi wobenv.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/x.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xK.cmo \
+    /home/cremant/lefessan/devel/efuns/xlib/xlib.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xrm.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xsync.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi stdconfig.cmi 
+stdconfig.cmx: bar.cmx client.cmx ../concur/concur.cmi \
+    /home/cremant/lefessan/devel/efuns/dynlink/dyneval.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/eloop.cmx gwml.cmx gwml_args.cmx \
+    label.cmx ledit.cmx /home/cremant/lefessan/devel/efuns/common/log.cmx \
+    /home/cremant/lefessan/devel/efuns/common/options.cmx opttable.cmx \
+    top.cmx /home/cremant/lefessan/devel/efuns/common/utils.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/wintbl.cmx wob.cmx wobenv.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/x.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xK.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xlib.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xrm.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xsync.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmx stdconfig.cmi 
+stddeco.cmo: animate.cmi bar.cmi ../concur/concur.cmi gwml.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/icccm.cmi label.cmi ledit.cmi \
+    /home/cremant/lefessan/devel/efuns/common/log.cmo null.cmi \
+    /home/cremant/lefessan/devel/efuns/common/options.cmi pixmap.cmi \
+    sound.cmi stdconfig.cmi stdicon.cmo stdplacement.cmo text.cmi top.cmi \
+    user.cmi /home/cremant/lefessan/devel/efuns/common/utils.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/wintbl.cmi wob.cmi wobenv.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/x.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xA.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xlib.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi stddeco.cmi 
+stddeco.cmx: animate.cmx bar.cmx ../concur/concur.cmi gwml.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/icccm.cmx label.cmx ledit.cmx \
+    /home/cremant/lefessan/devel/efuns/common/log.cmx null.cmx \
+    /home/cremant/lefessan/devel/efuns/common/options.cmx pixmap.cmx \
+    sound.cmx stdconfig.cmx stdicon.cmx stdplacement.cmx text.cmx top.cmx \
+    user.cmx /home/cremant/lefessan/devel/efuns/common/utils.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/wintbl.cmx wob.cmx wobenv.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/x.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xA.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xlib.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmx stddeco.cmi 
+stdgwmlrc.cmo: afterstep.cmo animate.cmi appMgr.cmi dvroom.cmo \
+    /home/cremant/lefessan/devel/efuns/dynlink/dyneval.cmo fvwm.cmo gnome.cmo \
+    group.cmo gwml.cmi gwml_args.cmo modules.cmo \
+    /home/cremant/lefessan/devel/efuns/common/options.cmi sound.cmi \
+    stdconfig.cmi stddeco.cmi stdicon.cmo stdmenus.cmi stdplacement.cmo \
+    stdvirtual.cmo themes.cmo twm.cmo undo.cmo user.cmi \
+    /home/cremant/lefessan/devel/efuns/common/utils.cmi \
+    /home/cremant/lefessan/devel/efuns/common/version.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/wintbl.cmi wmaker.cmi wob.cmi \
+    wobenv.cmi /home/cremant/lefessan/devel/efuns/xlib/x.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xK.cmo \
+    /home/cremant/lefessan/devel/efuns/xlib/xlib.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi 
+stdgwmlrc.cmx: afterstep.cmx animate.cmx appMgr.cmx dvroom.cmx \
+    /home/cremant/lefessan/devel/efuns/dynlink/dyneval.cmx fvwm.cmx gnome.cmx \
+    group.cmx gwml.cmx gwml_args.cmx modules.cmx \
+    /home/cremant/lefessan/devel/efuns/common/options.cmx sound.cmx \
+    stdconfig.cmx stddeco.cmx stdicon.cmx stdmenus.cmx stdplacement.cmx \
+    stdvirtual.cmx themes.cmx twm.cmx undo.cmx user.cmx \
+    /home/cremant/lefessan/devel/efuns/common/utils.cmx \
+    /home/cremant/lefessan/devel/efuns/common/version.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/wintbl.cmx wmaker.cmx wob.cmx \
+    wobenv.cmx /home/cremant/lefessan/devel/efuns/xlib/x.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xK.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xlib.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmx 
+stdicon.cmo: gwml.cmi label.cmi null.cmi \
+    /home/cremant/lefessan/devel/efuns/common/options.cmi pixmap.cmi \
+    stdconfig.cmi top.cmi user.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/wintbl.cmi wob.cmi wobenv.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xA.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xlib.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xrm.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi 
+stdicon.cmx: gwml.cmx label.cmx null.cmx \
+    /home/cremant/lefessan/devel/efuns/common/options.cmx pixmap.cmx \
+    stdconfig.cmx top.cmx user.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/wintbl.cmx wob.cmx wobenv.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xA.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xlib.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xrm.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmx 
+stdmenus.cmo: bar.cmi gwml.cmi label.cmi \
+    /home/cremant/lefessan/devel/efuns/common/options.cmi pixmap.cmi \
+    stdconfig.cmi top.cmi /home/cremant/lefessan/devel/efuns/common/utils.cmi \
+    wob.cmi wobenv.cmi /home/cremant/lefessan/devel/efuns/xlib/x.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xK.cmo \
+    /home/cremant/lefessan/devel/efuns/xlib/xlib.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi stdmenus.cmi 
+stdmenus.cmx: bar.cmx gwml.cmx label.cmx \
+    /home/cremant/lefessan/devel/efuns/common/options.cmx pixmap.cmx \
+    stdconfig.cmx top.cmx /home/cremant/lefessan/devel/efuns/common/utils.cmx \
+    wob.cmx wobenv.cmx /home/cremant/lefessan/devel/efuns/xlib/x.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xK.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xlib.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmx stdmenus.cmi 
+stdplacement.cmo: ../concur/concur.cmi gwml.cmi \
+    /home/cremant/lefessan/devel/efuns/common/options.cmi stdconfig.cmi \
+    user.cmi wob.cmi wobenv.cmi /home/cremant/lefessan/devel/efuns/xlib/x.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xlib.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi 
+stdplacement.cmx: ../concur/concur.cmi gwml.cmx \
+    /home/cremant/lefessan/devel/efuns/common/options.cmx stdconfig.cmx \
+    user.cmx wob.cmx wobenv.cmx /home/cremant/lefessan/devel/efuns/xlib/x.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xlib.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmx 
+stdscreen.cmo: client.cmi gwml.cmi stdconfig.cmi stddeco.cmi \
+    /home/cremant/lefessan/devel/efuns/common/utils.cmi wob.cmi wobenv.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xlib.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi 
+stdscreen.cmx: client.cmx gwml.cmx stdconfig.cmx stddeco.cmx \
+    /home/cremant/lefessan/devel/efuns/common/utils.cmx wob.cmx wobenv.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xlib.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmx 
+stdvirtual.cmo: ../concur/concur.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/eloop.cmi gwml.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/icccm.cmi \
+    /home/cremant/lefessan/devel/efuns/common/log.cmo \
+    /home/cremant/lefessan/devel/efuns/common/options.cmi stdconfig.cmi \
+    top.cmi /home/cremant/lefessan/devel/efuns/common/utils.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/wintbl.cmi wob.cmi wobenv.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/x.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xC.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xlib.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi 
+stdvirtual.cmx: ../concur/concur.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/eloop.cmx gwml.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/icccm.cmx \
+    /home/cremant/lefessan/devel/efuns/common/log.cmx \
+    /home/cremant/lefessan/devel/efuns/common/options.cmx stdconfig.cmx \
+    top.cmx /home/cremant/lefessan/devel/efuns/common/utils.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/wintbl.cmx wob.cmx wobenv.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/x.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xC.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xlib.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmx 
+text.cmo: /home/cremant/lefessan/devel/efuns/xlib/eloop.cmi gwml.cmi wob.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/x.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xlib.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtext.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi text.cmi 
+text.cmx: /home/cremant/lefessan/devel/efuns/xlib/eloop.cmx gwml.cmx wob.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/x.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xlib.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xtext.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmx text.cmi 
+themes.cmo: gwml.cmi gwml_args.cmo imager.cmi \
+    /home/cremant/lefessan/devel/efuns/common/options.cmi stdconfig.cmi \
+    /home/cremant/lefessan/devel/efuns/common/utils.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/x.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi 
+themes.cmx: gwml.cmx gwml_args.cmx imager.cmx \
+    /home/cremant/lefessan/devel/efuns/common/options.cmx stdconfig.cmx \
+    /home/cremant/lefessan/devel/efuns/common/utils.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/x.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmx 
+top.cmo: /home/cremant/lefessan/devel/efuns/xlib/eloop.cmi gwml.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/icccm.cmi \
+    /home/cremant/lefessan/devel/efuns/common/log.cmo \
+    /home/cremant/lefessan/devel/efuns/common/options.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/shape.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/wintbl.cmi wob.cmi wobenv.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/x.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xlib.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi top.cmi 
+top.cmx: /home/cremant/lefessan/devel/efuns/xlib/eloop.cmx gwml.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/icccm.cmx \
+    /home/cremant/lefessan/devel/efuns/common/log.cmx \
+    /home/cremant/lefessan/devel/efuns/common/options.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/shape.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/wintbl.cmx wob.cmx wobenv.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/x.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xlib.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmx top.cmi 
+twm_l.cmo: twm_p.cmi twm_t.cmo 
+twm_l.cmx: twm_p.cmx twm_t.cmx 
+twm.cmo: bar.cmi client.cmi gwml.cmi label.cmi null.cmi \
+    /home/cremant/lefessan/devel/efuns/common/options.cmi pixmap.cmi \
+    stdconfig.cmi stddeco.cmi twm_l.cmo twm_p.cmi twm_t.cmo user.cmi wob.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/x.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xC.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xK.cmo \
+    /home/cremant/lefessan/devel/efuns/xlib/xlib.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi 
+twm.cmx: bar.cmx client.cmx gwml.cmx label.cmx null.cmx \
+    /home/cremant/lefessan/devel/efuns/common/options.cmx pixmap.cmx \
+    stdconfig.cmx stddeco.cmx twm_l.cmx twm_p.cmx twm_t.cmx user.cmx wob.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/x.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xC.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xK.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xlib.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmx 
+twm_p.cmo: twm_t.cmo /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi \
+    twm_p.cmi 
+twm_p.cmx: twm_t.cmx /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmx \
+    twm_p.cmi 
+undo.cmo: stdconfig.cmi 
+undo.cmx: stdconfig.cmx 
+user.cmo: animate.cmi /home/cremant/lefessan/devel/efuns/xlib/eloop.cmi \
+    gwml.cmi /home/cremant/lefessan/devel/efuns/xlib/keyBind.cmo \
+    /home/cremant/lefessan/devel/efuns/common/options.cmi stdconfig.cmi \
+    top.cmi /home/cremant/lefessan/devel/efuns/xlib/wintbl.cmi wob.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/x.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xC.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xK.cmo \
+    /home/cremant/lefessan/devel/efuns/xlib/xlib.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi user.cmi 
+user.cmx: animate.cmx /home/cremant/lefessan/devel/efuns/xlib/eloop.cmx \
+    gwml.cmx /home/cremant/lefessan/devel/efuns/xlib/keyBind.cmx \
+    /home/cremant/lefessan/devel/efuns/common/options.cmx stdconfig.cmx \
+    top.cmx /home/cremant/lefessan/devel/efuns/xlib/wintbl.cmx wob.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/x.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xC.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xK.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xlib.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmx user.cmi 
+wmaker.cmo: ../concur/concur.cmi cpp.cmo gradients.cmi gwml.cmi \
+    /home/cremant/lefessan/devel/efuns/common/options.cmi stdconfig.cmi \
+    stddeco.cmi themes.cmo \
+    /home/cremant/lefessan/devel/efuns/common/utils.cmi wob.cmi wmaker.cmi 
+wmaker.cmx: ../concur/concur.cmi cpp.cmx gradients.cmx gwml.cmx \
+    /home/cremant/lefessan/devel/efuns/common/options.cmx stdconfig.cmx \
+    stddeco.cmx themes.cmx \
+    /home/cremant/lefessan/devel/efuns/common/utils.cmx wob.cmx wmaker.cmi 
+wobenv.cmo: wobenv.cmi 
+wobenv.cmx: wobenv.cmi 
+wob.cmo: ../concur/concur.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/eloop.cmi gradients.cmi gwml.cmi \
+    imager.cmi /home/cremant/lefessan/devel/efuns/xlib/keyBind.cmo \
+    /home/cremant/lefessan/devel/efuns/common/options.cmi \
+    /home/cremant/lefessan/devel/efuns/common/utils.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/wintbl.cmi wobenv.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/x.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xlib.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xsync.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi wob.cmi 
+wob.cmx: ../concur/concur.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/eloop.cmx gradients.cmx gwml.cmx \
+    imager.cmx /home/cremant/lefessan/devel/efuns/xlib/keyBind.cmx \
+    /home/cremant/lefessan/devel/efuns/common/options.cmx \
+    /home/cremant/lefessan/devel/efuns/common/utils.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/wintbl.cmx wobenv.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/x.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xlib.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xsync.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmx wob.cmi 
+animate.cmi: gwml.cmi /home/cremant/lefessan/devel/efuns/common/options.cmi \
+    stdconfig.cmi /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi 
+appMgr.cmi: /home/cremant/lefessan/devel/efuns/common/options.cmi \
+    stdconfig.cmi 
+bar.cmi: gwml.cmi wob.cmi 
+client.cmi: gwml.cmi /home/cremant/lefessan/devel/efuns/common/options.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/shape.cmi wob.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi 
+gradients.cmi: /home/cremant/lefessan/devel/efuns/common/options.cmi 
+gwml.cmi: /home/cremant/lefessan/devel/efuns/xlib/eloop.cmi \
+    /home/cremant/lefessan/devel/efuns/common/options.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/shape.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/wintbl.cmi wobenv.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xpm.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xrm.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi 
+imager.cmi: /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi 
+label.cmi: gwml.cmi wob.cmi 
+ledit.cmi: gwml.cmi label.cmi 
+null.cmi: gwml.cmi wob.cmi 
+pixmap.cmi: gwml.cmi wob.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi 
+sound.cmi: /home/cremant/lefessan/devel/efuns/common/options.cmi 
+stdconfig.cmi: gwml.cmi label.cmi ledit.cmi \
+    /home/cremant/lefessan/devel/efuns/common/options.cmi opttable.cmi \
+    top.cmi wobenv.cmi /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi 
+stddeco.cmi: gwml.cmi ledit.cmi \
+    /home/cremant/lefessan/devel/efuns/common/options.cmi stdconfig.cmi \
+    top.cmi 
+stdmenus.cmi: /home/cremant/lefessan/devel/efuns/common/options.cmi 
+text.cmi: gwml.cmi wob.cmi 
+top.cmi: gwml.cmi /home/cremant/lefessan/devel/efuns/common/options.cmi \
+    wob.cmi /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi 
+twm_p.cmi: twm_t.cmo 
+user.cmi: gwml.cmi /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi 
+wmaker.cmi: /home/cremant/lefessan/devel/efuns/common/options.cmi \
+    stdconfig.cmi 
+wob.cmi: gwml.cmi imager.cmi \
+    /home/cremant/lefessan/devel/efuns/common/options.cmi wobenv.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi 

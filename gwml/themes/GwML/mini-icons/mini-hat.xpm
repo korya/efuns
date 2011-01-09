@@ -1,0 +1,21 @@
+/* XPM */
+static char * mini_hat_xpm[] = {
+"16 14 3 1",
+" 	c None s None",
+".	c #FFFFFFFF0000",
+"X	c #000000000000",
+"                ",
+"                ",
+"                ",
+"                ",
+"     XXXXXX     ",
+"    X......X    ",
+"    X......X    ",
+"   X........X   ",
+"   X........X   ",
+"XXX..X..X..X.XXX",
+"X..............X",
+"X..............X",
+"XXXXXXXXXXXXXXXX",
+"                "};
+

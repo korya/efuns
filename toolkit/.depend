@@ -1,0 +1,324 @@
+old_text.cmo: /home/cremant/lefessan/devel/efuns/common/utils.cmi \
+    wX_object.cmi wX_types.cmi /home/cremant/lefessan/devel/efuns/xlib/x.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xlib.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi 
+old_text.cmx: /home/cremant/lefessan/devel/efuns/common/utils.cmx \
+    wX_object.cmx wX_types.cmx /home/cremant/lefessan/devel/efuns/xlib/x.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xlib.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmx 
+wX_adjust.cmo: wX_types.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi wX_adjust.cmi 
+wX_adjust.cmx: wX_types.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmx wX_adjust.cmi 
+wX_appli.cmo: wX_bar.cmi wX_button.cmi wX_deleg.cmi wX_label.cmi wX_popup.cmi \
+    wX_port.cmi wX_root.cmi wX_types.cmi wX_wmtop.cmi wX_appli.cmi 
+wX_appli.cmx: wX_bar.cmx wX_button.cmx wX_deleg.cmx wX_label.cmx wX_popup.cmx \
+    wX_port.cmx wX_root.cmx wX_types.cmx wX_wmtop.cmx wX_appli.cmi 
+wX_bar.cmo: wX_object.cmi wX_types.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi wX_bar.cmi 
+wX_bar.cmx: wX_object.cmx wX_types.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmx wX_bar.cmi 
+wX_base.cmo: /home/cremant/lefessan/devel/efuns/xlib/keyBind.cmo \
+    wX_screen.cmi wX_types.cmi /home/cremant/lefessan/devel/efuns/xlib/x.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi wX_base.cmi 
+wX_base.cmx: /home/cremant/lefessan/devel/efuns/xlib/keyBind.cmx \
+    wX_screen.cmx wX_types.cmx /home/cremant/lefessan/devel/efuns/xlib/x.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmx wX_base.cmi 
+wX_button.cmo: wX_label.cmi wX_object.cmi wX_types.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi wX_button.cmi 
+wX_button.cmx: wX_label.cmx wX_object.cmx wX_types.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmx wX_button.cmi 
+wX_config.cmo: /home/cremant/lefessan/devel/efuns/common/version.cmi 
+wX_config.cmx: /home/cremant/lefessan/devel/efuns/common/version.cmx 
+wX_deleg.cmo: wX_base.cmi wX_label.cmi wX_object.cmi wX_pixmap.cmi wX_top.cmi \
+    wX_types.cmi wX_wmtop.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi wX_deleg.cmi 
+wX_deleg.cmx: wX_base.cmx wX_label.cmx wX_object.cmx wX_pixmap.cmx wX_top.cmx \
+    wX_types.cmx wX_wmtop.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmx wX_deleg.cmi 
+wX_dialog.cmo: wX_bar.cmi wX_button.cmi wX_deleg.cmi wX_label.cmi \
+    wX_object.cmi wX_root.cmi wX_text.cmo wX_top.cmi wX_types.cmi \
+    wX_dialog.cmi 
+wX_dialog.cmx: wX_bar.cmx wX_button.cmx wX_deleg.cmx wX_label.cmx \
+    wX_object.cmx wX_root.cmx wX_text.cmx wX_top.cmx wX_types.cmx \
+    wX_dialog.cmi 
+wX_display.cmo: /home/cremant/lefessan/devel/efuns/xlib/eloop.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/selection.cmi wX_types.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xlib.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi wX_display.cmi 
+wX_display.cmx: /home/cremant/lefessan/devel/efuns/xlib/eloop.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/selection.cmx wX_types.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xlib.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmx wX_display.cmi 
+wX_dummy.cmo: wX_object.cmi wX_types.cmi wX_dummy.cmi 
+wX_dummy.cmx: wX_object.cmx wX_types.cmx wX_dummy.cmi 
+wX_filesel.cmo: /home/cremant/lefessan/devel/efuns/common/utils.cmi \
+    wX_adjust.cmi wX_bar.cmi wX_button.cmi wX_deleg.cmi wX_label.cmi \
+    wX_ledit.cmi wX_object.cmi wX_port.cmi wX_scrollbar.cmi wX_types.cmi \
+    wX_viewport.cmi wX_wmtop.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/x.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xK.cmo \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi wX_filesel.cmi 
+wX_filesel.cmx: /home/cremant/lefessan/devel/efuns/common/utils.cmx \
+    wX_adjust.cmx wX_bar.cmx wX_button.cmx wX_deleg.cmx wX_label.cmx \
+    wX_ledit.cmx wX_object.cmx wX_port.cmx wX_scrollbar.cmx wX_types.cmx \
+    wX_viewport.cmx wX_wmtop.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/x.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xK.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmx wX_filesel.cmi 
+wX_Graphics.cmo: /home/cremant/lefessan/devel/efuns/xlib/eloop.cmi \
+    wX_object.cmi wX_types.cmi /home/cremant/lefessan/devel/efuns/xlib/x.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xGraphics.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi wX_Graphics.cmi 
+wX_Graphics.cmx: /home/cremant/lefessan/devel/efuns/xlib/eloop.cmx \
+    wX_object.cmx wX_types.cmx /home/cremant/lefessan/devel/efuns/xlib/x.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xGraphics.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmx wX_Graphics.cmi 
+wX_label.cmo: wX_object.cmi wX_types.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xlib.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi wX_label.cmi 
+wX_label.cmx: wX_object.cmx wX_types.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xlib.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmx wX_label.cmi 
+wX_ledit.cmo: wX_label.cmi wX_types.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xC.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xK.cmo \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi wX_ledit.cmi 
+wX_ledit.cmx: wX_label.cmx wX_types.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xC.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xK.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmx wX_ledit.cmi 
+wX_notebook.cmo: wX_bar.cmi wX_button.cmi wX_label.cmi wX_object.cmi \
+    wX_swap.cmi wX_types.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi wX_notebook.cmi 
+wX_notebook.cmx: wX_bar.cmx wX_button.cmx wX_label.cmx wX_object.cmx \
+    wX_swap.cmx wX_types.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmx wX_notebook.cmi 
+wX_object.cmo: /home/cremant/lefessan/devel/efuns/xlib/eloop.cmi \
+    /home/cremant/lefessan/devel/efuns/common/utils.cmi wX_base.cmi \
+    wX_types.cmi /home/cremant/lefessan/devel/efuns/xlib/x.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xlib.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi wX_object.cmi 
+wX_object.cmx: /home/cremant/lefessan/devel/efuns/xlib/eloop.cmx \
+    /home/cremant/lefessan/devel/efuns/common/utils.cmx wX_base.cmx \
+    wX_types.cmx /home/cremant/lefessan/devel/efuns/xlib/x.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xlib.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmx wX_object.cmi 
+wX_panel.cmo: /home/cremant/lefessan/devel/efuns/xlib/eloop.cmi wX_adjust.cmi \
+    wX_dummy.cmi wX_object.cmi wX_types.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/x.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xC.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xlib.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi wX_panel.cmi 
+wX_panel.cmx: /home/cremant/lefessan/devel/efuns/xlib/eloop.cmx wX_adjust.cmx \
+    wX_dummy.cmx wX_object.cmx wX_types.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/x.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xC.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xlib.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmx wX_panel.cmi 
+wX_parent.cmo: wX_object.cmi wX_types.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/x.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xlib.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi 
+wX_parent.cmx: wX_object.cmx wX_types.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/x.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xlib.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmx 
+wX_pixmap.cmo: wX_object.cmi wX_types.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/x.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi wX_pixmap.cmi 
+wX_pixmap.cmx: wX_object.cmx wX_types.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/x.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmx wX_pixmap.cmi 
+wX_popup.cmo: wX_bar.cmi wX_label.cmi wX_top.cmi wX_types.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi wX_popup.cmi 
+wX_popup.cmx: wX_bar.cmx wX_label.cmx wX_top.cmx wX_types.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmx wX_popup.cmi 
+wX_port.cmo: wX_object.cmi wX_types.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi wX_port.cmi 
+wX_port.cmx: wX_object.cmx wX_types.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmx wX_port.cmi 
+wX_radiobutton.cmo: wX_adjust.cmi wX_button.cmi wX_radiobutton.cmi 
+wX_radiobutton.cmx: wX_adjust.cmx wX_button.cmx wX_radiobutton.cmi 
+wX_root.cmo: /home/cremant/lefessan/devel/efuns/xlib/eloop.cmi wX_base.cmi \
+    wX_display.cmi wX_types.cmi /home/cremant/lefessan/devel/efuns/xlib/x.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi wX_root.cmi 
+wX_root.cmx: /home/cremant/lefessan/devel/efuns/xlib/eloop.cmx wX_base.cmx \
+    wX_display.cmx wX_types.cmx /home/cremant/lefessan/devel/efuns/xlib/x.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmx wX_root.cmi 
+wX_scale.cmo: /home/cremant/lefessan/devel/efuns/xlib/eloop.cmi wX_adjust.cmi \
+    wX_object.cmi wX_types.cmi /home/cremant/lefessan/devel/efuns/xlib/x.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xC.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xlib.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi wX_scale.cmi 
+wX_scale.cmx: /home/cremant/lefessan/devel/efuns/xlib/eloop.cmx wX_adjust.cmx \
+    wX_object.cmx wX_types.cmx /home/cremant/lefessan/devel/efuns/xlib/x.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xC.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xlib.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmx wX_scale.cmi 
+wX_screen.cmo: /home/cremant/lefessan/devel/efuns/xlib/eloop.cmi \
+    /home/cremant/lefessan/devel/efuns/common/utils.cmi wX_types.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/x.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xC.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xlib.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xpm.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi wX_screen.cmi 
+wX_screen.cmx: /home/cremant/lefessan/devel/efuns/xlib/eloop.cmx \
+    /home/cremant/lefessan/devel/efuns/common/utils.cmx wX_types.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/x.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xC.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xlib.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xpm.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmx wX_screen.cmi 
+wX_scrollbar.cmo: /home/cremant/lefessan/devel/efuns/xlib/eloop.cmi \
+    wX_adjust.cmi wX_object.cmi wX_types.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/x.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xC.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xlib.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi wX_scrollbar.cmi 
+wX_scrollbar.cmx: /home/cremant/lefessan/devel/efuns/xlib/eloop.cmx \
+    wX_adjust.cmx wX_object.cmx wX_types.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/x.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xC.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xlib.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmx wX_scrollbar.cmi 
+wX_selector.cmo: wX_button.cmi wX_label.cmi wX_popup.cmi wX_types.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi wX_selector.cmi 
+wX_selector.cmx: wX_button.cmx wX_label.cmx wX_popup.cmx wX_types.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmx wX_selector.cmi 
+wX_style.cmo: wX_root.cmi wX_types.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/x.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi 
+wX_style.cmx: wX_root.cmx wX_types.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/x.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmx 
+wX_swap.cmo: wX_object.cmi wX_types.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi wX_swap.cmi 
+wX_swap.cmx: wX_object.cmx wX_types.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmx wX_swap.cmi 
+wX_table.cmo: wX_dummy.cmi wX_object.cmi wX_types.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi wX_table.cmi 
+wX_table.cmx: wX_dummy.cmx wX_object.cmx wX_types.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmx wX_table.cmi 
+wX_text.cmo: /home/cremant/lefessan/devel/efuns/common/utils.cmi \
+    wX_object.cmi wX_types.cmi /home/cremant/lefessan/devel/efuns/xlib/x.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xlib.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi 
+wX_text.cmx: /home/cremant/lefessan/devel/efuns/common/utils.cmx \
+    wX_object.cmx wX_types.cmx /home/cremant/lefessan/devel/efuns/xlib/x.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xlib.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmx 
+wX_top.cmo: wX_object.cmi wX_root.cmi wX_types.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/x.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xlib.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi wX_top.cmi 
+wX_top.cmx: wX_object.cmx wX_root.cmx wX_types.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/x.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xlib.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmx wX_top.cmi 
+wX_tree.cmo: /home/cremant/lefessan/devel/efuns/xlib/eloop.cmi wX_object.cmi \
+    wX_types.cmi /home/cremant/lefessan/devel/efuns/xlib/x.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xC.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xlib.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi wX_tree.cmi 
+wX_tree.cmx: /home/cremant/lefessan/devel/efuns/xlib/eloop.cmx wX_object.cmx \
+    wX_types.cmx /home/cremant/lefessan/devel/efuns/xlib/x.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xC.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xlib.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmx wX_tree.cmi 
+wX_types.cmo: /home/cremant/lefessan/devel/efuns/xlib/eloop.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/keyBind.cmo \
+    /home/cremant/lefessan/devel/efuns/xlib/x.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xlib.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xpm.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi wX_types.cmi 
+wX_types.cmx: /home/cremant/lefessan/devel/efuns/xlib/eloop.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/keyBind.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/x.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xlib.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xpm.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmx wX_types.cmi 
+wX_viewport.cmo: wX_adjust.cmi wX_object.cmi wX_types.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi wX_viewport.cmi 
+wX_viewport.cmx: wX_adjust.cmx wX_object.cmx wX_types.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmx wX_viewport.cmi 
+wX_wmtop.cmo: /home/cremant/lefessan/devel/efuns/xlib/icccm.cmi wX_top.cmi \
+    wX_types.cmi /home/cremant/lefessan/devel/efuns/xlib/x.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi wX_wmtop.cmi 
+wX_wmtop.cmx: /home/cremant/lefessan/devel/efuns/xlib/icccm.cmx wX_top.cmx \
+    wX_types.cmx /home/cremant/lefessan/devel/efuns/xlib/x.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmx wX_wmtop.cmi 
+wX_xterm.cmo: /home/cremant/lefessan/devel/efuns/xlib/eloop.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/keyBind.cmo \
+    /home/cremant/lefessan/devel/efuns/xlib/selection.cmi wX_root.cmi \
+    wX_types.cmi /home/cremant/lefessan/devel/efuns/xlib/x.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xA.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xC.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xK.cmo \
+    /home/cremant/lefessan/devel/efuns/xlib/xlib.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xsync.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi wX_xterm.cmi 
+wX_xterm.cmx: /home/cremant/lefessan/devel/efuns/xlib/eloop.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/keyBind.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/selection.cmx wX_root.cmx \
+    wX_types.cmx /home/cremant/lefessan/devel/efuns/xlib/x.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xA.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xC.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xK.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xlib.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xsync.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmx wX_xterm.cmi 
+wX_adjust.cmi: /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi 
+wX_appli.cmi: wX_button.cmi wX_deleg.cmi wX_popup.cmi wX_root.cmi \
+    wX_types.cmi 
+wX_bar.cmi: wX_object.cmi wX_types.cmi 
+wX_base.cmi: wX_types.cmi /home/cremant/lefessan/devel/efuns/xlib/xpm.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi 
+wX_button.cmi: wX_label.cmi wX_object.cmi wX_types.cmi 
+wX_deleg.cmi: wX_base.cmi wX_label.cmi wX_object.cmi wX_pixmap.cmi wX_top.cmi \
+    wX_types.cmi wX_wmtop.cmi /home/cremant/lefessan/devel/efuns/xlib/xpm.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi 
+wX_dialog.cmi: wX_bar.cmi wX_deleg.cmi wX_root.cmi wX_text.cmo wX_types.cmi 
+wX_display.cmi: /home/cremant/lefessan/devel/efuns/xlib/eloop.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi 
+wX_dummy.cmi: wX_object.cmi wX_types.cmi 
+wX_filesel.cmi: wX_deleg.cmi wX_root.cmi wX_types.cmi 
+wX_Graphics.cmi: wX_object.cmi wX_types.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xGraphics.cmi 
+wX_label.cmi: wX_object.cmi wX_types.cmi 
+wX_ledit.cmi: wX_label.cmi wX_types.cmi 
+wX_notebook.cmi: wX_bar.cmi wX_object.cmi wX_swap.cmi wX_types.cmi 
+wX_object.cmi: wX_types.cmi /home/cremant/lefessan/devel/efuns/xlib/xpm.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi 
+wX_panel.cmi: wX_adjust.cmi wX_object.cmi wX_types.cmi 
+wX_pixmap.cmi: wX_object.cmi wX_types.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi 
+wX_popup.cmi: wX_root.cmi wX_top.cmi wX_types.cmi 
+wX_port.cmi: wX_object.cmi wX_types.cmi 
+wX_radiobutton.cmi: wX_adjust.cmi wX_button.cmi wX_types.cmi 
+wX_root.cmi: /home/cremant/lefessan/devel/efuns/xlib/eloop.cmi wX_types.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xpm.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi 
+wX_scale.cmi: wX_adjust.cmi wX_types.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xpm.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi 
+wX_screen.cmi: wX_types.cmi /home/cremant/lefessan/devel/efuns/xlib/xpm.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi 
+wX_scrollbar.cmi: wX_adjust.cmi wX_types.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xpm.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi 
+wX_selector.cmi: wX_button.cmi wX_root.cmi wX_types.cmi 
+wX_swap.cmi: wX_object.cmi wX_types.cmi 
+wX_table.cmi: wX_object.cmi wX_types.cmi 
+wX_top.cmi: wX_object.cmi wX_root.cmi wX_types.cmi 
+wX_tree.cmi: wX_object.cmi wX_types.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi 
+wX_types.cmi: /home/cremant/lefessan/devel/efuns/xlib/eloop.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xpm.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi 
+wX_viewport.cmi: wX_adjust.cmi wX_object.cmi wX_types.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi 
+wX_wmtop.cmi: wX_root.cmi wX_top.cmi wX_types.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi 
+wX_xterm.cmi: wX_root.cmi wX_types.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi 

@@ -1,0 +1,4 @@
+Options.define_option, for option window_popup: Not_found
+load_module Exit Parsing
+Options.define_option, for option default_popup: Not_found
+Fvwm.module_listen: Unix error: bind: No such file or directory ()

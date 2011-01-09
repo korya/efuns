@@ -1,0 +1,21 @@
+/* XPM */
+static char * mini-recapture_xpm[] = {
+"16 14 4 1",
+" 	c None s None",
+".	c Black",
+"X	c blue",
+"o	c white",
+"..........      ",
+".XXXXXX.....    ",
+".ooooo.o..  .   ",
+".ooo............",
+".oo.oo.X.XX.XX..",
+".oo.oo.o.oo.oo..",
+".oo..........o..",
+".o..XXXX.XX..oo.",
+"....oooo.oo..oo.",
+".  .oooo.oo..oo.",
+"   .oooo.oo..oo.",
+"   .oooo.oo.....",
+"   .oooo.oo..   ",
+"   ..........   "};

@@ -1,0 +1,112 @@
+CONFIGURING GWML
+================
+
+  There are several ways of configuring Efuns:
+
+1) From the root menu (left button on root window), choose the "Configure" 
+sub-menu: 
+
+You can change some simple options, such as auto-raise, 
+virtual scrolling on screen edge (pan_on_click), etc ... 
+
+ You can also select themes (either from AfterStep, WindowMaker or GwML).
+Most of the time, this will have little immediate effect, but will take place
+at next GwML restart (you can use the C-A-r binding to restart GwML, but be
+careful to save the options first :) ).
+
+There is also a "Configure" sub-menu in every window menu, for window class
+specific options. For now, only the decoration can be selected (but this is
+simple to improve).
+
+NEVER forget to save the options after any modification (this should probably
+be done automatically in the future).
+
+2) Directly in the ~/.gwmlrc, edit the options:
+  - '[' and '(' are equivalent.
+  - ',', space and ';' are equivalent.
+  - You should use "..." around all options. This is in fact not necessary
+  if no symbols are present in the option.
+
+  You can configure a lot of things this way. In particular, colors, images,
+  bindings, decorations, menus, etc...
+
+  In bindings, the second parameter is "true" if the key/button should be
+  grabbed, and "false" otherwise. There are several bindings:
+  - screen_actions: bindings for the root window
+  - window_actions: bindings for a client window
+  - iconMgr_actions: bindings for the icon manager
+  - icon_actions: bindings for every icon
+
+1) Modify the source code of the standard configuration.
+
+  First, use "gwml_install"
+
+
+
+I WANT TO DEFINE MY OWN DECORATION FOR A WINDOW IN MY .gwmlrc:
+
+  Here is a simple example: First, use the "decorate" option to associate a
+  decoration with each window:
+
+ decorate = [
+  (light_deco, [
+      ("", "")]);
+  (no_deco, [
+      (XBuffy, "");
+      (CPUStateMonitor, "");
+      (Clock, "");
+      (XConsole, "");
+      (XApm, xapm);
+      (XLoad, "");
+      (GwML, "");
+      (Panel, panel);
+      (XClock, "")])]
+
+  This define that the default decoration for all windows ("","") should be 
+  the "light_deco" decoration. This decoration is not a predefined decoration
+  (the standard profile defines only "standard_deco" and "no_deco"). Some other
+  windows are associated with the "no_deco" decoration.
+ 
+  Thus, we must now define the "light_deco" decoration. This is done in the
+  "decorations" option:
+
+ decorations = [
+  (light_deco, [
+      (top_bar, [
+          (button, [
+              (actions, button1_actions)]);
+          (label, [
+              (min_width, 200);
+              (justify, center)]);
+          (null, [
+              (removed, true)])])])]
+
+  Here, the "light_deco" decoration only contains a title_bar (the "top_bar"),
+  the "bottom_bar" is left undefined. The title_bar contains three objects:
+  a "button" (with a pixmap), a "label" and a "null" (an empty bar).
+  Since the "name" of the button is left undefined, the pixmap defaults
+  to a title-icon (a small icon chosen by the name of the application).
+  Since the "class" and "name" of the label are left undefined, the label
+  defaults to the current name of the application (The "class" can be
+  "name" or "class", and the "name" is a string which is displayed in the
+  label). The "min_width" and "justify" parameters are specific to the "label"
+  object. The "null" object is "removed", thus, the shape of the bar will be
+  removed from the decoration.
+
+ Standard parameters which can be used to parameterize objects are:
+ "actions" : the bindings for the object
+ "min_width": the object min width
+ "min_height": the object min height
+ "extensible_width": 1 if the object should fill horizontally
+ "bg" : the background color
+ "fg" : the foreground color
+ "image" : the background image
+ "font" : the font
+
+  Finally, the bindings for an object are defined in the "actions" option.
+ In our example, "button1_actions" is defined for simply poping the
+ "window_menu" when button1 is pressed in the object.
+
+ actions = [
+  (button1_actions, [
+      (Button1, false, window_menu)])]

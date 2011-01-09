@@ -1,0 +1,11 @@
+*.s
+*.cfg
+*.opt
+asmopt
+*.asx
+*.Sopt
+ocaml-2.02
+*.log
+*.idx
+*.ps
+stdlib

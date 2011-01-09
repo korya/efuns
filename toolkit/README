@@ -1,0 +1,71 @@
+WXlib:
+------
+
+This is a widget toolkit for Xlib. Partially implemented. Really BETA.
+
+Installation:
+------------
+
+- You need to build the Xlib library before compiling this one.
+- Commands:
+
+make byte      : build in bytecode 
+make opt       : build in native code
+make demos     : build demo examples in bytecode
+make demos.opt : build demo examples in native code
+make top       : build a custom toplevel (need xlib installed)
+
+make install   : install bytecode files
+make installopt: install native files
+
+make mlis      : build .mli files
+make clean     : clean the directory
+make realclean : clean the directory and .mli files
+
+Documentation:
+--------------
+Look at the demo_*.ml files for examples (compiled by make demos).
+Here is a succint description of most widgets
+
+-------------------------------------------------------------
+
+
+FIRST WIDGET:
+  WX_display: the widget for the display
+
+CONTAINER WIDGETS:
+ Initial:
+  WX_root: the screen widget (to be created after WX_display)
+  WX_top: the toplevel widget
+  WX_wmtop: a toplevel widget with ICCCM methods
+
+ Composants:
+  WX_bar: the bar widget (either horizontal or vertical) used to arrange
+    other widgets in rows.
+  WX_viewport: the widget used to display partially other widgets
+    (used with WX_scrollbar and WX_adjust)
+  WX_port: a simple container widget
+  WX_button: a button on which to click.
+  WX_panel: an adjustable splitted window 
+  
+ Composite:
+  WX_selector: to select a value in a list.
+  WX_appli: to build directly an application with a menubar.
+  WX_popup: to popup a menu
+  WX_dialog: to build a dialog box (text + buttons)
+
+DRAWING WIDGETS:
+  WX_text: display a text with embedded widgets
+  WX_label: display a simple line of text
+  WX_pixmap: display a simple pixmap
+  WX_scrollbar: display a scrollbar
+  WX_scale: display a scale
+  WX_ledit: display an editable label
+  WX_filesel: a file selection box
+
+MISCELENEOUS:
+  WX_adjust: to compose WX_scrollbar and WX_viewport in a simple way.
+
+------------------------------------------------------
+Fabrice Le Fessant
+Fabrice.Le_fessant@inria.fr

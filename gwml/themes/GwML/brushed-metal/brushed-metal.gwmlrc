@@ -1,0 +1,43 @@
+ add_decorations = [
+     (brushed_deco, [
+      (top_bar, [
+          (button, [
+              (name, "/usr/local/share/GwML/brushed-metal/t1.png");
+              (actions, brushed_button1_actions);
+              (shaped, true)]);
+          (label, [
+              (fg, white);
+              (active_fg, black);
+              (min_width, 200);
+              (min_height, 20);
+              (justify, left);
+              (simage, "/usr/local/share/GwML/brushed-metal/t2.png");
+              (active_simage, "/usr/local/share/GwML/brushed-metal/t2.png")]);
+          (button, [
+              (name, "/usr/local/share/GwML/brushed-metal/t3.png");
+              (actions, brushed_button2_actions)
+              (shaped, true)
+          ]);
+          (button, [
+              (name, "/usr/local/share/GwML/brushed-metal/t4.png");
+              (actions, brushed_button3_actions);
+              (shaped, true)]);
+          (button, [
+              (name, "/usr/local/share/GwML/brushed-metal/t5.png");
+              (actions, brushed_button4_actions);
+              (shaped, true)]);
+          (null, [
+              (removed, true);
+              (shaped, true)])]);
+      (left_bar, [
+          (null, [
+              (min_width, 20);
+              (min_height, 20);
+              (removed, true)])])]);
+   ]
+ add_actions = [
+  (brushed_button1_actions, [(Button1, false, window_menu)])
+  (brushed_button2_actions, [(Button1, false, iconify_window)])
+  (brushed_button3_actions, [(Button1, false, maximize_y)])
+  (brushed_button4_actions, [(Button1, false, delete_window)])
+   ]

@@ -1,0 +1,20 @@
+/* XPM */
+static char * mini_modules_xpm[] = {
+"16 14 3 1",
+" 	c None",
+".	c White",
+"X	c Blue",
+"                ",
+"   ..... .....  ",
+"   .XXXX .XXXX  ",
+"   .XXXX .XXXX  ",
+"   .XXXX .XXXX  ",
+"   .XXXX .XXXX  ",
+"                ",
+"   ..... .....  ",
+"   .XXXX .XXXX  ",
+"   .XXXX .XXXX  ",
+"   .XXXX .XXXX  ",
+"   .XXXX .XXXX  ",
+"                ",
+"                "};

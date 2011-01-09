@@ -1,0 +1,17 @@
+compat_run.cmo: compat_run.cmi 
+compat_run.cmx: compat_run.cmi 
+lexers.cmo: parsers.cmi lexers.cmi 
+lexers.cmx: parsers.cmx lexers.cmi 
+log.cmo: utils.cmi 
+log.cmx: utils.cmx 
+options.cmo: log.cmo utils.cmi options.cmi 
+options.cmx: log.cmx utils.cmx options.cmi 
+parse_file.cmo: lexers.cmi parsers.cmi utils.cmi 
+parse_file.cmx: lexers.cmx parsers.cmx utils.cmx 
+parsers.cmo: parsers.cmi 
+parsers.cmx: parsers.cmi 
+utils.cmo: lexers.cmi utils.cmi 
+utils.cmx: lexers.cmx utils.cmi 
+version.cmo: version.cmi 
+version.cmx: version.cmi 
+lexers.cmi: parsers.cmi 

@@ -1,0 +1,28 @@
+/* XPM */
+static char *mini-sys3d-full[] = {
+/* width height num_colors chars_per_pixel */
+"    18    18        3            1",
+/* colors */
+". c #414141",
+"# c #b6b6b6",
+"a c #828282",
+/* pixels */
+"#################.",
+"################..",
+"##aaaaaaaaaaaaaa..",
+"##aaaaaaaaaaaaaa..",
+"##aaaaaaaaaaaaaa..",
+"##aaaaaaaaaaaaaa..",
+"##aaaaaaaaaaaaaa..",
+"##a###########.a..",
+"##a#aaaaaaaaaa.a..",
+"##a#aaaaaaaaaa.a..",
+"##a#...........a..",
+"##aaaaaaaaaaaaaa..",
+"##aaaaaaaaaaaaaa..",
+"##aaaaaaaaaaaaaa..",
+"##aaaaaaaaaaaaaa..",
+"##aaaaaaaaaaaaaa..",
+"#.................",
+".................."
+};

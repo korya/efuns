@@ -1,0 +1,106 @@
+(***********************************************************************)
+(*                                                                     *)
+(*                             Xlib                                    *)
+(*                                                                     *)
+(*       Fabrice Le Fessant, projet Para/SOR, INRIA Rocquencourt       *)
+(*                                                                     *)
+(*  Copyright 1999 Institut National de Recherche en Informatique et   *)
+(*  Automatique.  Distributed only by permission.                      *)
+(*                                                                     *)
+(***********************************************************************)
+
+Version 017:
+===========
+* Bug fixes:
+  - [KeyBind] problem with keypad keys fixed (Hendrik Tews).
+
+Version 016:
+===========
+* Xtypes:
+  - new field [dpy_broken] in type display executed when the connection
+  with server is broken (default is stop program).
+* Added an optimization file for the i386 for xbuffer (xbuffer.i386) to
+ be used with the inliner.
+
+Version 015:
+===========
+* XGraphics: 
+  - uses Eloop module.
+* Eloop:
+  - added [mutex] to prevent concurrent execution of mutexes.
+  - added function [handle_events] to execute all events handlers and
+      return.
+* Display:
+  - All requests are in critical section to protect the buffer.
+
+Version 014:
+===========
+* Xrm: 
+  - New function [xdefaults] using the RESOURCE_MANAGER property. 
+* XGraphics:
+  - Fixed erroneous behavior of button_down.
+* Eloop:
+  - Suppressed useless [scheduler]
+  - Possibility to send events to [handle_event]
+
+Version 013:
+===========
+* Zpixmap: bug fixed on BadLength when pixmaps exceed the max length for
+   packets.
+* XGraphics: bug fixed on button pressed (status.button = true)
+* demos: new example sqmove from Michel Quercia to debug XGraphics.
+
+Version 012:
+===========
+* Fixed bug in demo/pacman to avoid infinite pixmap creation.
+* Experimental: each X request uses the same buffer (no more allocated for
+   each call).
+* Fixed very slow code in Conv_event (useless re-creation of static arrays of
+   closures) and Display (useless sprintf) resulting in a real speedup.
+* Fixed bug in xK.ml generation (missing keysym names).
+* Pacman: new version, by Sylvain Conchon.
+
+Version 011:
+============
+* Fixed bug in setSelectionOwner (bad time setting).
+* Fixed bug in fillPoly (bad coord_mode setting).
+
+Version 009:
+============
+* Xbuffer: All string operations to marshall/unmarshal X requests are now
+    unsafe.
+* Added new module Selection to handle selection ownership.
+* Move module Eloop from Gwml to Xlib
+* New module Xterm uses Eloop and Selection.
+
+Version 008:
+============
+* polyPoint and polyLine coordinate mode correctly set.
+
+Version 007:
+============
+* Xtypes: New type "geometry(x,y,width,height)" to complete type 
+"rect(xx,yy,dx,dy)".
+* Xbuffer: Second Time bug corrected (good order)
+* XGraphics: Added functions to load images from .ppm and .xpm files
+  (create_image_from_xpm, create_image_from_ppm).
+
+Version 006:
+============
+
+* XGraphics: Added new update styles (do not update the screen immediatly.
+   Wait for explicit refresh request (either total, or clipped)).
+* Xpm: convert pixmap data to caml syntax (to integrate Pixmaps in sources).
+* Time bug (32 bits truncated to 31) fixed. New functions setTime and getTime.
+* New Demo files in ../demo:
+   - "pacman" game (using the XGraphics module)
+   - "xpm2ml" utils to translate .xpm files to .ml files (directly usable with
+       Xpm.createPixmapFromData).
+
+Version 005:
+============
+* Added XShape extension (file shape.ml)
+* Added Xpm extension (file xpm.mll)
+* Added Graphics compatibility (module XGraphics)
+* Lots of bugs corrected (Xrm, Xproto, etc .. )
+* Total implementation of X protocol

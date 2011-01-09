@@ -1,0 +1,17 @@
+efuns_release=0.17.5.0
+efuns_version=017+5
+prefix=/usr/local
+efunsdir=/usr/local/lib/efuns
+gwmldir=/usr/local/lib/gwml
+xlibdir=/usr/local/lib/xlib
+srcdir=.
+byte_threads=nothreads
+opt_threads=nothreads
+efunsdyn=toplevel
+gwmldyn=toplevel
+cc=gcc
+ocamlc=ocamlc.opt
+ocamlopt=ocamlopt.opt
+do_depend=yes
+use_imlib=yes
+use_esd=yes

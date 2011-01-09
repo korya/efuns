@@ -1,0 +1,631 @@
+<HTML>
+<HEAD><TITLE>WXlib  tutorial</TITLE></HEAD><BODY BGCOLOR=silver TEXT=black>
+<!--CUT DEF chapter 1 -->
+<BR>
+<BR>
+
+<H1 ALIGN=center><EM>WXlib</EM>&nbsp; tutorial</H1>
+<H3 ALIGN=center>Fabrice Le Fessant<BR>
+(Email: Fabrice.Le_Fessant@inria.fr)<BR>
+INRIA Rocquencourt, B.P. 105, 78153 Le Chesnay Cedex, France <BR>
+<BR>
+
+</H3><BR><BR><BR><BR>
+<BR>
+<!--TOC chapter Introduction-->
+
+<H1>Chapter&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;Introduction</H1><!--TOC section Overview-->
+
+<H2>1.1&nbsp;&nbsp;Overview</H2><EM>WXlib</EM>&nbsp;is a library for creating graphical user interfaces for Objective-Caml
+running under Unix X-windows system. This paper is a tutorial to help you 
+to build your own interfaces.<BR>
+<BR>
+ The first version of WXlib is 016, released in June 16th, 1999. Lattest
+versions of <EM>WXlib</EM>&nbsp;are distributed as part of the Efuns<A NAME="text1.1"></A><A HREF="#note1.1"><SUP><FONT SIZE=2>1</FONT></SUP></A>
+ package, and can be downloaded from:<BR>
+<BR>
+<PRE>http:\/\/pauillac.inria.fr\/efuns
+</PRE> Contributions to the <EM>WXlib</EM>&nbsp;, or any parts of the Efuns package, are 
+welcome, and can be sent to <FONT COLOR=purple>fabrice.le_fessant@inria.fr</FONT>. Bug 
+reports, requests and questions should be sent to the same address.<BR>
+<BR>
+<!--TOC section Examples-->
+
+<H2>1.2&nbsp;&nbsp;Examples</H2> Many examples are available in the <FONT COLOR=purple>efunstoolkitexamples</FONT> 
+directory. Other examples can be found in the <FONT COLOR=purple>efunsefuns</FONT> directory, 
+corresponding to programs used by Efuns, such as <FONT COLOR=purple>efuns_filebrowser</FONT> 
+or <FONT COLOR=purple>efuns_texbrowser</FONT>.<BR>
+<BR>
+<BLOCKQUOTE><HR><DIV ALIGN=center><IMG SRC="wxlib001.gif"> <BLOCKQUOTE></BLOCKQUOTE>
+ 
+</DIV>
+<BR>
+<DIV ALIGN=center>Figure 1.1: The efuns_filebrowser window.<A NAME="fig:browser"></A></DIV>
+<HR></BLOCKQUOTE><!--BEGIN NOTES chapter-->
+<HR ALIGN=left WIDTH=50%>
+<DL>
+<DT><A NAME="note1.1"></A><A HREF="#text1.1"><FONT SIZE=5>1</FONT></A>
+<DD>Efuns is an
+editor for X-window written in <EM>Objective-Caml</EM>&nbsp;.
+</DL><!--END NOTES--><!--TOC chapter Getting started-->
+
+<H1>Chapter&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;Getting started</H1><!--TOC section How to compile programs-->
+
+<H2>2.1&nbsp;&nbsp;How to compile programs</H2> <EM>WXlib</EM>&nbsp;is available both as a bytecode library and a native one. A dedicated
+program, called <EM>wX_config</EM> is used to simplify compilation of <EM>WXlib</EM>&nbsp;programs by providing most useful compilation flags automatically.<BR>
+<BR>
+For example, the next section presents the Hello World program, which can 
+be found in the sources in <FONT COLOR=purple>efunstoolkitdemo_hello.ml</FONT>. To compile this 
+example, you can simply enter the following commands:<BR>
+<BR>
+<PRE>ocamlc `wX_config -byte` -o hello demo_hello.ml
+</PRE>or
+<PRE>ocamlopt `wX_config -opt` -o hello demo_hello.ml
+</PRE> To list the options of wX_config, use the -help option:<BR>
+<BR>
+<PRE>homard:~/devel/efuns/toolkit% wX_config -help
+WXlib config finder
+  -src : To compile without installing (from sources directory)
+  -str : add flags for Str regexp library
+  -c : print flags for compiling
+  -opt : print flags for native linking
+  -byte : print flags for bytecode linking
+</PRE><!--TOC section First example: Hello world-->
+
+<H2>2.2&nbsp;&nbsp;First example: Hello world</H2> Here is the simplest source of the Hello World program. This program does 
+nothing else than displaying a simple window with "Hello World" written 
+inside.<BR>
+<BR>
+<PRE>open WX_types
+
+let root = new WX_root.from_display "" 0
+let top = new WX_wmtop.t root []
+let label = new WX_label.t top#container "Hello World" []
+
+let _ =
+  top#container_add label#contained;
+  top#show;
+  loop ()
+</PRE> The first <FONT COLOR=purple>open</FONT> statement opens the modules describing the types and
+simple values used by the WXlib library. In our example, only one value
+depends on this module, the final <FONT COLOR=purple>loop</FONT> function.<BR>
+<BR>
+ We then create the <FONT COLOR=purple>root</FONT> object, of real class <FONT COLOR=purple>WX_root.t</FONT>, by
+providing the display name ( empty string) and the screen number (default one
+is zero). This root object will be used as the parent of all toplevel 
+widgets (toplevel window, popup menus, etc).<BR>
+<BR>
+ We can now create the toplevel window <FONT COLOR=purple>top</FONT> of class <FONT COLOR=purple>WX_wmtop. t</FONT>.
+This object only displays a simple window, containing a second child window.
+The <FONT COLOR=purple>WX_wmtop.t</FONT> class is different from the <FONT COLOR=purple>WX_top.t</FONT> class as it
+provides additional methods to communicate with the Window-Manager, such as
+<FONT COLOR=purple>setWM_NAME</FONT>, <FONT COLOR=purple>setWM_ICON_NAME</FONT>, etc ...The [] parameter is a 
+list of standard options to configure widgets, which will be detailed in 
+section <A href="#configuration">2.5</A>.<BR>
+<BR>
+ The child of the toplevel window is a simple <FONT COLOR=purple>WX_label.t</FONT> object, a 
+widget that displays a string in its window (here "Hello World"). Most 
+children widgets require their parent to be passed with type <FONT COLOR=purple>WX_types.container</FONT> when created. To avoid typing coercions for all of 
+them, all objects contain a <FONT COLOR=purple>container</FONT> method, returning the object 
+coerced to the correct type.<BR>
+<BR>
+ Now, all objects have been created. Before mapping the windows on the
+screen, we must specify that the <FONT COLOR=purple>label</FONT> window is contained in the  <FONT COLOR=purple>top</FONT> window. This is done by calling the <FONT COLOR=purple>container_add</FONT> method ( a
+method defined by most container widgets), with the label as parameter. Most
+container widgets require their contained widgets to be passed with type <FONT COLOR=purple>WX_types.contained</FONT>, which can be done automatically by calling the  <FONT COLOR=purple>contained</FONT> method of the child widget.<BR>
+<BR>
+<!--TOC section A more elaborate Hello World-->
+
+<H2>2.3&nbsp;&nbsp;A more elaborate Hello World</H2><BLOCKQUOTE><HR><DIV ALIGN=center><IMG SRC="wxlib002.gif"> <BLOCKQUOTE></BLOCKQUOTE>
+ 
+</DIV>
+<BR>
+<DIV ALIGN=center>Figure 2.1: The Hello World widget demo.<A NAME="fig:hello"></A></DIV>
+<HR></BLOCKQUOTE>
+ 
+ 
+The previous program doesn't terminate nicely. Thus, we would like the 
+user to simply click on a button, or type the "q" letter to terminate.
+This is done in the following example.<BR>
+<BR>
+<PRE>open Xtypes
+open WX_types
+
+let root = new WX_root.from_display "" 0
+let top = new WX_wmtop.t root []
+let label = new WX_button.with_label top#container "Hello World" []
+
+let _ =
+  top#container_add label#contained;
+  label#set_action (fun _ -&gt; exit 0);
+  top#configure [Bindings [Key(XK.xk_q, anyModifier), (fun _ -&gt; exit 0)]];
+  top#show;
+  loop () 
+</PRE> Compared to the previous version, we simply replaced the label by a button
+containing the label. For simplicity, we used the <FONT COLOR=purple>WX_button.
+with_label</FONT> class, which is somewhat equivalent to:<BR>
+<BR>
+<PRE>let button = new WX_button.t top#container []
+let label = new WX_label.t button#container "Hello World" []
+let _ = button#container_add label#contained
+</PRE> We then bind some events to the termination action: For the button, we used
+the <FONT COLOR=purple>set_action</FONT> which binds a click in the button to an action. For the
+toplevel window, we used the <FONT COLOR=purple>configure</FONT> (whose arguments are detailed in
+section&nbsp;<A href="#configuration">2.5</A>), to add the bindings between the "q" keystroke
+(XK.xk_q is the corresponding constant for the Xwindow system<A NAME="text2.1"></A><A HREF="#note2.1"><SUP><FONT SIZE=2>1</FONT></SUP></A>
+ and the action.<BR>
+<BR>
+<!--TOC section Widgets contained in widgets-->
+
+<H2>2.4&nbsp;&nbsp;Widgets contained in widgets</H2>To create your interface, you will probably need lots of widgets. Thus, 
+you need a way to organize all these widgets inside your toplevel windows.
+This section describe the main different ways of organizing them. <BR>
+<BR>
+<!--TOC subsection Using bars-->
+
+<H3>2.4.1&nbsp;&nbsp;Using bars</H3> The simplest way to organize your interface is the use of bars: bars are 
+simple widgets in which you can insert other widgets. Inserted widgets 
+will be placed from left to right for horizontal bars and from top to 
+bottom for vertical bar. By inserting bars into other bars, you will able 
+to create various interesting effects.<BR>
+<BR>
+<BLOCKQUOTE><HR><DIV ALIGN=center><IMG SRC="wxlib003.gif"> <BLOCKQUOTE></BLOCKQUOTE>
+ 
+</DIV>
+<BR>
+<DIV ALIGN=center>Figure 2.2: The demo_bar widget demo.<A NAME="fig:bar"></A></DIV>
+<HR></BLOCKQUOTE>Here is a simple example of the use of bars.
+<PRE>open WX_types
+
+let root = new WX_root.from_display "" 0
+let top = new WX_top.t root None []
+let vbar = new WX_bar.v top#container []
+let text = new WX_text.of_string vbar#container 
+"Your program has raised a stack overflow exception
+Click OK if you want to continue.
+Click CANCEL if you want to abort.
+Click HELP if you need some help.
+" []
+let hbar = new WX_bar.h vbar#container [IpadX 5; IpadY 10]
+let attrs = [IpadX 3; IpadY 3; ExpandX true]
+
+let ok = new WX_button.with_label hbar#container "OK" attrs
+let cancel = new WX_button.with_label hbar#container "CANCEL" attrs
+let help = new WX_button.with_label hbar#container "HELP" attrs
+
+let _ =
+  ok#set_action (fun _ -&gt; exit 0);
+  cancel#set_action (fun _ -&gt; exit 1);
+  help#set_action (fun _ -&gt; print_string "HELP"; print_newline ());
+  top#container_add vbar#contained;
+  vbar#container_add_s [text#contained; hbar#contained];
+  hbar#container_add_s [ok#contained; cancel#contained; help#contained];
+  top#show;
+  loop ()
+</PRE><!--TOC subsection Using tables-->
+
+<H3>2.4.2&nbsp;&nbsp;Using tables</H3>See example in section&nbsp;<A href="#table">3.4.3</A>.<BR>
+<BR>
+<!--TOC section Configuring widgets-->
+
+<H2>2.5&nbsp;&nbsp;Configuring widgets</H2>
+<A NAME="configuration"></A> Widgets can be configured in two ways: you can provide a list of options 
+when the widget object is created, or you can at any time use the <FONT COLOR=purple>configure</FONT> method with a list of options to apply on the object.<BR>
+<BR>
+Here is the list of currently available options:<BR>
+<BR>
+<PRE>type base_attributes =
+| MinWidth of int
+| MinHeight of int
+| MaxWidth of int
+| MaxHeight of int
+| ExpandX of bool
+| ExpandY of bool
+| IpadX of int
+| IpadY of int
+| Position of int * int
+</PRE> <FONT COLOR=purple>ExpandX</FONT> and <FONT COLOR=purple>ExpandY</FONT> flags are used to indicate that the widget
+can receive more space than it requires. <FONT COLOR=purple>Position</FONT> is only used to
+specify the initial position of the <FONT COLOR=purple>WX_top</FONT> widget. <FONT COLOR=purple>IpadX</FONT> and 
+<FONT COLOR=purple>IpadY</FONT> are used to specify the distances between the rectangle actually
+used in the widget (for drawing or for contained widgets) and the window 
+of the widget.<BR>
+<BR>
+<!--BEGIN NOTES chapter-->
+<HR ALIGN=left WIDTH=50%>
+<DL>
+<DT><A NAME="note2.1"></A><A HREF="#text2.1"><FONT SIZE=5>1</FONT></A>
+<DD>You
+can also use the following code, a bit slower:
+<FONT COLOR=purple>List.assoc "q" XK.name_to_keysym</FONT>
+</DL><!--END NOTES--><!--TOC chapter Widgets description-->
+
+<H1>Chapter&nbsp;3&nbsp;&nbsp;&nbsp;&nbsp;Widgets description</H1>For each widget called <FONT COLOR=purple>widget</FONT>, the corresponding class is <FONT COLOR=purple>WX_widget.t</FONT>. Look at the contain of the corresponding files to learn 
+which particular methods exist for each of these classes. Sometimes, the 
+files also contain derived classes easier to used. For example, the <FONT COLOR=purple>WX_text</FONT> module also contains the <FONT COLOR=purple>WX_text.of_file</FONT> and <FONT COLOR=purple>WX_text.of_string</FONT> classes.<BR>
+<BR>
+<!--TOC section Basic widgets-->
+
+<H2>3.1&nbsp;&nbsp;Basic widgets</H2><!--TOC subsection The display object-->
+
+<H3>3.1.1&nbsp;&nbsp;The <FONT COLOR=purple>display</FONT> object</H3>Object used to manipulate the display.<BR>
+<BR>
+<!--TOC subsection The root widget-->
+
+<H3>3.1.2&nbsp;&nbsp;The <FONT COLOR=purple>root</FONT> widget</H3>Object used as the parent for all toplevel windows in a given screen.<BR>
+<BR>
+<!--TOC subsection The object widget-->
+
+<H3>3.1.3&nbsp;&nbsp;The <FONT COLOR=purple>object</FONT> widget</H3>The common ancestor (inherited) for all classes which create windows.
+This class can be used to create new widgets.<BR>
+<BR>
+<!--TOC section Toplevel widgets-->
+
+<H2>3.2&nbsp;&nbsp;Toplevel widgets</H2><!--TOC subsection The top widget-->
+
+<H3>3.2.1&nbsp;&nbsp;The <FONT COLOR=purple>top</FONT> widget</H3>Widget used to display a toplevel window, containing a child window.<BR>
+<BR>
+<!--TOC subsection The wmtop widget-->
+
+<H3>3.2.2&nbsp;&nbsp;The <FONT COLOR=purple>wmtop</FONT> widget</H3>Widget derived from the <FONT COLOR=purple>top</FONT> widget with methods to interact with the 
+Window-manager (following ICCCM conventions). <BR>
+<BR>
+<!--TOC subsection The xterm widget-->
+
+<H3>3.2.3&nbsp;&nbsp;The <FONT COLOR=purple>xterm</FONT> widget</H3>Widget only used by Efuns (should be moved to Efuns directory ?).<BR>
+<BR>
+<!--TOC subsection The popup widget-->
+
+<H3>3.2.4&nbsp;&nbsp;The <FONT COLOR=purple>popup</FONT> widget</H3>Widget used to create simple popup menus.<BR>
+<BR>
+<!--TOC section Drawing widgets-->
+
+<H2>3.3&nbsp;&nbsp;Drawing widgets</H2><!--TOC subsection The Graphics widget-->
+
+<H3>3.3.1&nbsp;&nbsp;The <FONT COLOR=purple>Graphics</FONT> widget</H3>This widget emulates the Graphics module of the standard <EM>Objective-Caml</EM>&nbsp;library.
+Several such widgets can be created in a single application, switching 
+between widgets being provided using the <FONT COLOR=purple>active</FONT> method.<BR>
+<BR>
+<BLOCKQUOTE><HR><DIV ALIGN=center><IMG SRC="wxlib004.gif"> <BLOCKQUOTE></BLOCKQUOTE>
+ 
+</DIV>
+<BR>
+<DIV ALIGN=center>Figure 3.1: The demo_graphics widget demo.<A NAME="fig:graphics"></A></DIV>
+<HR></BLOCKQUOTE><PRE>open WX_types
+open XGraphics (* instead of Graphics *)
+
+let root = new WX_root.from_display "" 0
+let appli = new WX_appli.t root 
+  [Bindings [Key (XK.xk_q,0), (fun () -&gt; exit 0)]]
+  (* This replace the open_graph call: *)
+let graphics = new WX_Graphics.t appli#container [] 600 400
+
+let help_menu = [|
+    "About", (fun _ -&gt; Printf.printf "ABOUT HELP"; print_newline ());
+    "Index", (fun _ -&gt; Printf.printf "INDEX HELP"; print_newline ());
+  |]
+  
+let redraw x y =
+  clear_graph();
+  set_color blue;
+  fill_poly [|100,100; 100,200; 200,200; 200,100; 100,100 |];
+  set_color red;
+  fill_poly [|x,y; x,y+100; x+100,y+100; x+100,y; x,y |];
+  update()
+
+let _ =
+  appli#container_add (graphics#contained);  
+  appli#add_menu "Help" help_menu;
+  appli#show;
+  set_update_style FlushAll;
+  let _ = wait_next_event[Button_down] in
+  redraw 0 0;
+  while 
+    let ev = wait_next_event[Button_up;Button_down;Mouse_motion;Key_pressed] in
+    if ev.button then redraw ev.mouse_x ev.mouse_y;
+    ev.key &lt;&gt; 'q'
+  do () done;
+  close_graph()
+</PRE><!--TOC subsection The label widget-->
+
+<H3>3.3.2&nbsp;&nbsp;The <FONT COLOR=purple>label</FONT> widget</H3>This widget displays a simple string in its window. Justification can be 
+specified through the <FONT COLOR=purple>set_justification</FONT> method.<BR>
+<BR>
+<!--TOC subsection The ledit widget-->
+
+<H3>3.3.3&nbsp;&nbsp;The <FONT COLOR=purple>ledit</FONT> widget</H3>This widget is an editable label.<BR>
+<BR>
+<!--TOC subsection The pixmap widget-->
+
+<H3>3.3.4&nbsp;&nbsp;The <FONT COLOR=purple>pixmap</FONT> widget</H3>This widget displays a pixmap in its window.<BR>
+<BR>
+<!--TOC subsection The scale widget-->
+
+<H3>3.3.5&nbsp;&nbsp;The <FONT COLOR=purple>scale</FONT> widget</H3>This widget is used to allow the user to modify a value within a specific 
+range. An adjustement (<FONT COLOR=purple>WX_adjust.t</FONT> must be used to specify the 
+value). <BR>
+<BR>
+<!--TOC subsection The scrollbar widget-->
+
+<H3>3.3.6&nbsp;&nbsp;The <FONT COLOR=purple>scrollbar</FONT> widget</H3>This widget display a scrollbar. See section&nbsp;<A href="#viewport">3.4.7</A> for an example 
+of how to use scrollbars.<BR>
+<BR>
+<!--TOC subsection The selector widget-->
+
+<H3>3.3.7&nbsp;&nbsp;The <FONT COLOR=purple>selector</FONT> widget</H3> This widget displays a label, whose value can be selected by clicking on 
+it and selecting a new value in the associated popup menu.<BR>
+<BR>
+<!--TOC section Container widgets-->
+
+<H2>3.4&nbsp;&nbsp;Container widgets</H2><!--TOC subsection The bar widget-->
+
+<H3>3.4.1&nbsp;&nbsp;The <FONT COLOR=purple>bar</FONT> widget</H3> This widget allows to pack several widgets in a single bar, either
+horizontal or vertical.<BR>
+<BR>
+<!--TOC subsection The button widget-->
+
+<H3>3.4.2&nbsp;&nbsp;The <FONT COLOR=purple>button</FONT> widget</H3> This widget displays a button. The <FONT COLOR=purple>set_action</FONT> method specifies the 
+action executed when the button is pressed.<BR>
+<BR>
+<!--TOC subsection The table widget-->
+
+<H3>3.4.3&nbsp;&nbsp;The <FONT COLOR=purple>table</FONT> widget</H3>
+<A NAME="table"></A> This widget is used to pack several widgets in a single window, with 
+position related to rows and columns in a table. Here is a small example 
+of what can be done with tables and not with bars.<BR>
+<BR>
+<BLOCKQUOTE><HR><DIV ALIGN=center><IMG SRC="wxlib005.gif"> <BLOCKQUOTE></BLOCKQUOTE>
+ 
+</DIV>
+<BR>
+<DIV ALIGN=center>Figure 3.2: The demo_table widget demo.<A NAME="fig:table"></A></DIV>
+<HR></BLOCKQUOTE><PRE>open Xtypes
+open WX_types
+  
+let display = new WX_display.t ""
+let root = new WX_root.t display 0
+let top = new WX_wmtop.t root [MinWidth 300; MinHeight 300]
+let table = new WX_table.t top#container [] 10 10 true
+  
+let list = [
+    1,1,2,3,"yellow"; 
+    2,5,2,2,"red";
+    5,2,2,2,"blue";
+    6,6,3,3,"pink";
+  ]
+
+let _ =
+  List.iter (fun (x,y,dx,dy,color) -&gt;
+      let button = new WX_button.t table#container [] in
+      let obj = new WX_object.t button#container [
+          Background color; MinWidth (dx * 50); MinHeight (dy * 50)] in
+      button#set_action (fun _ -&gt; Printf.printf "Select: %s" color;
+          print_newline ());
+      button#container_add obj#contained;
+      table#container_add button#contained x y dx dy;      
+  ) list;
+  top#container_add table#contained;
+  top#show;
+  loop ()
+
+</PRE><!--TOC subsection The tree widget-->
+
+<H3>3.4.4&nbsp;&nbsp;The <FONT COLOR=purple>tree</FONT> widget</H3> This widget is used to display several widgets as a tree, with branches 
+which can opened by clicking. Here is a simple example of program using 
+the tree widget.<BR>
+<BR>
+<BLOCKQUOTE><HR><DIV ALIGN=center><IMG SRC="wxlib006.gif"> <BLOCKQUOTE></BLOCKQUOTE>
+ 
+</DIV>
+<BR>
+<DIV ALIGN=center>Figure 3.3: The demo_tree widget demo.<A NAME="fig:tree"></A></DIV>
+<HR></BLOCKQUOTE><PRE>open Xtypes
+open WX_types
+open WX_tree
+  
+let display = new WX_display.t ""
+let root = new WX_root.t display 0
+let top = new WX_wmtop.t root []
+let tree = new WX_tree.t top#container []
+let subtree = new WX_tree.t tree#container []
+let list = [ "Bonjour"; "Hello"; "Gutten tag" ]
+let sublist = [ "Salut"; "Coucou"; "Hi"; "Good morning" ]
+  
+let map = List.map (fun s -&gt;
+   Leaf (0,(new WX_label.t tree#container s [])#contained)
+    ) list 
+let map3 = List.map (fun s -&gt;
+        Leaf (0,(new WX_label.t tree#container s [])#contained)
+    ) list
+let submap = List.map (fun s -&gt;
+        Leaf (0,(new WX_label.t subtree#container s [])#contained)
+    ) sublist
+let bigmap = map @ (Branch (false,
+        (new WX_label.t tree#container "Autres" [])#contained,
+        subtree#contained) :: map3)
+
+let _ =
+  subtree#set_desc submap;
+  tree#set_desc bigmap;
+  top#container_add tree#contained;
+  top#show;
+  loop ()
+</PRE><!--TOC subsection The text widget-->
+
+<H3>3.4.5&nbsp;&nbsp;The <FONT COLOR=purple>text</FONT> widget</H3> This widget displays a text (not editable) with incrusted widgets. The <FONT COLOR=purple>WX_text</FONT> module also contains the <FONT COLOR=purple>WX_text.of_file</FONT> and <FONT COLOR=purple>WX_text.of_string</FONT> classes, which are easier to create for displaying a 
+file or a simple string with newlines.<BR>
+<BR>
+<!--TOC subsection The radiobutton widget-->
+
+<H3>3.4.6&nbsp;&nbsp;The <FONT COLOR=purple>radiobutton</FONT> widget</H3> This button is used to allow the user to select a value from a set.
+Each button is selected, if the current value is the value associated with 
+the button, or not selected otherwise.<BR>
+<BR>
+<!--TOC subsection The viewport widget-->
+
+<H3>3.4.7&nbsp;&nbsp;The <FONT COLOR=purple>viewport</FONT> widget</H3>
+<A NAME="viewport"></A> This widget is used to partially display a widget. This is often used in 
+association with scrollbars to select the part of the child widget 
+displayed. Adjustements are used to communicate the position of the child 
+widget. <BR>
+<BR>
+<PRE>open WX_types
+
+let filename = Sys.argv.(1)
+  
+let root = new WX_root.from_display "" 0
+
+let top = new WX_wmtop.t root []
+let hbar = new WX_bar.h top#container []
+
+let adx = new WX_adjust.t ()
+let ady = new WX_adjust.t ()
+let viewport = new WX_viewport.t hbar#container adx ady 
+    [MinHeight 50; MinWidth 50;ExpandX true]
+let vscroll = new WX_scrollbar.v hbar#container ady []
+
+let filetext = new WX_text.of_file viewport#container filename
+    [Relief ReliefRaised; Foreground "red"; Background "yellow"]
+  
+let _ =
+  hbar#container_add_s [viewport#contained; vscroll#contained];
+  viewport#container_add (filetext#contained);
+  top#container_add (hbar#contained);  
+  top#configure [Bindings [
+      Key(XK.xk_Prior,0),(fun _ -&gt; ady#page_up);
+      Key(XK.xk_Next,0),(fun _ -&gt; ady#page_down);
+      Key(XK.xk_q,0),(fun _ -&gt; exit 0);
+    ]];
+  top#show;
+  loop ()
+</PRE><!--TOC subsection The panel widget-->
+
+<H3>3.4.8&nbsp;&nbsp;The <FONT COLOR=purple>panel</FONT> widget</H3> This widget is used to share one window between two widgets. The space 
+available for each child widget is specified by an adjustement. 
+The separation between the two children can be dragged with the mouse 
+using the <FONT COLOR=purple>WX_panel.separator</FONT> widget.<BR>
+<BR>
+<BLOCKQUOTE><HR><DIV ALIGN=center><IMG SRC="wxlib007.gif"> <BLOCKQUOTE></BLOCKQUOTE>
+ 
+</DIV>
+<BR>
+<DIV ALIGN=center>Figure 3.4: The demo_panel widget demo.<A NAME="fig:panel"></A></DIV>
+<HR></BLOCKQUOTE><PRE>open WX_types
+
+let _ = if Array.length Sys.argv &lt;&gt; 3 then 
+    failwith "Usage: demo_panel file1 file2"
+    
+let filename1 = Sys.argv.(1)
+let filename2 = Sys.argv.(2)
+
+let root = new WX_root.from_display "" 0
+
+let top = new WX_wmtop.t root  
+    [Bindings [Key (XK.xk_q,0), (fun () -&gt; exit 0)]]
+
+let vbar = new WX_bar.v top#container []
+let adj = new WX_adjust.t ()
+let panel = new WX_panel.t Vertical vbar#container adj []
+  
+let viewtext parent filename =
+  let hbar = new WX_bar.h parent#container [] in
+  let adx = new WX_adjust.t () in
+  let ady = new WX_adjust.t () in
+  let viewport = new WX_viewport.t hbar#container adx ady 
+      [MinHeight 50; MinWidth 50;ExpandX true] in
+  let vscroll = new WX_scrollbar.v hbar#container ady [] in
+  let text = new WX_text.of_file viewport#container filename 
+       [Background "black"; ExpandX true] in
+  hbar#container_add_s [viewport#contained; vscroll#contained];  
+  viewport#container_add (text#contained);  
+  hbar#contained
+
+let text1 = viewtext panel filename1
+let text2 = viewtext panel filename2
+
+let sep = new WX_panel.separator panel adj []
+  
+let _ =
+  panel#set_first text1;
+  panel#set_second text2;
+  adj#set_pos 1 2; (* initial position is half panel for each window *)
+  panel#set_step 5;
+  vbar#container_add panel#contained;
+  top#container_add (vbar#contained);  
+  top#show;
+  loop ()
+</PRE><!--TOC subsection The swap widget-->
+
+<H3>3.4.9&nbsp;&nbsp;The <FONT COLOR=purple>swap</FONT> widget</H3> This widget is used to share one window between several widgets, only 
+one child widget being viewable at a given time.<BR>
+<BR>
+<!--TOC subsection The notebook widget-->
+
+<H3>3.4.10&nbsp;&nbsp;The <FONT COLOR=purple>notebook</FONT> widget</H3> This widget is used to display a widget if its label has been selected 
+through a list of labels.<BR>
+<BR>
+<BLOCKQUOTE><HR><DIV ALIGN=center><IMG SRC="wxlib008.gif"> <BLOCKQUOTE></BLOCKQUOTE>
+ 
+</DIV>
+<BR>
+<DIV ALIGN=center>Figure 3.5: The demo_notebook widget demo.<A NAME="fig:notebook"></A></DIV>
+<HR></BLOCKQUOTE><PRE>open Xtypes
+open WX_types
+  
+let display = new WX_display.t ""
+let root = new WX_root.t display 0
+let top = new WX_wmtop.t root [MinWidth 10; MinHeight 10; 
+    MaxWidth 600; MaxHeight 700]
+let book = new WX_notebook.v top#container []
+  
+let files = [ "demo_tree.ml"; "demo_table.ml"; "demo_graphics.ml";
+    "demo_filesel.ml"; "demo_calc.ml";"demo_file.ml";"demo_notebook.ml"]
+  
+let _ =  
+  book#container_add_s (List.map (fun name -&gt; name,
+        (new WX_text.of_file book#container name [])#contained
+        ) files);
+  top#container_add book#contained;
+  top#show;
+  loop ()
+</PRE><!--TOC section Widgets with no windows-->
+
+<H2>3.5&nbsp;&nbsp;Widgets with no windows</H2><!--TOC subsection The adjust widget-->
+
+<H3>3.5.1&nbsp;&nbsp;The <FONT COLOR=purple>adjust</FONT> widget</H3> This adjustement object is used to monitor the evolution of a value.
+Objects can specify hooks to be executed when the value is changed, using 
+the <FONT COLOR=purple>add_subject</FONT> method.<BR>
+<BR>
+<!--TOC subsection The dummy widget-->
+
+<H3>3.5.2&nbsp;&nbsp;The <FONT COLOR=purple>dummy</FONT> widget</H3> This widget can be used in any container to display ... well, a space 
+between other widgets. The main interest is that the size of the space can 
+be configured.<BR>
+<BR>
+<!--TOC subsection The deleg objects-->
+
+<H3>3.5.3&nbsp;&nbsp;The <FONT COLOR=purple>deleg</FONT> objects</H3> These objects are used to delegate some methods to a given object.<BR>
+<BR>
+<!--TOC section Composite widgets-->
+
+<H2>3.6&nbsp;&nbsp;Composite widgets</H2><!--TOC subsection The appli widget-->
+
+<H3>3.6.1&nbsp;&nbsp;The <FONT COLOR=purple>appli</FONT> widget</H3> This widget is used to create a toplevel window, with a menubar at its top.<BR>
+<BR>
+<!--TOC subsection The filesel widget-->
+
+<H3>3.6.2&nbsp;&nbsp;The <FONT COLOR=purple>filesel</FONT> widget</H3> This widget is used to select a filename in a dialog box, with a filter 
+and two lists for directories and simple files.<BR>
+<BR>
+<!--TOC subsection The dialog widget-->
+
+<H3>3.6.3&nbsp;&nbsp;The <FONT COLOR=purple>dialog</FONT> widget</H3> This widget is used to display a text and a list of button under the text.<BR>
+<BR>
+
+<!--FOOTER-->
+<HR>
+
+<BLOCKQUOTE><EM>This document was translated from L<sup>A</sup>T<sub>E</sub>X by </EM><A HREF="http://para.inria.fr/~maranget/hevea"><EM>H</EM><EM><FONT SIZE=2><sup>E</sup></FONT></EM><EM>V</EM><EM><FONT SIZE=2><sup>E</sup></FONT></EM><EM>A</EM></A><EM>.
+</EM></BLOCKQUOTE></BODY>
+</HTML>
+

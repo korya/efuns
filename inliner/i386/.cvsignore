@@ -1,0 +1,8 @@
+*.s
+*.cfg
+*.opt
+*.Sopt
+*.asx
+archlexer.ml
+archparser.ml
+archparser.mli

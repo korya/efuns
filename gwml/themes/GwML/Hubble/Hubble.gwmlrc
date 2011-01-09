@@ -1,0 +1,58 @@
+ add_decorations = [
+   (hubble_deco, [
+      (top_bar, [
+          (button, [
+              (name, "/usr/local/share/GwML/Hubble/spearhead-15-menu.xpm");
+              (simage, "/usr/local/share/GwML/Hubble/hubble_bar.xpm");
+              (active_simage, "/usr/local/share/GwML/Hubble/hubble_bar_nof.xpm");
+              (actions, hubble_button1_actions)]);
+          (label, [
+              (fg, white);
+              (active_fg, black);
+              (min_width, 200);
+              (min_height, 20);
+              (justify, left);
+              (simage, "/usr/local/share/GwML/Hubble/hubble_bar.xpm");
+              (active_simage, "/usr/local/share/GwML/Hubble/hubble_bar_nof.xpm");
+              (extensible_width, 1)]);
+          (button, [
+              (name, "/usr/local/share/GwML/Hubble/spearhead-15-iconize.xpm");
+              (simage, "/usr/local/share/GwML/Hubble/hubble_bar.xpm");
+              (active_simage, "/usr/local/share/GwML/Hubble/hubble_bar_nof.xpm");
+              (actions, hubble_button2_actions)]);
+          (button, [
+              (name, "/usr/local/share/GwML/Hubble/spearhead-15-shade.xpm");
+              (simage, "/usr/local/share/GwML/Hubble/hubble_bar.xpm");
+              (active_simage, "/usr/local/share/GwML/Hubble/hubble_bar_nof.xpm");
+              (actions, hubble_button3_actions)]);
+          (button, [
+              (name, "/usr/local/share/GwML/Hubble/spearhead-15-kill.xpm");
+              (simage, "/usr/local/share/GwML/Hubble/hubble_bar.xpm");
+              (active_simage, "/usr/local/share/GwML/Hubble/hubble_bar_nof.xpm");
+              (actions, hubble_button4_actions)])])]);
+   ]
+ add_actions = [
+  (hubble_button1_actions, [(Button1, false, window_menu)])
+  (hubble_button2_actions, [(Button1, false, maximize_y)])
+  (hubble_button3_actions, [(Button1, false, shade_window)])
+  (hubble_button4_actions, [(Button1, false, delete_window)])
+   ]
+
+ root_image = (spixmap, "/usr/local/share/GwML/Hubble/background.Hubble")
+ 
+ title_background = grey29
+ title_image = (tpixmap, "/usr/local/share/gwML/Hubble/hubble_bar_nof.xpm")
+ title_foreground = Grey70
+ title_font = "-*-lucida-bold-r-*-*-12-*-*-*-*-*-*-*"
+ menu_font = "-*-lucida-bold-r-*-*-12-*-*-*-*-*-*-*"
+ menu_foreground = grey80
+ menu_background = black
+ menu_image = (tpixmap, "/usr/local/share/GwML/Hubble/hubble_bar.xpm")
+ menu_hilite_font = "-*-lucida-bold-r-*-*-15-*-*-*-*-*-*-*"
+ menu_hilite_foreground = yellow
+ menu_hilite_background = black
+ menu_hilite_image = (tpixmap, "/usr/local/share/GwML/Hubble/hubble_bar.xpm")
+ menu_title_image = (tpixmap, "/usr/local/share/GwML/Hubble/hubble_bar.xpm")
+ menu_title_font = "-*-lucida-bold-r-*-*-12-*-*-*-*-*-*-*"
+ menu_title_foreground = grey80
+ menu_title_background = grey10

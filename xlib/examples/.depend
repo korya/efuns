@@ -1,0 +1,22 @@
+chess.cmo: ../x.cmi ../xlib.cmi ../xtypes.cmi 
+chess.cmx: ../x.cmx ../xlib.cmx ../xtypes.cmx 
+movePointer.cmo: ../x.cmi ../xlib.cmi ../xtypes.cmi 
+movePointer.cmx: ../x.cmx ../xlib.cmx ../xtypes.cmx 
+pacman.cmo: ../xGraphics.cmi 
+pacman.cmx: ../xGraphics.cmx 
+sendKey.cmo: ../icccm.cmi ../keyBind.cmo ../x.cmi ../xA.cmi ../xK.cmo \
+    ../xlib.cmi ../xsync.cmi ../xtypes.cmi 
+sendKey.cmx: ../icccm.cmx ../keyBind.cmx ../x.cmx ../xA.cmx ../xK.cmx \
+    ../xlib.cmx ../xsync.cmx ../xtypes.cmx 
+sqmove.cmo: ../xGraphics.cmi 
+sqmove.cmx: ../xGraphics.cmx 
+xbanner.cmo: ../x.cmi ../xlib.cmi ../xtypes.cmi 
+xbanner.cmx: ../x.cmx ../xlib.cmx ../xtypes.cmx 
+xpm2ml.cmo: ../xpm.cmi 
+xpm2ml.cmx: ../xpm.cmx 
+xpmroot.cmo: ../x.cmi ../xA.cmi ../xbuffer.cmi ../xlib.cmi ../xpm.cmi \
+    ../xtypes.cmi 
+xpmroot.cmx: ../x.cmx ../xA.cmx ../xbuffer.cmx ../xlib.cmx ../xpm.cmx \
+    ../xtypes.cmx 
+xprop.cmo: ../xC.cmi ../xlib.cmi ../xmu.cmi ../xtypes.cmi 
+xprop.cmx: ../xC.cmx ../xlib.cmx ../xmu.cmx ../xtypes.cmx 

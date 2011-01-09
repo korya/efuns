@@ -1,0 +1,4 @@
+The combiner is not used unless you specify the -do_combine option.
+It can generate better code in many cases, but also wrong code (for example,
+it re-allocates the registers, and some registers may not be OK for
+some computations).

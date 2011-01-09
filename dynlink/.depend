@@ -1,0 +1,26 @@
+dyneval.cmo: dynlink.cmi /home/cremant/lefessan/devel/efuns/common/log.cmo \
+    /home/cremant/lefessan/devel/efuns/common/options.cmi \
+    /home/cremant/lefessan/devel/efuns/common/utils.cmi 
+dyneval.cmx: dynlink.cmx /home/cremant/lefessan/devel/efuns/common/log.cmx \
+    /home/cremant/lefessan/devel/efuns/common/options.cmx \
+    /home/cremant/lefessan/devel/efuns/common/utils.cmx 
+dynlink.cmo: /home/cremant/lefessan/devel/efuns/common/compat_run.cmi \
+    ../ocamlsrc/version/include/emitcode.cmi \
+    /home/cremant/lefessan/devel/efuns/common/instructs.cmo interp.cmo \
+    linker.cmo dynlink.cmi 
+dynlink.cmx: /home/cremant/lefessan/devel/efuns/common/compat_run.cmx \
+    ../ocamlsrc/version/include/emitcode.cmi \
+    /home/cremant/lefessan/devel/efuns/common/instructs.cmx interp.cmx \
+    linker.cmx dynlink.cmi 
+interp.cmo: /home/cremant/lefessan/devel/efuns/common/compat_run.cmi \
+    /home/cremant/lefessan/devel/efuns/common/instructs.cmo 
+interp.cmx: /home/cremant/lefessan/devel/efuns/common/compat_run.cmx \
+    /home/cremant/lefessan/devel/efuns/common/instructs.cmx 
+linker.cmo: /home/cremant/lefessan/devel/efuns/common/compat_run.cmi \
+    ../ocamlsrc/version/include/emitcode.cmi \
+    /home/cremant/lefessan/devel/efuns/common/instructs.cmo interp.cmo 
+linker.cmx: /home/cremant/lefessan/devel/efuns/common/compat_run.cmx \
+    ../ocamlsrc/version/include/emitcode.cmi \
+    /home/cremant/lefessan/devel/efuns/common/instructs.cmx interp.cmx 
+test.cmo: dynlink.cmi ../ocamlsrc/version/include/instruct.cmi interp.cmo 
+test.cmx: dynlink.cmx ../ocamlsrc/version/include/instruct.cmi interp.cmx 

@@ -1,0 +1,14 @@
+[Desktop Entry]
+Name=GwML window manager
+Name[da]=GwML vindueshåndtering
+Name[es]=Gestor de ventanas GwML
+Name[ja]=GwML¥¦¥¤¥ó¥É¥¦¥Þ¥Í¡¼¥¸¥ã
+Name[gl]=Xestor de fiestras GwML
+Name[fr]=Gestionnaire de fenêtres GwML
+Comment=Control Center Menu
+Comment[da]=Kontrolcentermenu
+Comment[es]=Menú del Centro de Control
+Comment[ja]=¥³¥ó¥È¥í¡¼¥ë¥»¥ó¥¿¡¼¥á¥Ë¥å¡¼
+Comment[gl]=Menú do Centro de Control
+Comment[fr]=Menu du Centre de Contrôle
+Type=Directory

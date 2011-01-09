@@ -1,0 +1,2 @@
+concur.cmo: ../../common/log.cmo 
+concur.cmx: ../../common/log.cmx 

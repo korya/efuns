@@ -1,0 +1,23 @@
+/.cvsignore/1.1/Mon Nov 29 14:49:15 1999//
+/Makefile/1.1/Mon Nov 22 10:35:51 1999//
+/Makefile.Mac/1.1/Mon Nov 22 10:35:51 1999//
+/Makefile.Mac.depend/1.1/Mon Nov 22 10:35:51 1999//
+/Makefile.nt/1.1/Mon Nov 22 10:35:51 1999//
+/alloc.ml/1.1/Mon Nov 22 10:35:52 1999//
+/bdd.ml/1.1/Mon Nov 22 10:35:52 1999//
+/boyer.ml/1.1/Mon Nov 22 10:35:53 1999//
+/fft.ml/1.1/Mon Nov 22 10:35:53 1999//
+/fib.ml/1.1/Mon Nov 22 10:35:54 1999//
+/fib.s.noopt/1.1/Mon Nov 22 10:35:54 1999//
+/fib.s.optimal/1.1/Mon Nov 22 10:35:54 1999//
+/nucleic.ml/1.1/Mon Nov 22 10:35:54 1999//
+/quicksort.ml/1.1/Mon Nov 22 10:35:55 1999//
+/sieve.ml/1.1/Mon Nov 22 10:35:56 1999//
+/sieve2.ml/1.1/Mon Nov 22 10:35:56 1999//
+/soli.ml/1.1/Mon Nov 22 10:35:56 1999//
+/takc.ml/1.1/Mon Nov 22 10:35:56 1999//
+/taku.ml/1.1/Mon Nov 22 10:35:57 1999//
+D/KB////
+D/Lex////
+D/Moretest////
+D/Results////

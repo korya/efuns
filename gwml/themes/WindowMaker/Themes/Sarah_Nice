@@ -1,0 +1,26 @@
+{
+TitleJustify = left;
+WindowTitleFont = "-*-helvetica-bold-r-normal-*-12-*-*-*-*-*-*-*";
+MenuTitleFont = "-*-helvetica-medium-r-normal-*-12-*-*-*-*-*-*-*";
+MenuTextFont = "-*-helvetica-medium-r-normal-*-12-*-*-*-*-*-*-*";
+IconTitleFont = "-*-helvetica-medium-r-normal-*-8-*-*-*-*-*-*-*";
+DisplayFont = "-*-helvetica-medium-r-normal-*-12-*-*-*-*-*-*-*";
+HighlightColor = "#787790";
+HighlightTextColor = white;
+ClipTitleColor = "#803d3a";
+CClipTitleColor = "#928282";
+FTitleColor = white;
+PTitleColor = white;
+UTitleColor = white;
+FTitleBack = (tpixmap, SarahActiveTitleBar.png, "#17123c");
+UTitleBack = (tpixmap, SarahUnactiveTitleBar.png, "#17123c");
+MenuTitleColor = white;
+MenuTextColor = white;
+MenuDisabledColor = gray60;
+MenuTitleBack = (tpixmap, SarahMenuTitle.png, "#787790");
+MenuTextBack =(tpixmap, SarahMenuBack.png, white);
+IconBack = (tpixmap, SarahIconBack.png, black);
+IconTitleColor = "#cccccc";
+IconTitleBack = "#928282";
+WorkspaceBack = (spixmap, SarahWallpaper.png, black);
+}

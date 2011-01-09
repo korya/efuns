@@ -1,0 +1,133 @@
+.data
+	.globl	Fib_data_begin
+Fib_data_begin:
+	.align	4
+	.long	1024
+	.globl	Fib
+Fib:
+	.space	4
+	.align	4
+	.long	2298
+	.globl	Fib_1
+Fib_1:
+	.long	Fib_fib_39
+	.long	3
+	.globl	Fib_data_end
+Fib_data_end:
+	.long	0
+.text
+	.globl	Fib_code_begin
+Fib_code_begin:
+	.align	4
+	.globl	Fib_fib_39
+Fib_fib_39:
+# Optimizations:
+# 1/ Delay the "subl $n, %esp" until really necessary, ie from a branch which
+# is immediatly leaving (gain: 10%)
+# 2/ When the function call is "noalloc", the stack frame size can be changed
+# by delaying "subl $8, %esp; movl %v1, 4(%esp); ...; movl %v2, (%esp); ..."
+# can be improved to "pushl %v1; ...; pushl %v2; ... (gain: 2 %)
+# 3/ The same opt can be extended to cases where the allocations to
+# stack locations can be exchanged.
+.L9:
+	cmpl	$5, %eax
+	jge	.L2
+.L7:
+	movl	$3, %eax
+	ret
+.L2:
+         pushl    %eax
+	addl	$-4, %eax
+	call	Fib_fib_39
+         pushl    %eax
+         movl     4(%esp), %eax
+         addl     $-2, %eax
+	call	Fib_fib_39
+	addl	(%esp), %eax
+	decl	%eax
+	addl	$8, %esp
+	ret 8
+	.align	4
+	.globl	Fib_entry
+Fib_entry:
+.L22:
+	movl	$Fib_1, Fib
+	movl	Sys, %eax
+	movl	-4(%eax), %eax
+	shrl	$9, %eax
+	orl	$1, %eax
+	cmpl	$5, %eax
+	jl	.L10
+.L21:
+	movl	Sys, %ebx
+	movl	-4(%ebx), %eax
+	shrl	$9, %eax
+	cmpl	$3, %eax
+	jbe	.L26
+	movl	4(%ebx), %eax
+	pushl	%eax
+	movl	$int_of_string, %eax
+	call	caml_c_call
+.L27:
+	addl	$4, %esp
+.L12:
+	call	Fib_fib_39
+.L28:
+	call	Pervasives_string_of_int_129
+.L29:
+	movl	%eax, %ebx
+	movl	Pervasives + 72, %eax
+	call	Pervasives_output_string_169
+.L30:
+	movl	$1, %eax
+	call	Pervasives_print_newline_240
+.L31:
+	movl	$1, %eax
+	call	Pervasives_exit_268
+.L32:
+	movl	$1, %eax
+	ret
+.L10:
+	movl	$61, %eax
+	jmp	.L12
+.L26:	call	caml_array_bound_error
+	.globl	Fib_code_end
+Fib_code_end:
+.data
+	.globl	Fib_frametable
+Fib_frametable:
+	.long	8
+	.long	.L32
+	.word	4
+	.word	0
+	.align	4
+	.long	.L31
+	.word	4
+	.word	0
+	.align	4
+	.long	.L30
+	.word	4
+	.word	0
+	.align	4
+	.long	.L29
+	.word	4
+	.word	0
+	.align	4
+	.long	.L28
+	.word	4
+	.word	0
+	.align	4
+	.long	.L27
+	.word	8
+	.word	0
+	.align	4
+	.long	.L25
+	.word	12
+	.word	1
+	.word	4
+	.align	4
+	.long	.L24
+	.word	12
+	.word	1
+	.word	0
+	.align	4

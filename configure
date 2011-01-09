@@ -1,0 +1,364 @@
+#!/bin/sh
+
+if [ ! -f .cache ]; then cp .cache.default .cache; fi
+chmod +x .cache
+. ./.cache
+
+ocamlc=`which ocamlc`
+ocamlrun=`which ocamlrun`
+ocamlopt=`which ocamlopt`
+
+ocaml_version=`$ocamlrun $ocamlc -v | awk '/.*version.*([0-9.]+).*/ { print $6 }'`
+libdir=`$ocamlrun $ocamlc -v | awk '/.*directory.*([^ \n]+).*/ { print $4 }'`
+curdir=`pwd`
+
+srcdir_set=no
+prefix_set=no
+bindir_set=no
+efunsdir_set=no
+gwmldir_set=no
+xlibdir_set=no
+efunsdyn_set=no
+gwmldyn_set=no
+bytethreads_set=no
+optthreads_set=no
+imlib_set=no
+esd_set=no
+
+# Parse command-line arguments
+
+while : ; do
+  case "$1" in
+    "") break;;
+    -prefix|--prefix)
+        prefix=$2;
+        prefix_set=yes;
+        shift;;
+    -bindir|--bindir)
+        bindir=$2; 
+        bindir_set=no
+        shift;;
+    -efunsdir|--efunsdir)
+        efunsdir=$2; efunsdir_set=yes; shift;;
+    -gwmldir|--gwmldir)
+        gwmldir=$2; gwmldir_set=yes; shift;;
+    -xlibdir|--xlibdir)
+        xlibdir=$2; xlibdir_set=yes; shift;;
+    -byte_threads|--byte_threads)
+        byte_threads=threads;;
+    -opt_threads|--opt_threads)
+        opt_threads=threads;;
+    -efunsdyn|--efunsdyn)
+        efunsdyn_set=yes; efunsdyn=$2; shift;;
+    -gwmldyn|--gwmldyn)
+        gwmldyn_set=yes; gwmldyn=$2; shift;;
+    -srcdir|--srcdir)
+        srcdir=$2; srcdir_set=yes; shift;;
+    -cc|--cc)
+        cc=$2; shift;;
+    -nocache|--nocache)
+        cp .cache.default .cache; exit;;
+    -use_esd)
+        use_esd=yes;;
+    -no_esd)
+        use_esd=no;;
+    -use_imlib)
+        use_imlib=yes;;
+    -no_imlib)
+        use_imlib=no;;
+    -h|--h|-help|--help)
+        echo Usage:
+        echo ./configure [-prefix prefixdir] [-bindir bindir]  [-efunsdir efunsdir] [-gwmldir gwmldir][-xlibdir xlibdir] [-byte_threads] [-opt_threads] [-efuns_dyn toplevel/dynlink] [-gwmldyn topelvel/dynlink] [-srcdir srcdir] [-cc cc] [-nocache] [-no_imlib] [-use_imlib] [-no_esd] [-use_esd] [-help];
+        exit;;
+    *) echo "Unknown option \"$1\"." 1>&2; exit 2;;
+  esac
+  shift
+done
+
+if [ "$prefix_set" = yes ]; then
+  if [ "$bindir_set" = "no" ]; then bindir=$prefix/bin; fi
+  if [ "$efunsdir_set" = "no" ]; then efunsdir=$prefix/lib/efuns; fi
+  if [ "$gwmldir_set" = "no" ]; then gwmldir=$prefix/lib/gwml; fi
+  if [ "$xlibdir_set" = "no" ]; then xlibdir=$prefix/lib/xlib; fi
+fi
+
+if [ "$bindir" = "" ]; then 
+      bindir=$prefix/bin;
+fi
+
+if [ -f $srcdir/boot/ocamlc ]; then
+  dynlink=toplevel
+  if [ "$srcdir_set" = yes ]; then
+   do_depend=yes
+   do_caml=yes
+   if [ "$efunsdyn_set" = no ]; then efunsdyn=toplevel; fi
+   if [ "$gwmldyn_set" = no ]; then gwmldyn=toplevel; fi
+  fi
+else
+  dynlink=dynlink
+  gwmldyn=dynlink
+  efunsdyn=dynlink
+  rm -f ocamlsrc/Makefile.ocaml
+  touch ocamlsrc/Makefile.ocaml
+fi
+
+if [ ! -f $libdir/stdlib.cma ]; then 
+  libdir=`ocamlc -v | awk '/.*directory.*([^ \n]+).*/ { print $4 }'`
+fi
+
+# Sanity checks
+
+case "$bindir" in
+  /*) ;;
+   *) echo "The -bindir(" $bindir ") directory must be absolute." 1>&2; exit 2;;
+esac
+case "$libdir" in
+  /*) ;;
+   *) echo "The -libdir directory must be absolute." 1>&2; exit 2;;
+esac
+
+rm -f gwml/imager.ml
+if [ "$use_imlib" = "yes" ]; then
+  if [ -f `which imlib-config` ]; then
+    use_imlib=yes;
+  else
+    use_imlib=no;
+  fi
+else
+  use_imlib=no
+fi
+if [ "$use_imlib" = "yes" ]; then
+  imlib_tmp_clink=`imlib-config --libs`
+  imlib_tmp_cflags=`imlib-config --cflags`
+  imlib_clink="-cclib \"$imlib_tmp_clink\""
+  imlib_cflags="-ccopt \"$imlib_tmp_cflags\""
+  imlib_cobjs=imlib_stubs.o
+  ln -s imlib/imager.ml gwml/imager.ml
+else
+  ln -s no_imlib/imager.ml gwml/imager.ml
+fi
+
+rm -f gwml/sound.ml
+if [ "$use_esd" = "yes" ]; then
+  if [ -f `which esd-config` ]; then
+    use_esd=yes
+  else
+    use_esd=no
+  fi
+else
+  use_esd=no
+fi
+
+if [ "$use_esd" = "yes" ]; then
+  esd_cflags_tmp=`esd-config --cflags`
+  if [ "$esd_cflags_tmp" = "" ]; then
+     esd_cflags=""
+  else
+     esd_cflags="-ccopt \"$esd_cflags_tmp\""
+  fi
+  esd_clink_tmp=`esd-config --libs`
+  if [ "$esd_clink_tmp" = "" ]; then
+     esd_clink=""
+  else
+     esd_clink="-cclib \"$esd_clink_tmp\""
+  fi
+  esd_cobjs=esd_stubs.o
+  ln -s esd/sound.ml gwml/sound.ml
+else
+  ln -s no_esd/sound.ml gwml/sound.ml
+fi
+
+if [ -f `which ocamlc`.opt ]; then
+ opt_version=`ocamlc.opt -v | awk '/.*version.*([0-9.]+).*/ { print $6 }'`
+ if [ "$opt_version" = "$ocaml_version" ]; then
+   ocamlc=`which ocamlc.opt`;
+   ocamlrun=ocamlrun
+ fi
+fi
+if [ -f `which ocamlopt`.opt ]; then 
+ opt_version=`ocamlopt.opt -v | awk '/.*version.*([0-9.]+).*/ { print $7 }'`
+ if [ "$opt_version" = "$ocaml_version" ]; then
+   ocamlopt=ocamlopt.opt;
+ fi
+fi
+
+if [ "$do_depend" = "" ]; then do_depend=yes; fi
+
+# Generate the files
+echo > Makefile.config
+echo RELEASE=$efuns_release >> Makefile.config
+echo VERSION=$efuns_version >> Makefile.config
+echo CURDIR=$curdir >> Makefile.config
+echo PREFIX=$prefix >> Makefile.config
+echo OCAMLLIB=$libdir >> Makefile.config
+echo OCAMLVERSION=$ocaml_version >> Makefile.config
+echo INSTALLBIN=$bindir >> Makefile.config
+echo EFUNSDIR=$efunsdir >> Makefile.config
+echo GWMLDIR=$gwmldir >> Makefile.config
+echo XLIBDIR=$xlibdir >> Makefile.config
+echo BYTE_THREADS=$byte_threads >> Makefile.config
+echo OPT_THREADS=$opt_threads >> Makefile.config
+echo DYNLINK=$dynlink >> Makefile.config
+echo OCAMLSRC=$srcdir >> Makefile.config
+echo EFUNS_DYNLINK=$efunsdyn >> Makefile.config
+echo GWML_DYNLINK=$gwmldyn >> Makefile.config
+echo CC=$cc >> Makefile.config
+echo OCAMLC=$ocamlc >> Makefile.config
+echo OCAMLRUN=$ocamlrun >> Makefile.config
+echo OCAMLOPT=$ocamlopt >> Makefile.config
+echo IMLIB_COBJS=$imlib_cobjs >> Makefile.config
+echo IMLIB_CFLAGS=$imlib_cflags >> Makefile.config
+echo IMLIB_CLINK=$imlib_clink >> Makefile.config
+echo ESD_COBJS=$esd_cobjs >> Makefile.config
+echo ESD_CFLAGS=$esd_cflags >> Makefile.config
+echo ESD_CLINK=$esd_clink >> Makefile.config
+
+if [ "$efunsdyn" = toplevel ]; then
+  echo EFUNS_BYTE_DYN_LINK=../ocamlsrc/toplevellib.cma >> Makefile.config
+  echo EFUNS_OPT_DYN_LINK=../ocamlsrc/toplevellib.cmxa >> Makefile.config
+else
+  echo EFUNS_BYTE_DYN_LINK= >> Makefile.config
+  echo EFUNS_OPT_DYN_LINK= >> Makefile.config
+fi
+
+if [ "$gwmldyn" = toplevel ]; then
+  echo GWML_BYTE_DYN_LINK=../ocamlsrc/toplevellib.cma >> Makefile.config
+  echo GWML_OPT_DYN_LINK=../ocamlsrc/toplevellib.cmxa >> Makefile.config
+else
+  echo GWML_BYTE_DYN_LINK= >> Makefile.config
+  echo GWML_OPT_DYN_LINK= >> Makefile.config
+fi
+
+echo > .cache
+echo prefix=$prefix >> .cache
+echo bindir=$bindir >> .cache
+echo efunsdir=$efunsdir >> .cache
+echo gwmldir=$gwmldir >> .cache
+echo xlibdir=$xlibdir >> .cache
+echo srcdir=$srcdir >> .cache
+echo byte_threads=$byte_threads >> .cache
+echo opt_threads=$opt_threads >> .cache
+echo efunsdyn=$efunsdyn >> .cache
+echo gwmldyn=$gwmldyn >> .cache
+echo cc=$cc >> .cache
+echo do_depend=no >> .cache
+echo use_imlib=$use_imlib >> .cache
+echo use_esd=$use_esd >> .cache
+
+
+cat .Makefile.config >> Makefile.config
+
+echo Current options:
+echo Caml version: $ocaml_version
+cat .cache
+echo
+echo Use Imlib: $use_imlib
+echo Use Esd: $use_esd
+
+echo Making ocamlsrc directory ...
+if [ "$do_caml" = yes ]; then
+  cd ocamlsrc
+  TOPLINKS="asmcomp boot bytecomp byterun config driver parsing stdlib tools toplevel typing utils .depend"
+  rm -f $TOPLINKS Makefile.ocaml
+  ln -s $srcdir/Makefile Makefile.ocaml
+  for i in $TOPLINKS; do ln -s $srcdir/$i $i; done
+  cd ..
+fi
+
+case "$ocaml_version" in
+  2.00|2.01|2.02) use_version=2.00;;
+  2.03|2.04) use_version=2.04;;
+  2.99+?) use_version=2.99;;
+  2.99|3.00) use_version=3.00;;
+  3.00+19) use_version=3.00+19;;
+  3.01) use_version=3.01;;
+  *) use_version=beta;;
+esac
+
+
+rm -f toplevel/dynlink.mli dynlink/dynlink.mli
+if [ "$use_version" = beta ]; then
+  echo "Unsupported version ? Using version Beta";
+  if [ -f $srcdir/boot/ocamlc ]; then
+     echo "Trying to find headers"
+     $beta=3.01
+     COMPAT=ocamlsrc/compat/$ocaml_version
+       mkdir $COMPAT
+       cp ocamlsrc/compat/$beta/*.ml $COMPAT/
+       cp -f $srcdir/otherlibs/dynlink/dynlink.mli $COMPAT/
+       mkdir $COMPAT/include
+       cp $COMPAT/compat_run.template.ml $COMPAT/compat_run.ml
+       grep magic_number $srcdir/utils/config.mlp >> $COMPAT/compat_run.ml
+       echo end >> $COMPAT/compat_run.ml
+       cp \
+  $srcdir/parsing/asttypes.mli   \
+  $srcdir/parsing/longident.mli  \
+  $srcdir/typing/env.mli         \
+  $srcdir/typing/primitive.mli   \
+  $srcdir/typing/ident.mli       \
+  $srcdir/typing/path.mli        \
+  $srcdir/typing/types.mli       \
+  $srcdir/bytecomp/instruct.mli  \
+  $srcdir/bytecomp/emitcode.mli  \
+  $srcdir/bytecomp/lambda.mli    \
+  $COMPAT/include/
+       cp -f ocamlsrc/compat/$beta/include/Makefile $COMPAT/include/
+       use_version=$ocaml_version
+  fi
+fi
+ln -s $curdir/ocamlsrc/version/dynlink.mli toplevel/dynlink.mli
+ln -s $curdir/ocamlsrc/version/dynlink.mli dynlink/dynlink.mli
+
+rm -f ocamlsrc/version
+ln -s compat/$use_version ocamlsrc/version
+rm -f common/compat_run.ml
+ln -s $curdir/ocamlsrc/version/compat_run.ml common/compat_run.ml
+for i in compat_comp.ml emitcode.mli; do
+  rm -f ocamlsrc/$i
+  ln -s version/$i ocamlsrc/$i
+done
+rm -f ocamlsrc/ocamlopt ocamlsrc/ocamlc
+ln -s $srcdir/ocamlc ocamlsrc/ocamlc
+ln -s $srcdir/ocamlopt ocamlsrc/ocamlopt
+
+# rm -f toplevel/dynlink.cmi dynlink/dynlink.cmi
+#
+
+if [ -f xlib/.depend ]; then 
+   echo ...
+ else 
+   do_depend=yes; 
+fi
+
+rm -f gwml/gwml_install
+
+if [ "$do_depend" = yes ]; then 
+  echo Making dependencies ...
+  rm -f inliner/perf/.depend common/.depend inliner/perf/Moretest/.depend concur/.depend inliner/tests/.depend concur/nothreads/.depend concur/threads/.depend  toolkit/.depend dynlink/.depend toolkit/examples/.depend efuns/.depend  toplevel/.depend gwml/.depend  xlib/.depend inliner/.depend  xlib/examples/.depend tools/.depend
+
+  touch common/.depend
+  touch concur/.depend
+  touch concur/nothreads/.depend
+  touch concur/threads/.depend
+  touch dynlink/.depend
+  touch efuns/.depend
+  touch gwml/.depend
+  touch inliner/.depend
+  touch inliner/perf/.depend
+  touch inliner/perf/Moretest/.depend
+  touch inliner/tests/.depend
+  touch toolkit/.depend
+  touch toolkit/examples/.depend
+  touch toplevel/.depend
+  touch xlib/.depend
+  touch xlib/examples/.depend
+  touch ocamlsrc/version/include/.depend
+  touch tools/.depend
+  make depend
+fi
+
+echo Configuration done.
+echo
+echo Compile with \"make byte\" and \"make opt\"
+echo Compile examples with \"make demos.byte\" and \"make demos.opt\"
+echo Install with \"make install\" and \"make installopt\"

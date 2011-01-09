@@ -1,0 +1,281 @@
+(***********************************************************************)
+(*                                                                     *)
+(*                           GwML                                      *)
+(*                                                                     *)
+(*       Fabrice Le Fessant, projet Para/SOR, INRIA Rocquencourt       *)
+(*                                                                     *)
+(*  Copyright 1999 Institut National de Recherche en Informatique et   *)
+(*  Automatique.  Distributed only by permission.                      *)
+(*                                                                     *)
+(***********************************************************************)
+
+Version 017:
+===========
+* Shaped clients are now supported (e.g. oclock). Shaped decorations are also
+   supported.
+
+* New modules:
+  ** [Options] for simpler configuration of basic options. Such
+  options are loaded from a ".gwmlrc" file, modified in menus and saved.
+  Lots of things are modifiable in this file, including client decoration
+  style.
+  ** [Dvroom] to create workspaces (Some work to be done..)
+  ** [Gradients] to create images with horizontal, vertical and
+   diagonal gradients of colors.
+  ** [Undo] to undo operations such as iconify/deiconify (bugged).
+  ** [Animate] to draw lines when windows are moved or iconified.
+   Some animations are taken from AfterStep (twist, flip, turn).
+  ** [Afterstep] to load Afterstep themes'look. Look applies on
+   root image, pager image, title bars and menus.
+  ** [Wmaker] to load menus, sounds and themes from WindowMaker.
+  ** [Gwml_args] to handle arguments in the first module.
+  ** [Locale] to support internationnal languages.
+  ** [Sound] to play sounds (using Esd or a local player)
+  ** [Imager] for images using the Imlib library.
+  ** [Themes] to manage themes (better specified in Afterstep and Wmaker)
+  ** [Group] for user groups.
+  ** [SendEvent] to send a synthetic key press to a client.
+
+* Stdgwmlrc: new bindings to circulate between windows:
+  - WM-n : toggle virtual move/ window move
+  - WM- left/right: left/right window, or left/right screen
+  - WM- up/down: up/down window, or up/down screen
+  - WM- S- left/right: left/right screen, or left/right window
+  - WM- S- up/down: up/down screen, or up/down window
+* Gwmlrc: In window-menu, a window can be moved in another virtual
+   screen.
+* Added resize with keys. Different delta: Shift:1 Control:5 else 15.
+* stdconfig:
+  - Messages automatically disappear after [message_delay] seconds.
+  - New function [goto_closest] to move the pointer to the closest window.
+* Stdvirtual:
+  - When moving between screens, pointer is moved to the closest window
+    if [virtual_warp_to_window] is set.
+* Stdmenus:
+  - New keys [0..9] to select labels by position.
+  - Use keys [a..z] to select labels by initial letter (use it for shortcut:
+   WM-5 i Enter = Iconify window). This behavior can be altered by the
+   [key_direct_select] to select immediatly (Iconify window = WM-5 i).
+* Stdplacement:
+  - New placement [auto_placement] to place a window in the biggest free
+     area.
+  - New placement [cascade_placement] to place windows in cascade.
+  - New placement [icon_placement] to iconify windows.
+  - New placement [random_placement] to place windows in random order.
+  - Default placement can be set in the .gwmlrc.
+* Gnome:
+  - Virtual screens are correctly handler by the gnome_pager.
+* New paramter [-mods] to set the short-keys modifier at first start-up 
+  (any combinaison of S,C,A,1,2,3,4,5).
+* Bug fixes:
+  - Auto-raise is now prevented when menus are poped up.
+  - A window in a group uses the master icon kind if none is defined for it. 
+  - Unmapped windows are correctly placed.
+
+Version 016:
+===========
+* Stddeco: added new configuration menu "window_popup" when someone clicks
+    in the left upper side of the title bar (pixmap normally) or
+    with (wm_modifiers + F5).
+* Stdconfig: new option "comp_name", used to modify the title name on
+   the window.
+* config/gwmlrc.ml: example of my own configuration (Note that the
+  "Windows" key of my keyboard is bound on Super_L). This config has:
+  - Use of "comp_name" to modify (shorten) names in title bars.
+  - A menu to modify confine_move, pan_on_click, etc.. with the mouse.
+  - Generate a hierarchical menu from a list of machine names.
+  - Add some commands to the per-window popup.
+  - Load a menu from a fvwm2 config file.
+* Stdicon: button 1 moves the icon, double-click de-iconifies the icon.
+   The icon position is remembered if the icon is moved.
+* User: When moving a window, Enter sets the position, and the arrows can
+  be used (with Alt for finer grain move).
+* AppMgr: The icon manager can now be used with keys:
+  - wm_modifier + Tab: key mode for icon modifier
+  - Esc: Normal mode.
+  - C-Tab, Up: previous window.
+  - Tab, Down: next window.
+  - i : iconify/deiconify.
+  - k : kill.
+  - l/r: lower/raise.
+  - w/Enter : warp mouse and virtual screen to window.
+* Bug fixes:
+  - icon_manager was defined twice in Stdconfig.
+* Stdmenus:
+  - new options "menu_width" and "menu_height".
+  - menus can be handled with keys (WM+F1 : popup1, WM+F2 : winlist, 
+     WM+F3 : popup3, WM+F5 : win options, then up, down, left, right, enter).
+
+Version 015:
+===========
+* Added new directory gwml/config 
+
+Version 014:
+===========
+* Started GNOME compliance. GwML is able to fake enough Gnome compatibility
+   to start some special applets (gnomepager for example).
+* Stdvirtual:
+  - The pager can be moved and decorated as a standard window.
+* User:
+  - During Opaque_move, Expose events are correctly used to redraw
+     window decorations. (use Stdconfig.grab_server := false to
+     allow other windows to redraw themselves)
+
+Version 013:
+===========
+* Gwml:
+  - WobNewClient suppressed. Clients are now decorated by the
+     [Gwml.decorate_client] function (mutable).
+  - New event WobClientFocus to receive focus changes.
+  - New hook for client related events [wm_broadcast]. Pre-feature next 
+      architecture scheme for GwML.
+* New module [Opttable] to associate names with wild chars to options.
+* Fvwm:
+  - New module [Modules] for fvwm2 modules. Some problems with architecture 
+    dependent types. Can run most Fvwm2/Fvwm95 modules. Desktop and pagers
+    are faked. Can run Afterstep modules (Wharf,...).
+* Client: 
+  - Test if window was reparented before withdrawn to allow swallowing.
+* Concur:
+  - Corrected bug in nothreads/concur.ml delaying refresh of decorations.
+
+Version 012:
+===========
+* Stdvirtual:
+  - Use button 2 on a rectangle in the pager to drag the window.
+  - Use button 3 on a rectangle in the pager to go to that window.
+* Stdgwmlrc:
+  - Use "gwml fvwm" to start GwML in fvwm emulation.
+  - Use "gwml cm" to use Meta+Control as wm_modifiers.
+  - [wm_modifiers + r] restarts GwML in standard config mode.
+* Fvwm:
+  - Added some syntax to read Fvwm version 1 configuration files.
+* Wob: 
+  - New function [click ()] which returns either Simple, Double, DeltaMove depending
+     on the type of the button press.
+* Client: 
+  - A synthetic configure event is sent each time a client window is moved.
+ 
+Version 011:
+===========
+* Stdconfig:
+   - Use "gwml twm" to start GwML in Twm emulation
+   - Use "gwml tvtwm" to start GwML in TvTwm emulation
+   - Use "gwml fvwm2" to start GwML in fvwm2 emulation
+   - Special classes for [virtual_manager] and [icon_manager] to install
+      specialised managers without changing the standard configuration.
+   - Lots of colors/fonts are now configurable.
+* Added modules Twm_t,Twm_l and Twm_p to read twm configuration files.
+* Added Twm to emulate twm window decoration.
+    - [load] parses a twm/tvtwm configuration file.
+    - [use] adds twm menus in [Stdconfig.menus_table].
+    - [twm_resize] can be used instead of [User.resize].
+    - [install_bindings] installs twm bindings as globals (after [use]).
+* Main: GwML reads the Ocaml file $(HOME)/.gwmlrc.ml after loading
+   already compiled files.
+* Fvwm:
+    - [load] parses a fvwm 1/2/95 or afterStep config file.
+    - [use] adds fvwm menus in [Stdconfig.menus_table].
+    - [install_bindings]  installs twm bindings as globals (after [use]).
+    - Fvwm95 icons are directly contained in the file.
+* Stdmenus: 
+    - menus can contain special attributes for font, pixmap and colors.
+    - submenus are correctly handled
+* Label:
+    - label size can be less than required with [#set_extensible 2]
+* Gwml:
+    - pixmaps can be specified by files, real pixmaps or pixmap data.
+* Bugs:
+   - most createWindow bugs have been corrected.
+
+Version 010:
+===========
+* Gwml: 
+   - new event [WobDoubleClick] configurable via [Wob.double_click_delay].
+   - [WobResize] takes a boolean argument to force the size of a client.
+* Stdconfig:  cut in several modules [Stdconfig] [Stdicon] [Stdplacement] 
+   [Stddeco] [Stdscreen] [Stdgwmlrc].
+   - Restart command can be set by [restart_cmd].
+* Stdicon:
+   - [button1] to deiconify in current screen, [button2] to move, 
+      [button3] to deiconify and go to original screen.
+   - icons pixmaps can be set by [add_icon].
+   - icons can be configured via [icon_font], [icon_borderwidth], [icon_foreground]
+      or [icon_background].
+* Stddeco:
+   - double click on the title bar minimize the window to its title bar.
+* Stdplacement:
+   - [user_placement] stops after [user_placement_delay] seconds if
+       no motion events are received.
+* User:
+   - [confine_move] prevents windows from leaving the screen.
+* Wob:
+   - better handling of windows borderwidths.
+* New module [Fvwm] to load fvwm 1/2/95 configuration file.
+
+Version 009:
+===========
+* New module [AppMgr] to create bars to manipulate windows.
+* New module [Ledit] for editable labels. All titles can be edited by
+  clicking if [Stdconfig.editable_title] is set to true.
+* Stdconfig:
+   _ Added three AppMgr bars, one for Editors, one for Xterms and
+      one for other windows.
+
+Version 008:
+===========
+* Wob descriptions are now objects. They are used instead of wobs in
+  hooks. (wob -> wob_desc: w.w_info, wob_desc -> wob: desc#wob)
+   - Wob: methods "set_grabs", "set_background", "set_min_width", "set_min_height"
+      and "set_mask" to modify the wob. Method "add_hook" to add a new
+      hook.
+   - Label: methods "set_foreground", "set_font" and "set_string".
+* Stdconfig: 
+   - Better handling of WM_HINTS.initial_state for new clients.
+   - Icons are destroyed when clients are destroyed.
+   - Added message and delete_message functions to display a simple string
+      on the screen. 
+   - Windows-j: print info on client, Windows-d: delete last message
+     Windows-s: debug mode
+   - Added group iconification (disable by group_iconification := false)
+   - Added Windows95 corner (enable by windows_corner := true). Need
+       mini-winXX-* icons.
+* Virtual: 
+   - new variable pan_on_click to move virtual screens only on mouse click.
+   - side cursors in pan windows
+* User: XV problem corrected. Interactions with users are aborted when
+   the pointer is grabbed by a client.
+* Wob: new function "send_one" to send a message to a wob only once (in
+   case this message has already been sent by another wob).
+* New module Plug: virtual class "plug" with two virtual methods "getsize"
+   and "draw".
+* Client: Withdrawn windows are unmapped at startup except in -mapall mode.
+* Options: gwml -batch -talk doesn't stop immediatly (for debugging and 
+    interaction purpose)
+
+Version 007:
+============
+* Virtual: panes on screen borders always stay on stack top. Does not work
+    on all X servers because InputOnly windows don't receive VisibilityNotify
+    events.
+* Client/Top: client specific code moved from top.ml to client.ml by
+    creating a client window.
+   (window hieracrchy: root -> top -> parent -> client)
+
+Version 006:
+============
+* New option -talk: Enter ocaml expressions on stdin to be evaluated by Gwml
+   (like a toplevel) (* only if build with toplevel library  *)
+* Virtual: Top wobs modifications now update the pager view.
+* Stdconfig: 
+  - Placement policies can now be specified with add_placement.
+  - Special placement policy "near_mouse" for several popup windows (Netscape,etc).
+* Several bug fixes from Jerome Vouillon:
+  - size_hints are now correctly read and updated.
+  - window size updated on client demand.
+  - no setInputFocus when destination window is not visible
+  - XV bug partially corrected
+
+Version 005: 
+============
+* First release

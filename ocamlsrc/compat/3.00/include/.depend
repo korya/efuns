@@ -1,0 +1,6 @@
+emitcode.cmi: ident.cmi instruct.cmi lambda.cmi 
+env.cmi: ident.cmi longident.cmi path.cmi types.cmi 
+instruct.cmi: env.cmi ident.cmi lambda.cmi types.cmi 
+lambda.cmi: asttypes.cmi env.cmi ident.cmi path.cmi primitive.cmi types.cmi 
+path.cmi: ident.cmi 
+types.cmi: asttypes.cmi ident.cmi path.cmi primitive.cmi 

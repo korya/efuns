@@ -1,0 +1,704 @@
+diff -r -C 2 ocaml-2.02/Makefile /home/specialix/lefessan/cvs_checkouts/ocaml-2.02_orig/Makefile
+*** ocaml-2.02/Makefile	Tue Oct 12 11:04:35 1999
+--- /home/specialix/lefessan/cvs_checkouts/ocaml-2.02_orig/Makefile	Thu Mar  4 14:45:10 1999
+***************
+*** 4,8 ****
+  
+  CAMLC=boot/ocamlrun boot/ocamlc -I boot
+! CAMLOPT=boot/ocamlrun ./ocamlopt -S -I stdlib
+  COMPFLAGS=$(INCLUDES)
+  LINKFLAGS=
+--- 4,8 ----
+  
+  CAMLC=boot/ocamlrun boot/ocamlc -I boot
+! CAMLOPT=boot/ocamlrun ./ocamlopt -I stdlib
+  COMPFLAGS=$(INCLUDES)
+  LINKFLAGS=
+diff -r -C 2 ocaml-2.02/asmcomp/i386/emit.mlp /home/specialix/lefessan/cvs_checkouts/ocaml-2.02_orig/asmcomp/i386/emit.mlp
+*** ocaml-2.02/asmcomp/i386/emit.mlp	Thu Oct 28 11:17:19 1999
+--- /home/specialix/lefessan/cvs_checkouts/ocaml-2.02_orig/asmcomp/i386/emit.mlp	Thu Feb  4 11:30:31 1999
+***************
+*** 98,132 ****
+    | { loc = Stack s } as r ->
+        let ofs = slot_offset s (register_class r) in
+-       if ofs = 0 then `(%esp)` else
+        `{emit_int ofs}(%esp)`
+    | { loc = Unknown } ->
+        fatal_error "Emit_i386.emit_reg"
+  
+- let emit_asmopt_iter iter name arg =
+-   `# $asmopt$: {emit_string name}: `;
+-   iter (function
+-       { loc = Reg r } ->
+-         emit_string (register_name r); `: `
+-     | { loc = Stack s } as r ->
+-         let ofs = slot_offset s (register_class r) in
+-         if ofs = 0 then `(%esp):` else
+-         `{emit_int ofs}(%esp): `;
+-     | _ -> assert false        
+-   ) arg;
+-   `\n`
+- 
+- let emit_asmopt_regs iter name arg =
+-   `# $asmopt$: {emit_string name}: `;
+-   iter (function
+-       { loc = Reg r } ->
+-         emit_string (register_name r); `: `
+-     | _ -> assert false        
+-   ) arg;
+-   `\n`
+- 
+- let emit_asmopt = emit_asmopt_iter Array.iter
+- let emit_asmopt_set = emit_asmopt_iter Reg.Set.iter
+- let emit_asmopt_regs = emit_asmopt_regs Reg.Set.iter
+-   
+  (* Output a reference to the lower 8 bits or lower 16 bits of a register *)
+  
+--- 98,105 ----
+***************
+*** 190,199 ****
+    lbl
+  
+- (*  
+  let record_frame live =
+!   let lbl = record_frame_label live in 
+!   emit_asmopt (Printf.sprintf "frame: .L%d" lbl) [||];
+!   `{emit_label lbl}:\n`
+!   *)
+  
+  let emit_frame fd =
+--- 163,168 ----
+    lbl
+  
+  let record_frame live =
+!   let lbl = record_frame_label live in `{emit_label lbl}:\n`
+  
+  let emit_frame fd =
+***************
+*** 216,235 ****
+  let call_gc_sites = ref ([] : gc_call list)
+  
+- let eax = Reg.at_location Addr (Reg 0)
+- let ebx = Reg.at_location Addr (Reg 1)
+- let ecx = Reg.at_location Addr (Reg 2)
+- let edx = Reg.at_location Addr (Reg 3)
+- let esi = Reg.at_location Addr (Reg 4)
+- let edi = Reg.at_location Addr (Reg 5)
+- let ebp = Reg.at_location Addr (Reg 6)
+- 
+  let emit_call_gc gc =
+!   `{emit_label gc.gc_lbl}:\n`;
+!   emit_asmopt "args" [| |];
+!   emit_asmopt "saved" [| ebx; ecx; edx; esi; edi; ebp |];
+!   emit_asmopt (Printf.sprintf "frame: .L%d" gc.gc_frame) [||];
+!   `\tcall	{emit_symbol "caml_call_gc"}\n`;
+!   `{emit_label gc.gc_frame}:\n`;
+!   `\tjmp	{emit_label gc.gc_return_lbl}\n`
+  
+  (* Names for instructions *)
+--- 185,191 ----
+  let call_gc_sites = ref ([] : gc_call list)
+  
+  let emit_call_gc gc =
+!   `{emit_label gc.gc_lbl}:	call	{emit_symbol "caml_call_gc"}\n`;
+!   `{emit_label gc.gc_frame}:	jmp	{emit_label gc.gc_return_lbl}\n`
+  
+  (* Names for instructions *)
+***************
+*** 355,404 ****
+          `	movl	${emit_symbol s}, {emit_reg i.res.(0)}\n`
+      | Lop(Icall_ind) ->
+-         emit_asmopt "args" i.arg;
+-         emit_asmopt "res" i.res;
+-         let lbl = record_frame_label i.live in
+-         emit_asmopt (Printf.sprintf "frame: .L%d" lbl) [||];      
+          `	call	*{emit_reg i.arg.(0)}\n`;
+!         `{emit_label lbl}:\n`
+      | Lop(Icall_imm s) ->
+-         emit_asmopt "args" i.arg;
+-         emit_asmopt "res" i.res;
+-         let lbl = record_frame_label i.live in
+-         emit_asmopt (Printf.sprintf "frame: .L%d" lbl) [||];      
+          `	call	{emit_symbol s}\n`;
+!         `{emit_label lbl}:\n`
+      | Lop(Itailcall_ind) ->
+!       output_epilogue();
+!       emit_asmopt "tailcall" [||];
+!       emit_asmopt "args" i.arg;
+          `	jmp	*{emit_reg i.arg.(0)}\n`
+      | Lop(Itailcall_imm s) ->
+!         if s = !function_name then begin
+            `	jmp	{emit_label !tailrec_entry_point}\n`
+!         end else begin
+            output_epilogue();
+-           emit_asmopt "tailcall" [||];
+-           emit_asmopt "args" i.arg;
+            `	jmp	{emit_symbol s}\n`
+          end
+!     | Lop(Iextcall(s, n, alloc)) ->
+          if alloc then begin
+            `	movl	${emit_symbol s}, %eax\n`;
+-           emit_asmopt "args: %eax" (
+-             Array.init n (fun i -> 
+-                 Reg.at_location Addr (Stack (Outgoing (4*i)))));
+-           emit_asmopt "res" i.res;
+-           emit_asmopt_set "live" i.live;
+-           let lbl = record_frame_label i.live in
+-           emit_asmopt (Printf.sprintf "frame: .L%d" lbl) [||];      
+            `	call	{emit_symbol "caml_c_call"}\n`;
+!           `{emit_label lbl}:\n`
+          end else begin
+-           emit_asmopt "saved" [| ebx; esi; edi; ebp |];
+-           emit_asmopt "args" (
+-             Array.init n (fun i -> 
+-                 Reg.at_location Addr (Stack (Outgoing (4*i)))));
+-           emit_asmopt "res" i.res;
+-           emit_asmopt "nogc" [||];
+            `	call	{emit_symbol s}\n`
+          end
+--- 311,335 ----
+          `	movl	${emit_symbol s}, {emit_reg i.res.(0)}\n`
+      | Lop(Icall_ind) ->
+          `	call	*{emit_reg i.arg.(0)}\n`;
+!         record_frame i.live
+      | Lop(Icall_imm s) ->
+          `	call	{emit_symbol s}\n`;
+!         record_frame i.live
+      | Lop(Itailcall_ind) ->
+!         output_epilogue();
+          `	jmp	*{emit_reg i.arg.(0)}\n`
+      | Lop(Itailcall_imm s) ->
+!         if s = !function_name then
+            `	jmp	{emit_label !tailrec_entry_point}\n`
+!         else begin
+            output_epilogue();
+            `	jmp	{emit_symbol s}\n`
+          end
+!     | Lop(Iextcall(s, alloc)) ->
+          if alloc then begin
+            `	movl	${emit_symbol s}, %eax\n`;
+            `	call	{emit_symbol "caml_c_call"}\n`;
+!           record_frame i.live
+          end else begin
+            `	call	{emit_symbol s}\n`
+          end
+***************
+*** 449,462 ****
+          end
+      | Lop(Ialloc n) ->
+!         let lbl_frame = record_frame_label i.live in
+!       emit_asmopt_set "live" i.live;
+!       emit_asmopt (Printf.sprintf "alloc: %d: .L%d" n lbl_frame) [||];
+!       if !fastcode_flag then begin
+            let lbl_redo = new_label() in
+!           `{emit_label lbl_redo}:\n\tmovl	{emit_symbol "young_ptr"}, %eax\n`;
+            `	subl	${emit_int n}, %eax\n`;
+            `	movl	%eax, {emit_symbol "young_ptr"}\n`;
+            `	cmpl	{emit_symbol "young_limit"}, %eax\n`;
+            let lbl_call_gc = new_label() in
+            `	jb	{emit_label lbl_call_gc}\n`;
+            `	leal	4(%eax), {emit_reg i.res.(0)}\n`;
+--- 380,391 ----
+          end
+      | Lop(Ialloc n) ->
+!         if !fastcode_flag then begin
+            let lbl_redo = new_label() in
+!           `{emit_label lbl_redo}:	movl	{emit_symbol "young_ptr"}, %eax\n`;
+            `	subl	${emit_int n}, %eax\n`;
+            `	movl	%eax, {emit_symbol "young_ptr"}\n`;
+            `	cmpl	{emit_symbol "young_limit"}, %eax\n`;
+            let lbl_call_gc = new_label() in
++           let lbl_frame = record_frame_label i.live in
+            `	jb	{emit_label lbl_call_gc}\n`;
+            `	leal	4(%eax), {emit_reg i.res.(0)}\n`;
+***************
+*** 467,481 ****
+          end else begin
+            begin match n with
+!             8  ->
+!                 `	call	{emit_symbol "caml_alloc1"}\n`
+!           | 12 -> 
+!                 `	call	{emit_symbol "caml_alloc2"}\n`
+!           | 16 -> 
+!                 `	call	{emit_symbol "caml_alloc3"}\n`
+            | _  -> `	movl	${emit_int n}, %eax\n`;
+                    `	call	{emit_symbol "caml_alloc"}\n`
+            end;
+!           `{emit_label lbl_frame}:\n`;
+!           `	leal	4(%eax), {emit_reg i.res.(0)}\n`;
+          end
+      | Lop(Iintop(Icomp cmp)) ->
+--- 396,406 ----
+          end else begin
+            begin match n with
+!             8  -> `	call	{emit_symbol "caml_alloc1"}\n`
+!           | 12 -> `	call	{emit_symbol "caml_alloc2"}\n`
+!           | 16 -> `	call	{emit_symbol "caml_alloc3"}\n`
+            | _  -> `	movl	${emit_int n}, %eax\n`;
+                    `	call	{emit_symbol "caml_alloc"}\n`
+            end;
+!           `{record_frame i.live}	leal	4(%eax), {emit_reg i.res.(0)}\n`
+          end
+      | Lop(Iintop(Icomp cmp)) ->
+***************
+*** 516,521 ****
+          `	jge	{emit_label lbl}\n`;
+          `	addl	${emit_int(n-1)}, {emit_reg i.arg.(0)}\n`;
+!         `{emit_label lbl}:\n`;
+!         `\tsarl	${emit_int l}, {emit_reg i.arg.(0)}\n`
+      | Lop(Iintop_imm(Imod, n)) ->
+          let l = Misc.log2 n in
+--- 441,445 ----
+          `	jge	{emit_label lbl}\n`;
+          `	addl	${emit_int(n-1)}, {emit_reg i.arg.(0)}\n`;
+!         `{emit_label lbl}:	sarl	${emit_int l}, {emit_reg i.arg.(0)}\n`
+      | Lop(Iintop_imm(Imod, n)) ->
+          let l = Misc.log2 n in
+***************
+*** 525,530 ****
+          `	jge	{emit_label lbl}\n`;
+          `	addl	${emit_int(n-1)}, %eax\n`;
+!         `{emit_label lbl}:\n`;
+!         `\tandl	${emit_int(-n)}, %eax\n`;
+          `	subl	%eax, {emit_reg i.arg.(0)}\n`
+      | Lop(Iintop_imm(op, n)) ->
+--- 449,453 ----
+          `	jge	{emit_label lbl}\n`;
+          `	addl	${emit_int(n-1)}, %eax\n`;
+!         `{emit_label lbl}:	andl	${emit_int(-n)}, %eax\n`;
+          `	subl	%eax, {emit_reg i.arg.(0)}\n`
+      | Lop(Iintop_imm(op, n)) ->
+***************
+*** 595,599 ****
+              {loc = Reg _; typ = Float} ->
+                `	subl	$8, %esp\n`;
+!               `	fstpl	(%esp)\n`;
+                stack_offset := !stack_offset + 8
+            | {loc = Stack sl; typ = Float} ->
+--- 518,522 ----
+              {loc = Reg _; typ = Float} ->
+                `	subl	$8, %esp\n`;
+!               `	fstpl	0(%esp)\n`;
+                stack_offset := !stack_offset + 8
+            | {loc = Stack sl; typ = Float} ->
+***************
+*** 740,747 ****
+      | Lswitch jumptbl ->
+          let lbl = new_label() in
+-         emit_asmopt (Printf.sprintf "switch: %d" (Array.length jumptbl)) [||];
+          `	jmp	*{emit_label lbl}(, {emit_reg i.arg.(0)}, 4)\n`;
+          `	.data\n`;
+!         `{emit_label lbl}:\n`;
+          for i = 0 to Array.length jumptbl - 1 do
+            `	.long	{emit_label jumptbl.(i)}\n`
+--- 663,669 ----
+      | Lswitch jumptbl ->
+          let lbl = new_label() in
+          `	jmp	*{emit_label lbl}(, {emit_reg i.arg.(0)}, 4)\n`;
+          `	.data\n`;
+!         `{emit_label lbl}:`;
+          for i = 0 to Array.length jumptbl - 1 do
+            `	.long	{emit_label jumptbl.(i)}\n`
+***************
+*** 749,769 ****
+          `	.text\n`
+      | Lsetuptrap lbl ->
+!         emit_asmopt "setuptrap" [||];
+!         `	call	{emit_label lbl}\n`;
+      | Lpushtrap ->
+-         emit_asmopt "pushtrap" [||];
+          `	pushl	{emit_symbol "caml_exception_pointer"}\n`;
+          `	movl	%esp, {emit_symbol "caml_exception_pointer"}\n`;
+          stack_offset := !stack_offset + 8
+      | Lpoptrap ->
+-         emit_asmopt "poptrap" [||];
+          `	popl	{emit_symbol "caml_exception_pointer"}\n`;
+          `	addl	$4, %esp\n`;
+          stack_offset := !stack_offset - 8
+      | Lraise ->
+-         emit_asmopt "raise" [||];
+-         emit_asmopt_set "live" i.live;
+          `	movl	{emit_symbol "caml_exception_pointer"}, %esp\n`;
+!         `	popl\t{emit_symbol "caml_exception_pointer"}\n`;
+          `	ret\n`
+  
+--- 671,686 ----
+          `	.text\n`
+      | Lsetuptrap lbl ->
+!         `	call	{emit_label lbl}\n`
+      | Lpushtrap ->
+          `	pushl	{emit_symbol "caml_exception_pointer"}\n`;
+          `	movl	%esp, {emit_symbol "caml_exception_pointer"}\n`;
+          stack_offset := !stack_offset + 8
+      | Lpoptrap ->
+          `	popl	{emit_symbol "caml_exception_pointer"}\n`;
+          `	addl	$4, %esp\n`;
+          stack_offset := !stack_offset - 8
+      | Lraise ->
+          `	movl	{emit_symbol "caml_exception_pointer"}, %esp\n`;
+!         `	popl    {emit_symbol "caml_exception_pointer"}\n`;
+          `	ret\n`
+  
+***************
+*** 775,780 ****
+  let emit_float_constant (lbl, cst) =
+    `	.data\n`;
+!   `{emit_label lbl}:\n`;
+!   `\t.double	{emit_string cst}\n`
+  
+  (* Emission of the profiling prelude *)
+--- 692,696 ----
+  let emit_float_constant (lbl, cst) =
+    `	.data\n`;
+!   `{emit_label lbl}:	.double	{emit_string cst}\n`
+  
+  (* Emission of the profiling prelude *)
+***************
+*** 806,810 ****
+    emit_align 4;
+    `	.globl	{emit_symbol fundecl.fun_name}\n`;
+-   emit_asmopt (Printf.sprintf "arity: %d" fundecl.fun_args) [||];
+    `{emit_symbol fundecl.fun_name}:\n`;
+    if !Clflags.gprofile then emit_profile();
+--- 722,725 ----
+***************
+*** 816,825 ****
+    List.iter emit_call_gc !call_gc_sites;
+    if !range_check_trap > 0 then
+!     begin
+!       `{emit_label !range_check_trap}:\n`;
+!       emit_asmopt "args" [||];
+!       emit_asmopt "res" [||];
+!       `\tcall	{emit_symbol "caml_array_bound_error"}\n`;
+!     end;
+      (* Never returns, but useful to have retaddr on stack for debugging *)
+    List.iter emit_float_constant !float_constants
+--- 731,735 ----
+    List.iter emit_call_gc !call_gc_sites;
+    if !range_check_trap > 0 then
+!     `{emit_label !range_check_trap}:	call	{emit_symbol "caml_array_bound_error"}\n`;
+      (* Never returns, but useful to have retaddr on stack for debugging *)
+    List.iter emit_float_constant !float_constants
+***************
+*** 860,885 ****
+  (* Beginning / end of an assembly file *)
+  
+- let esc_symbol s =
+-   let len = String.length s in
+-   let malus = ref 0 in
+-   for i = 0 to len - 1 do
+-     let c = s.[i] in
+-     match c with
+-       'A'..'Z' | 'a'..'z' | '0'..'9' | '_' -> ()
+-     | _ -> malus := !malus + 2
+-   done;
+-   let sy = String.create (len + !malus) in
+-   let malus = ref 0 in
+-   for i = 0 to len - 1 do
+-     let c = s.[i] in
+-     match c with
+-       'A'..'Z' | 'a'..'z' | '0'..'9' | '_' -> sy.[i + !malus] <- c
+-     | _ -> 
+-         String.blit (Printf.sprintf "$%02x" (Char.code c)) 0
+-           sy (i + !malus) 3;
+-         malus := !malus + 2
+-   done;
+-   sy
+- 
+  let begin_assembly() =
+    let lbl_begin = Compilenv.current_unit_name() ^ "_data_begin" in
+--- 770,773 ----
+***************
+*** 894,898 ****
+  let end_assembly() =
+    let lbl_end = Compilenv.current_unit_name() ^ "_code_end" in
+-   emit_asmopt "endcode" [||];
+    `	.text\n`;
+    `	.globl	{emit_symbol lbl_end}\n`;
+--- 782,785 ----
+***************
+*** 904,908 ****
+    `	.long	0\n`;
+    let lbl = Compilenv.current_unit_name() ^ "_frametable" in
+-   emit_asmopt "frametable" [||];
+    `	.globl	{emit_symbol lbl}\n`;
+    `{emit_symbol lbl}:\n`;
+--- 791,794 ----
+diff -r -C 2 ocaml-2.02/asmcomp/i386/proc.ml /home/specialix/lefessan/cvs_checkouts/ocaml-2.02_orig/asmcomp/i386/proc.ml
+*** ocaml-2.02/asmcomp/i386/proc.ml	Thu Oct 21 18:55:25 1999
+--- /home/specialix/lefessan/cvs_checkouts/ocaml-2.02_orig/asmcomp/i386/proc.ml	Thu Jul 24 13:49:03 1997
+***************
+*** 140,145 ****
+  
+  let destroyed_at_oper = function
+!     Iop(Icall_ind | Icall_imm _ | Iextcall(_, _, true)) -> all_phys_regs
+!   | Iop(Iextcall(_, _, false)) -> destroyed_at_c_call
+    | Iop(Iintop(Idiv | Imod)) -> [| eax; edx |]
+    | Iop(Iintop_imm(Imod, _)) -> [| eax |]
+--- 140,145 ----
+  
+  let destroyed_at_oper = function
+!     Iop(Icall_ind | Icall_imm _ | Iextcall(_, true)) -> all_phys_regs
+!   | Iop(Iextcall(_, false)) -> destroyed_at_c_call
+    | Iop(Iintop(Idiv | Imod)) -> [| eax; edx |]
+    | Iop(Iintop_imm(Imod, _)) -> [| eax |]
+***************
+*** 157,161 ****
+  
+  let max_register_pressure = function
+!     Iextcall _ -> [| 4; max_int |]
+    | Iintop(Idiv | Imod) -> [| 5; max_int |]
+    | Ialloc _ | Iintop(Icomp _) | Iintop_imm(Icomp _, _) |
+--- 157,161 ----
+  
+  let max_register_pressure = function
+!     Iextcall(_, _) -> [| 4; max_int |]
+    | Iintop(Idiv | Imod) -> [| 5; max_int |]
+    | Ialloc _ | Iintop(Icomp _) | Iintop_imm(Icomp _, _) |
+diff -r -C 2 ocaml-2.02/asmcomp/linearize.ml /home/specialix/lefessan/cvs_checkouts/ocaml-2.02_orig/asmcomp/linearize.ml
+*** ocaml-2.02/asmcomp/linearize.ml	Tue Oct 12 10:58:04 1999
+--- /home/specialix/lefessan/cvs_checkouts/ocaml-2.02_orig/asmcomp/linearize.ml	Mon Apr  6 11:08:26 1998
+***************
+*** 48,52 ****
+    { fun_name: string;
+      fun_body: instruction;
+-     fun_args: int;
+      fun_fast: bool }
+  
+--- 48,51 ----
+***************
+*** 222,226 ****
+    { fun_name = f.Mach.fun_name;
+      fun_body = linear f.Mach.fun_body end_instr;
+-     fun_args = Array.length f.Mach.fun_args;
+      fun_fast = f.Mach.fun_fast }
+  
+--- 221,224 ----
+diff -r -C 2 ocaml-2.02/asmcomp/linearize.mli /home/specialix/lefessan/cvs_checkouts/ocaml-2.02_orig/asmcomp/linearize.mli
+*** ocaml-2.02/asmcomp/linearize.mli	Tue Oct 12 10:55:51 1999
+--- /home/specialix/lefessan/cvs_checkouts/ocaml-2.02_orig/asmcomp/linearize.mli	Fri Mar  7 16:32:26 1997
+***************
+*** 46,50 ****
+    { fun_name: string;
+      fun_body: instruction;
+-     fun_args: int;
+      fun_fast: bool }
+  
+--- 46,49 ----
+diff -r -C 2 ocaml-2.02/asmcomp/liveness.ml /home/specialix/lefessan/cvs_checkouts/ocaml-2.02_orig/asmcomp/liveness.ml
+*** ocaml-2.02/asmcomp/liveness.ml	Thu Oct 21 18:55:56 1999
+--- /home/specialix/lefessan/cvs_checkouts/ocaml-2.02_orig/asmcomp/liveness.ml	Mon Jun 14 20:04:12 1999
+***************
+*** 90,94 ****
+        let across =
+          match i.desc with
+!           Iop(Icall_ind) | Iop(Icall_imm _) | Iop(Iextcall _)
+          | Iop(Iintop Icheckbound) | Iop(Iintop_imm(Icheckbound, _)) ->
+              (* The function call may raise an exception, branching to the
+--- 90,94 ----
+        let across =
+          match i.desc with
+!           Iop(Icall_ind) | Iop(Icall_imm _) | Iop(Iextcall(_, _))
+          | Iop(Iintop Icheckbound) | Iop(Iintop_imm(Icheckbound, _)) ->
+              (* The function call may raise an exception, branching to the
+diff -r -C 2 ocaml-2.02/asmcomp/mach.ml /home/specialix/lefessan/cvs_checkouts/ocaml-2.02_orig/asmcomp/mach.ml
+*** ocaml-2.02/asmcomp/mach.ml	Thu Oct 21 18:54:59 1999
+--- /home/specialix/lefessan/cvs_checkouts/ocaml-2.02_orig/asmcomp/mach.ml	Tue Mar  4 11:19:49 1997
+***************
+*** 44,48 ****
+    | Itailcall_ind
+    | Itailcall_imm of string
+!   | Iextcall of string * int * bool
+    | Istackoffset of int
+    | Iload of Cmm.memory_chunk * Arch.addressing_mode
+--- 44,48 ----
+    | Itailcall_ind
+    | Itailcall_imm of string
+!   | Iextcall of string * bool
+    | Istackoffset of int
+    | Iload of Cmm.memory_chunk * Arch.addressing_mode
+diff -r -C 2 ocaml-2.02/asmcomp/mach.mli /home/specialix/lefessan/cvs_checkouts/ocaml-2.02_orig/asmcomp/mach.mli
+*** ocaml-2.02/asmcomp/mach.mli	Thu Oct 21 18:54:47 1999
+--- /home/specialix/lefessan/cvs_checkouts/ocaml-2.02_orig/asmcomp/mach.mli	Tue Mar  4 11:19:50 1997
+***************
+*** 44,48 ****
+    | Itailcall_ind
+    | Itailcall_imm of string
+!   | Iextcall of string * int * bool
+    | Istackoffset of int
+    | Iload of Cmm.memory_chunk * Arch.addressing_mode
+--- 44,48 ----
+    | Itailcall_ind
+    | Itailcall_imm of string
+!   | Iextcall of string * bool
+    | Istackoffset of int
+    | Iload of Cmm.memory_chunk * Arch.addressing_mode
+diff -r -C 2 ocaml-2.02/asmcomp/printlinear.ml /home/specialix/lefessan/cvs_checkouts/ocaml-2.02_orig/asmcomp/printlinear.ml
+*** ocaml-2.02/asmcomp/printlinear.ml	Thu Oct 21 18:56:30 1999
+--- /home/specialix/lefessan/cvs_checkouts/ocaml-2.02_orig/asmcomp/printlinear.ml	Tue Feb  4 09:01:12 1997
+***************
+*** 27,31 ****
+    | Lop op ->
+        begin match op with
+!         Ialloc _ | Icall_ind | Icall_imm _ | Iextcall _ ->
+            open_box 1;
+            print_string "{";
+--- 27,31 ----
+    | Lop op ->
+        begin match op with
+!         Ialloc _ | Icall_ind | Icall_imm _ | Iextcall(_, _) ->
+            open_box 1;
+            print_string "{";
+diff -r -C 2 ocaml-2.02/asmcomp/printmach.ml /home/specialix/lefessan/cvs_checkouts/ocaml-2.02_orig/asmcomp/printmach.ml
+*** ocaml-2.02/asmcomp/printmach.ml	Thu Oct 21 18:55:31 1999
+--- /home/specialix/lefessan/cvs_checkouts/ocaml-2.02_orig/asmcomp/printmach.ml	Tue Mar  4 11:19:50 1997
+***************
+*** 115,119 ****
+        print_string "tailcall \""; print_string lbl;
+        print_string "\" "; regs arg
+!   | Iextcall(lbl, _, alloc) ->
+        print_string "extcall \""; print_string lbl;
+        print_string "\" "; regs arg;
+--- 115,119 ----
+        print_string "tailcall \""; print_string lbl;
+        print_string "\" "; regs arg
+!   | Iextcall(lbl, alloc) ->
+        print_string "extcall \""; print_string lbl;
+        print_string "\" "; regs arg;
+diff -r -C 2 ocaml-2.02/asmcomp/reloadgen.ml /home/specialix/lefessan/cvs_checkouts/ocaml-2.02_orig/asmcomp/reloadgen.ml
+*** ocaml-2.02/asmcomp/reloadgen.ml	Thu Oct 21 18:56:23 1999
+--- /home/specialix/lefessan/cvs_checkouts/ocaml-2.02_orig/asmcomp/reloadgen.ml	Wed Jun 24 21:22:08 1998
+***************
+*** 95,99 ****
+        insert_moves i.arg newarg
+          (instr_cons_live i.desc newarg i.res i.live i.next)
+!   | Iop(Icall_imm _ | Iextcall _) ->
+        instr_cons_live i.desc i.arg i.res i.live (self#reload i.next)
+    | Iop(Icall_ind) ->
+--- 95,99 ----
+        insert_moves i.arg newarg
+          (instr_cons_live i.desc newarg i.res i.live i.next)
+!   | Iop(Icall_imm _ | Iextcall(_, _)) ->
+        instr_cons_live i.desc i.arg i.res i.live (self#reload i.next)
+    | Iop(Icall_ind) ->
+diff -r -C 2 ocaml-2.02/asmcomp/schedgen.ml /home/specialix/lefessan/cvs_checkouts/ocaml-2.02_orig/asmcomp/schedgen.ml
+*** ocaml-2.02/asmcomp/schedgen.ml	Thu Oct 21 18:56:58 1999
+--- /home/specialix/lefessan/cvs_checkouts/ocaml-2.02_orig/asmcomp/schedgen.ml	Thu Nov 12 17:53:02 1998
+***************
+*** 123,127 ****
+    | Itailcall_ind -> false
+    | Itailcall_imm _ -> false
+!   | Iextcall _ -> false
+    | Istackoffset _ -> false
+    | Ialloc _ -> false
+--- 123,127 ----
+    | Itailcall_ind -> false
+    | Itailcall_imm _ -> false
+!   | Iextcall(_, _) -> false
+    | Istackoffset _ -> false
+    | Ialloc _ -> false
+***************
+*** 338,342 ****
+          match i.desc with
+            Lop(Icall_ind | Itailcall_ind) -> [| i.arg.(0) |]
+!         | Lop(Icall_imm _ | Itailcall_imm _ | Iextcall _) -> [||]
+          | Lreturn -> [||]
+          | _ -> i.arg in
+--- 338,342 ----
+          match i.desc with
+            Lop(Icall_ind | Itailcall_ind) -> [| i.arg.(0) |]
+!         | Lop(Icall_imm _ | Itailcall_imm _ | Iextcall(_, _)) -> [||]
+          | Lreturn -> [||]
+          | _ -> i.arg in
+***************
+*** 351,355 ****
+      { fun_name = f.fun_name;
+        fun_body = new_body;
+-       fun_args = f.fun_args;
+        fun_fast = f.fun_fast }
+    end else
+--- 351,354 ----
+diff -r -C 2 ocaml-2.02/asmcomp/selectgen.ml /home/specialix/lefessan/cvs_checkouts/ocaml-2.02_orig/asmcomp/selectgen.ml
+*** ocaml-2.02/asmcomp/selectgen.ml	Thu Oct 21 18:55:45 1999
+--- /home/specialix/lefessan/cvs_checkouts/ocaml-2.02_orig/asmcomp/selectgen.ml	Thu Mar  4 12:09:45 1999
+***************
+*** 227,231 ****
+      (Capply ty, Cconst_symbol s :: rem) -> (Icall_imm s, rem)
+    | (Capply ty, _) -> (Icall_ind, args)
+!   | (Cextcall(s, ty, alloc), _) -> (Iextcall(s, List.length args, alloc), args)
+    | (Cload ty, [arg]) ->
+        let (addr, eloc) = self#select_addressing arg in
+--- 227,231 ----
+      (Capply ty, Cconst_symbol s :: rem) -> (Icall_imm s, rem)
+    | (Capply ty, _) -> (Icall_ind, args)
+!   | (Cextcall(s, ty, alloc), _) -> (Iextcall(s, alloc), args)
+    | (Cload ty, [arg]) ->
+        let (addr, eloc) = self#select_addressing arg in
+***************
+*** 480,489 ****
+            self#insert_move_results loc_res rd stack_ofs;
+            rd
+!       | Iextcall(lbl, nargs, alloc) ->
+            Proc.contains_calls := true;
+            let (loc_arg, stack_ofs) = self#emit_extcall_args env new_args in
+            let rd = Reg.createv ty in
+            let loc_res = Proc.loc_external_results rd in
+!           self#insert (Iop(Iextcall(lbl, nargs, alloc))) loc_arg loc_res;
+            self#insert_move_results loc_res rd stack_ofs;
+            rd
+--- 480,489 ----
+            self#insert_move_results loc_res rd stack_ofs;
+            rd
+!       | Iextcall(lbl, alloc) ->
+            Proc.contains_calls := true;
+            let (loc_arg, stack_ofs) = self#emit_extcall_args env new_args in
+            let rd = Reg.createv ty in
+            let loc_res = Proc.loc_external_results rd in
+!           self#insert (Iop(Iextcall(lbl, alloc))) loc_arg loc_res;
+            self#insert_move_results loc_res rd stack_ofs;
+            rd
+diff -r -C 2 ocaml-2.02/asmcomp/spill.ml /home/specialix/lefessan/cvs_checkouts/ocaml-2.02_orig/asmcomp/spill.ml
+*** ocaml-2.02/asmcomp/spill.ml	Thu Oct 21 18:56:11 1999
+--- /home/specialix/lefessan/cvs_checkouts/ocaml-2.02_orig/asmcomp/spill.ml	Mon Jun 14 20:04:12 1999
+***************
+*** 136,140 ****
+        (add_reloads (Reg.inter_set_array before i.arg) i,
+         Reg.Set.empty)
+!   | Iop(Icall_ind | Icall_imm _ | Iextcall(_, _, true)) ->
+        (* All regs live across must be spilled *)
+        let (new_next, finally) = reload i.next i.live in
+--- 136,140 ----
+        (add_reloads (Reg.inter_set_array before i.arg) i,
+         Reg.Set.empty)
+!   | Iop(Icall_ind | Icall_imm _ | Iextcall(_, true)) ->
+        (* All regs live across must be spilled *)
+        let (new_next, finally) = reload i.next i.live in
+***************
+*** 270,274 ****
+        let before =
+          match i.desc with
+!           Iop(Icall_ind) | Iop(Icall_imm _) | Iop(Iextcall _)
+          | Iop(Iintop Icheckbound) | Iop(Iintop_imm(Icheckbound, _)) ->
+              Reg.Set.union before1 !spill_at_raise
+--- 270,274 ----
+        let before =
+          match i.desc with
+!           Iop(Icall_ind) | Iop(Icall_imm _) | Iop(Iextcall(_, _))
+          | Iop(Iintop Icheckbound) | Iop(Iintop_imm(Icheckbound, _)) ->
+              Reg.Set.union before1 !spill_at_raise
+diff -r -C 2 ocaml-2.02/asmrun/Makefile /home/specialix/lefessan/cvs_checkouts/ocaml-2.02_orig/asmrun/Makefile
+*** ocaml-2.02/asmrun/Makefile	Wed Nov 10 13:28:39 1999
+--- /home/specialix/lefessan/cvs_checkouts/ocaml-2.02_orig/asmrun/Makefile	Wed Jan 27 11:52:54 1999
+***************
+*** 3,7 ****
+  CC=$(NATIVECC)
+  FLAGS=-I../byterun -DNATIVE_CODE -DTARGET_$(ARCH) -DSYS_$(SYSTEM) 
+! CFLAGS=$(FLAGS) -O $(NATIVECCCOMPOPTS) -save-temps
+  DFLAGS=$(FLAGS) -g -DDEBUG $(NATIVECCCOMPOPTS)
+  PFLAGS=$(FLAGS) -pg -O -DPROFILING $(NATIVECCCOMPOPTS)
+--- 3,7 ----
+  CC=$(NATIVECC)
+  FLAGS=-I../byterun -DNATIVE_CODE -DTARGET_$(ARCH) -DSYS_$(SYSTEM) 
+! CFLAGS=$(FLAGS) -O $(NATIVECCCOMPOPTS)
+  DFLAGS=$(FLAGS) -g -DDEBUG $(NATIVECCCOMPOPTS)
+  PFLAGS=$(FLAGS) -pg -O -DPROFILING $(NATIVECCCOMPOPTS)

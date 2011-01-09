@@ -1,0 +1,39 @@
+#
+SHELL=/bin/sh
+
+@SET_MAKE@
+
+VPATH=@srcdir@
+top_srcdir=@top_srcdir@
+srcdir=@srcdir@
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+bin_dir=@exec_prefix@/bin
+scwm_rc=@scwm_rc@
+scwm_name=@scwm_name@
+mini_icon_dir=${prefix}/lib/X11/mini-icons
+mkinstalldirs=$(SHELL) $(top_srcdir)/mkinstalldirs
+
+INSTALL=@INSTALL@
+INSTALL_DATA=@INSTALL_DATA@
+RM=@RM@
+
+
+all: 
+
+depend:
+
+install: *.xpm
+	$(mkinstalldirs) ${mini_icon_dir}
+	${INSTALL_DATA} *.xpm ${mini_icon_dir}
+
+mostlyclean:
+	${RM} *~ core *.bak
+
+clean: mostlyclean
+
+distclean: clean
+
+
+#
+

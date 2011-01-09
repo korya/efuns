@@ -1,0 +1,22 @@
+/.Makefile.config/1.15/Wed Jul 26 16:50:40 2000//
+/.cvsignore/1.3/Thu Jan 27 10:09:23 2000//
+/Changes/1.9/Thu Apr 20 12:07:54 2000//
+/INSTALL/1.20/Fri Jan 21 15:08:22 2000//
+/LICENSE/1.1/Thu Feb 24 11:00:22 2000//
+/efuns.spec/1.8/Thu Feb 24 10:15:48 2000//
+D/common////
+D/concur////
+D/doc////
+D/dynlink////
+D/efuns////
+D/gwml////
+D/inliner////
+D/ocamlsrc////
+D/toolkit////
+D/toplevel////
+D/xlib////
+D/tools////
+/.cache.default/1.7/Fri Jan 19 14:15:31 2001//
+/Makefile/1.47/Fri Jan 19 15:15:15 2001//
+/Makefile.rules/1.11/Fri Jan 19 15:10:34 2001//
+/configure/1.30/Fri Mar  9 13:20:27 2001//

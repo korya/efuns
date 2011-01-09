@@ -1,0 +1,19 @@
+bytegen.cmi: instruct.cmi lambda.cmi 
+bytelink.cmi: emitcode.cmi symtable.cmi 
+emitcode.cmi: ident.cmi instruct.cmi lambda.cmi 
+env.cmi: ident.cmi longident.cmi path.cmi types.cmi 
+instruct.cmi: env.cmi ident.cmi lambda.cmi types.cmi 
+lambda.cmi: asttypes.cmi env.cmi ident.cmi path.cmi primitive.cmi types.cmi 
+matching.cmi: ident.cmi lambda.cmi 
+path.cmi: ident.cmi 
+printinstr.cmi: instruct.cmi 
+printlambda.cmi: lambda.cmi 
+simplif.cmi: lambda.cmi 
+symtable.cmi: emitcode.cmi ident.cmi 
+translclass.cmi: ident.cmi lambda.cmi 
+translcore.cmi: asttypes.cmi ident.cmi lambda.cmi path.cmi primitive.cmi \
+    types.cmi 
+translmod.cmi: lambda.cmi 
+translobj.cmi: ident.cmi lambda.cmi 
+typeopt.cmi: lambda.cmi types.cmi 
+types.cmi: asttypes.cmi ident.cmi path.cmi primitive.cmi 

@@ -1,0 +1,257 @@
+define Xbuffer_setCard32* {
+     shrl $1, %ecx
+     shrl $1, %ebx
+     movl %ecx, (%eax, %ebx)
+# required, but could be removed without trouble
+     movl $1, %eax
+     ret
+}
+
+define Xbuffer_getCard32* {
+     shrl $1, %ebx
+     movl (%eax, %ebx), %eax
+#     sall $1, %eax
+#     orl $1, %eax
+     lea 1(,%eax,2), %eax
+     ret
+}
+
+define Xbuffer_getInt16* {
+     shrl $1, %ebx
+     movswl (%eax, %ebx), %eax
+#     sall $1, %eax
+#     orl $1, %eax
+     lea 1(,%eax,2), %eax
+     ret
+}
+
+define Xbuffer_getInt32* {
+     shrl $1, %ebx
+     movl (%eax, %ebx), %eax
+#     sall $1, %eax
+#     orl $1, %eax
+     lea 1(,%eax,2), %eax
+     ret
+}
+
+peephole getCard16_new {
+     movzbl %n1(%r1), %r2
+     sall   $9, %r2b
+     incl   %r2c
+     movzbl %n2(%r1b), %r3
+     lea    1(, %r3b, 2), %r3c
+(.%i1)     orl    %r2d, %r3d
+}
+     DEAD(%i1: %r2)
+     SAMEREG(%r1, %r1b)
+     SAMEREG(%r2, %r2b, %r2c, %r2d)
+     SAMEREG(%r3, %r3b, %r3c, %r3d)
+     DISTINCT(%r1, %r2)
+     DISTINCT(%r2, %r3)
+     EQUAL(%n1,%n2+1)
+{
+     movzwl %n2(%r1), %r3
+     lea    1(,%r3, 2), %r3
+}
+
+peephole getCard16_old {
+     movl    %r1, %r2
+     addl    $2, %r2b
+     sarl    $1, %r2c
+     movzbl  (%r3, %r2d), %r2e
+     sall    $9, %r2f
+     incl    %r2g
+     sarl    $1, %r1b
+     movzbl  (%r3b, %r1c), %r4
+     lea     1(, %r4b, 2), %r4c
+(.%i1)     orl     %r2h, %r4d
+}
+     SAMEREG(%r1, %r1b, %r1c)
+     SAMEREG(%r2, %r2b, %r2c, %r2d, %r2e, %r2f, %r2g, %r2f)
+     SAMEREG(%r3, %r3b)
+     SAMEREG(%r4, %r4b, %r4c, %r4d)
+     DISTINCT(%r1, %r2, %r3)
+     DISTINCT(%r2, %r4)
+     DEAD(%i1: %r1, %r2)
+{
+     sarl   $1, %r1
+     movzwl (%r3, %r1), %r4
+     lea    1(,%r4, 2), %r4
+}
+
+peephole getCard16_old2 {
+     movl    %r1, %r2
+     addl    $2, %r2b
+     sarl    $1, %r2c
+     movzbl  (%r3, %r2d), %r2e
+     sall    $9, %r2f
+     incl    %r2g
+     sarl    $1, %r1b
+     movzbl  (%r3b, %r1c), %r1d
+     lea     1(, %r1e, 2), %r1f
+(.%i1)     orl     %r2h, %r1g
+}
+     SAMEREG(%r1, %r1b, %r1c, %r1d, %r1e, %r1f, %r1g)
+     SAMEREG(%r2, %r2b, %r2c, %r2d, %r2e, %r2f, %r2g, %r2f)
+     SAMEREG(%r3, %r3b)
+     DISTINCT(%r1, %r2, %r3)
+     DEAD(%i1: %r2)
+{
+     sarl   $1, %r1
+     movzwl (%r3, %r1), %r1
+     lea    1(,%r1, 2), %r1
+}
+
+peephole setCard16_old {
+     movl    %r1, %r2
+     sarl    $1, %r2b
+     movl    %r3, %edx
+     sarl    $1, %edx
+     movb    %dl, (%r4, %r2c)
+     addl    $2, %r1b
+     sarl    $1, %r1c
+     sarl    $9, %r3b
+     movl    %r3c, %edx
+(.%i1)     movb    %dl, (%r4b, %r1d)
+}
+     SAMEREG(%r1, %r1b, %r1c, %r1d)
+     SAMEREG(%r2, %r2b, %r2c)
+     SAMEREG(%r3, %r3b, %r3c)
+     SAMEREG(%r4, %r4b)
+     DISTINCT(%r1, %r2, %r3, %r4, %edx)
+     DEAD(%i1:%r1, %r2, %r3, %edx)
+{
+     sarl    $1, %r1
+     movl    %r3, %edx
+     sarl    $1, %edx
+     movw    %dx, (%r4, %r1)
+}
+
+peephole setCard16_old2 {
+     movl    %r1, %r2
+     sarl    $1, %r2b
+     movl    %r3, %edx
+     sarl    $1, %edx
+     movb    %dl, (%r4, %r2c)
+     addl    $2, %r1b
+     sarl    $1, %r1c
+     movl    %r3b, %edx
+     sarl    $9, %edx
+(.%i1)     movb    %dl, (%r4b, %r1d)
+}
+     SAMEREG(%r1, %r1b, %r1c, %r1d)
+     SAMEREG(%r2, %r2b, %r2c)
+     SAMEREG(%r3, %r3b)
+     SAMEREG(%r4, %r4b)
+     DISTINCT(%r1, %r2, %r3, %r4, %edx)
+     DEAD(%i1:%r1, %r2, %edx)
+{
+     sarl    $1, %r1
+     movl    %r3, %edx
+     sarl    $1, %edx
+     movw    %dx, (%r4, %r1)
+}
+
+peephole setCard16_old3 {
+     movl    %r1, %r2
+     sarl    $1, %r2b
+     movl    %r3, %edx
+     sarl    $1, %edx
+     movb    %dl, (%r4, %r2c)
+     movl    %r1b, %r5
+     addl    $2, %r5b
+     sarl    $1, %r5c
+     movl    %r3b, %edx
+     sarl    $9, %edx
+(.%i1)     movb    %dl, (%r4b, %r5d)
+}
+     SAMEREG(%r1, %r1b)
+     SAMEREG(%r2, %r2b, %r2c)
+     SAMEREG(%r3, %r3b)
+     SAMEREG(%r4, %r4b)
+     SAMEREG(%r5, %r5b, %r5c, %r5d)
+     DISTINCT(%r1, %r2, %r3, %r4, %edx)
+     DISTINCT(%r1, %r5, %r3, %r4, %edx)
+     DEAD(%i1: %r2, %r5, %edx)
+{
+     movl    %r1, %r2
+     sarl    $1, %r2
+     movl    %r3, %edx
+     sarl    $1, %edx
+     movw    %dx, (%r4, %r2)
+}
+
+peephole setCard16_new {
+        movl    %r1, %edx
+        sarl    $1, %edx
+        movb    %dl, %n1(%r2)
+        sarl    $9, %r1b
+        movl    %r1c, %edx
+(. %i1)   movb    %dl, %n2(%r2b)
+}
+        SAMEREG(%r1,%r1b,%r1c)
+        SAMEREG(%r2,%r2b)
+        EQUAL(%n2, %n1+1)
+        DEAD(%i1: %r1, %edx)
+        DISTINCT(%r1, %r2, %edx)
+{
+        movl %r1, %edx
+        sarl $1, %edx
+        movw %dx, %n1(%r2)
+}
+
+peephole setCard16_new2 {
+(%i2 .)   sarl    $1, %edx
+        movb    %dl, %n1(%r2)
+        sarl    $9, %r1
+        movl    %r1b, %edx
+(. %i1)   movb    %dl, %n2(%r2b)
+}
+        SAMEREG(%r1,%r1b)
+        SAMEREG(%r2,%r2b)
+        SAMEVALUE(%i2 . %edx, %i2 . %r1)
+        EQUAL(%n2, %n1+1)
+        DEAD(%i1: %r1, %edx)
+        DISTINCT(%r1, %r2, %edx)
+{
+        sarl $1, %edx
+        movw %dx, %n1(%r2)
+}
+
+peephole common1 {
+            movl %r1, %r2
+(. %i1)     %bin1 %n1, %r2b
+}
+    SAMEREG(%r2, %r2b)
+    INSTR2(%bin1: addl, sarl, subl, sall, shrl, andl, orl)
+    DEAD(%i1 : %r1)
+{
+            %bin1 %n1, %r1
+            movl %r1, %r2
+}
+
+peephole common2 {
+           movl %r1, %r2
+           movw LOWWORD %r2b, %v1
+}
+    DISTINCT(%r1, %esp)
+    SAMEREG(%r2, %r2b)
+{
+           movl %r1, %r2
+           movw LOWWORD %r1, %v1
+}
+
+peephole common3 {
+            movl %r1, %r2
+(. %i1)     %bin1 %r3, %r2b
+}
+    SAMEREG(%r2, %r2b)
+    DISTINCT(%r2, %r3)
+    INSTR2(%bin1: addl, sarl, subl, sall, shrl, andl, orl)
+    DEAD(%i1 : %r1)
+{
+            %bin1 %r3, %r1
+            movl %r1, %r2
+}
+
+

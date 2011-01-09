@@ -1,0 +1,346 @@
+abbrevs.cmo: efuns.cmo frame.cmi interactive.cmo local.cmi simple.cmi \
+    text.cmi window.cmo 
+abbrevs.cmx: efuns.cmx frame.cmx interactive.cmx local.cmx simple.cmx \
+    text.cmx window.cmx 
+abbrevs_mode.cmo: abbrevs.cmo ebuffer.cmi efuns.cmo keymap.cmo \
+    /home/cremant/lefessan/devel/efuns/common/options.cmi simple.cmi text.cmi \
+    top_window.cmo /home/cremant/lefessan/devel/efuns/common/utils.cmi 
+abbrevs_mode.cmx: abbrevs.cmx ebuffer.cmx efuns.cmx keymap.cmx \
+    /home/cremant/lefessan/devel/efuns/common/options.cmx simple.cmx text.cmx \
+    top_window.cmx /home/cremant/lefessan/devel/efuns/common/utils.cmx 
+accents_mode.cmo: ebuffer.cmi efuns.cmo keymap.cmo simple.cmi text.cmi \
+    top_window.cmo /home/cremant/lefessan/devel/efuns/xlib/xK.cmo 
+accents_mode.cmx: ebuffer.cmx efuns.cmx keymap.cmx simple.cmx text.cmx \
+    top_window.cmx /home/cremant/lefessan/devel/efuns/xlib/xK.cmx 
+c_mode.cmo: abbrevs.cmo compil.cmo complex.cmo ebuffer.cmi efuns.cmo eval.cmo \
+    interactive.cmo keymap.cmo \
+    /home/cremant/lefessan/devel/efuns/common/log.cmo \
+    /home/cremant/lefessan/devel/efuns/common/options.cmi select.cmi \
+    simple.cmi text.cmi /home/cremant/lefessan/devel/efuns/common/utils.cmi \
+    window.cmo /home/cremant/lefessan/devel/efuns/xlib/xK.cmo 
+c_mode.cmx: abbrevs.cmx compil.cmx complex.cmx ebuffer.cmx efuns.cmx eval.cmx \
+    interactive.cmx keymap.cmx \
+    /home/cremant/lefessan/devel/efuns/common/log.cmx \
+    /home/cremant/lefessan/devel/efuns/common/options.cmx select.cmx \
+    simple.cmx text.cmx /home/cremant/lefessan/devel/efuns/common/utils.cmx \
+    window.cmx /home/cremant/lefessan/devel/efuns/xlib/xK.cmx 
+compil.cmo: ebuffer.cmi efuns.cmo frame.cmi keymap.cmo local.cmi \
+    multi_frames.cmo /home/cremant/lefessan/devel/efuns/common/options.cmi \
+    select.cmi simple.cmi system.cmo text.cmi top_window.cmo window.cmo 
+compil.cmx: ebuffer.cmx efuns.cmx frame.cmx keymap.cmx local.cmx \
+    multi_frames.cmx /home/cremant/lefessan/devel/efuns/common/options.cmx \
+    select.cmx simple.cmx system.cmx text.cmx top_window.cmx window.cmx 
+complex.cmo: ../dynlink/dyneval.cmo ebuffer.cmi efuns.cmo frame.cmi \
+    interactive.cmo keymap.cmo local.cmi minibuffer.cmo \
+    /home/cremant/lefessan/devel/efuns/common/options.cmi select.cmi \
+    simple.cmi text.cmi top_window.cmo \
+    /home/cremant/lefessan/devel/efuns/common/utils.cmi \
+    ../toolkit/wX_display.cmi ../toolkit/wX_root.cmi ../toolkit/wX_xterm.cmi \
+    window.cmo 
+complex.cmx: ../dynlink/dyneval.cmx ebuffer.cmx efuns.cmx frame.cmx \
+    interactive.cmx keymap.cmx local.cmx minibuffer.cmx \
+    /home/cremant/lefessan/devel/efuns/common/options.cmx select.cmx \
+    simple.cmx text.cmx top_window.cmx \
+    /home/cremant/lefessan/devel/efuns/common/utils.cmx \
+    ../toolkit/wX_display.cmx ../toolkit/wX_root.cmx ../toolkit/wX_xterm.cmx \
+    window.cmx 
+dired.cmo: compil.cmo complex.cmo ebuffer.cmi efuns.cmo frame.cmi keymap.cmo \
+    select.cmi simple.cmi text.cmi \
+    /home/cremant/lefessan/devel/efuns/common/utils.cmi window.cmo \
+    /home/cremant/lefessan/devel/efuns/xlib/xK.cmo 
+dired.cmx: compil.cmx complex.cmx ebuffer.cmx efuns.cmx frame.cmx keymap.cmx \
+    select.cmx simple.cmx text.cmx \
+    /home/cremant/lefessan/devel/efuns/common/utils.cmx window.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xK.cmx 
+ebuffer.cmo: efuns.cmo keymap.cmo local.cmi \
+    /home/cremant/lefessan/devel/efuns/common/options.cmi text.cmi \
+    /home/cremant/lefessan/devel/efuns/common/utils.cmi \
+    /home/cremant/lefessan/devel/efuns/common/version.cmi ebuffer.cmi 
+ebuffer.cmx: efuns.cmx keymap.cmx local.cmx \
+    /home/cremant/lefessan/devel/efuns/common/options.cmx text.cmx \
+    /home/cremant/lefessan/devel/efuns/common/utils.cmx \
+    /home/cremant/lefessan/devel/efuns/common/version.cmx ebuffer.cmi 
+efuns_client.cmo: server.cmo /home/cremant/lefessan/devel/efuns/xlib/x.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xlib.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi 
+efuns_client.cmx: server.cmx /home/cremant/lefessan/devel/efuns/xlib/x.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xlib.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmx 
+efuns_filebrowser.cmo: /home/cremant/lefessan/devel/efuns/common/utils.cmi \
+    ../toolkit/wX_adjust.cmi ../toolkit/wX_appli.cmi ../toolkit/wX_bar.cmi \
+    ../toolkit/wX_button.cmi ../toolkit/wX_display.cmi \
+    ../toolkit/wX_filesel.cmi ../toolkit/wX_label.cmi ../toolkit/wX_root.cmi \
+    ../toolkit/wX_scrollbar.cmi ../toolkit/wX_tree.cmi \
+    ../toolkit/wX_types.cmi ../toolkit/wX_viewport.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi 
+efuns_filebrowser.cmx: /home/cremant/lefessan/devel/efuns/common/utils.cmx \
+    ../toolkit/wX_adjust.cmx ../toolkit/wX_appli.cmx ../toolkit/wX_bar.cmx \
+    ../toolkit/wX_button.cmx ../toolkit/wX_display.cmx \
+    ../toolkit/wX_filesel.cmx ../toolkit/wX_label.cmx ../toolkit/wX_root.cmx \
+    ../toolkit/wX_scrollbar.cmx ../toolkit/wX_tree.cmx \
+    ../toolkit/wX_types.cmx ../toolkit/wX_viewport.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmx 
+efuns.cmo: ../concur/concur.cmi ../dynlink/dyneval.cmo local.cmi \
+    /home/cremant/lefessan/devel/efuns/common/options.cmi text.cmi \
+    /home/cremant/lefessan/devel/efuns/common/utils.cmi \
+    /home/cremant/lefessan/devel/efuns/common/version.cmi \
+    ../toolkit/wX_adjust.cmi ../toolkit/wX_appli.cmi ../toolkit/wX_root.cmi \
+    ../toolkit/wX_xterm.cmi /home/cremant/lefessan/devel/efuns/xlib/xrm.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi 
+efuns.cmx: ../concur/concur.cmi ../dynlink/dyneval.cmx local.cmx \
+    /home/cremant/lefessan/devel/efuns/common/options.cmx text.cmx \
+    /home/cremant/lefessan/devel/efuns/common/utils.cmx \
+    /home/cremant/lefessan/devel/efuns/common/version.cmx \
+    ../toolkit/wX_adjust.cmx ../toolkit/wX_appli.cmx ../toolkit/wX_root.cmx \
+    ../toolkit/wX_xterm.cmx /home/cremant/lefessan/devel/efuns/xlib/xrm.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmx 
+efunsrc.cmo: efuns.cmo interactive.cmo 
+efunsrc.cmx: efuns.cmx interactive.cmx 
+efuns_texbrowser.cmo: /home/cremant/lefessan/devel/efuns/common/utils.cmi \
+    ../toolkit/wX_appli.cmi ../toolkit/wX_button.cmi \
+    ../toolkit/wX_display.cmi ../toolkit/wX_filesel.cmi \
+    ../toolkit/wX_root.cmi ../toolkit/wX_tree.cmi ../toolkit/wX_types.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi 
+efuns_texbrowser.cmx: /home/cremant/lefessan/devel/efuns/common/utils.cmx \
+    ../toolkit/wX_appli.cmx ../toolkit/wX_button.cmx \
+    ../toolkit/wX_display.cmx ../toolkit/wX_filesel.cmx \
+    ../toolkit/wX_root.cmx ../toolkit/wX_tree.cmx ../toolkit/wX_types.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmx 
+eval.cmo: compil.cmo ../dynlink/dyneval.cmo ../dynlink/dynlink.cmi efuns.cmo \
+    frame.cmi search.cmi select.cmi simple.cmi system.cmo text.cmi \
+    top_window.cmo /home/cremant/lefessan/devel/efuns/common/version.cmi \
+    window.cmo 
+eval.cmx: compil.cmx ../dynlink/dyneval.cmx ../dynlink/dynlink.cmx efuns.cmx \
+    frame.cmx search.cmx select.cmx simple.cmx system.cmx text.cmx \
+    top_window.cmx /home/cremant/lefessan/devel/efuns/common/version.cmx \
+    window.cmx 
+fill_mode.cmo: ebuffer.cmi efuns.cmo keymap.cmo \
+    /home/cremant/lefessan/devel/efuns/common/options.cmi simple.cmi text.cmi \
+    top_window.cmo 
+fill_mode.cmx: ebuffer.cmx efuns.cmx keymap.cmx \
+    /home/cremant/lefessan/devel/efuns/common/options.cmx simple.cmx text.cmx \
+    top_window.cmx 
+frame.cmo: ebuffer.cmi efuns.cmo keymap.cmo \
+    /home/cremant/lefessan/devel/efuns/common/options.cmi text.cmi \
+    ../toolkit/wX_xterm.cmi window.cmo frame.cmi 
+frame.cmx: ebuffer.cmx efuns.cmx keymap.cmx \
+    /home/cremant/lefessan/devel/efuns/common/options.cmx text.cmx \
+    ../toolkit/wX_xterm.cmx window.cmx frame.cmi 
+html_mode.cmo: abbrevs.cmo accents_mode.cmo compil.cmo complex.cmo \
+    ebuffer.cmi efuns.cmo eval.cmo interactive.cmo keymap.cmo select.cmi \
+    simple.cmi text.cmi /home/cremant/lefessan/devel/efuns/common/utils.cmi \
+    window.cmo 
+html_mode.cmx: abbrevs.cmx accents_mode.cmx compil.cmx complex.cmx \
+    ebuffer.cmx efuns.cmx eval.cmx interactive.cmx keymap.cmx select.cmx \
+    simple.cmx text.cmx /home/cremant/lefessan/devel/efuns/common/utils.cmx \
+    window.cmx 
+interactive.cmo: ebuffer.cmi efuns.cmo frame.cmi keymap.cmo select.cmi \
+    simple.cmi text.cmi top_window.cmo window.cmo 
+interactive.cmx: ebuffer.cmx efuns.cmx frame.cmx keymap.cmx select.cmx \
+    simple.cmx text.cmx top_window.cmx window.cmx 
+keymap.cmo: efuns.cmo /home/cremant/lefessan/devel/efuns/xlib/xK.cmo 
+keymap.cmx: efuns.cmx /home/cremant/lefessan/devel/efuns/xlib/xK.cmx 
+lisp_mode.cmo: abbrevs.cmo compil.cmo complex.cmo ebuffer.cmi efuns.cmo \
+    eval.cmo interactive.cmo keymap.cmo select.cmi simple.cmi text.cmi \
+    /home/cremant/lefessan/devel/efuns/common/utils.cmi window.cmo \
+    /home/cremant/lefessan/devel/efuns/xlib/xK.cmo 
+lisp_mode.cmx: abbrevs.cmx compil.cmx complex.cmx ebuffer.cmx efuns.cmx \
+    eval.cmx interactive.cmx keymap.cmx select.cmx simple.cmx text.cmx \
+    /home/cremant/lefessan/devel/efuns/common/utils.cmx window.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xK.cmx 
+local.cmo: local.cmi 
+local.cmx: local.cmi 
+main.cmo: ../concur/concur.cmi ../dynlink/dyneval.cmo efuns.cmo eval.cmo \
+    frame.cmi interactive.cmo keymap.cmo local.cmi \
+    /home/cremant/lefessan/devel/efuns/common/options.cmi text.cmi \
+    top_window.cmo /home/cremant/lefessan/devel/efuns/common/utils.cmi \
+    ../toolkit/wX_display.cmi ../toolkit/wX_root.cmi ../toolkit/wX_types.cmi \
+    ../toolkit/wX_xterm.cmi window.cmo 
+main.cmx: ../concur/concur.cmi ../dynlink/dyneval.cmx efuns.cmx eval.cmx \
+    frame.cmx interactive.cmx keymap.cmx local.cmx \
+    /home/cremant/lefessan/devel/efuns/common/options.cmx text.cmx \
+    top_window.cmx /home/cremant/lefessan/devel/efuns/common/utils.cmx \
+    ../toolkit/wX_display.cmx ../toolkit/wX_root.cmx ../toolkit/wX_types.cmx \
+    ../toolkit/wX_xterm.cmx window.cmx 
+makefile_mode.cmo: compil.cmo complex.cmo ebuffer.cmi efuns.cmo keymap.cmo \
+    /home/cremant/lefessan/devel/efuns/common/log.cmo \
+    /home/cremant/lefessan/devel/efuns/common/options.cmi simple.cmi text.cmi \
+    window.cmo 
+makefile_mode.cmx: compil.cmx complex.cmx ebuffer.cmx efuns.cmx keymap.cmx \
+    /home/cremant/lefessan/devel/efuns/common/log.cmx \
+    /home/cremant/lefessan/devel/efuns/common/options.cmx simple.cmx text.cmx \
+    window.cmx 
+minibuffer.cmo: ebuffer.cmi efuns.cmo frame.cmi keymap.cmo local.cmi \
+    simple.cmi text.cmi top_window.cmo window.cmo \
+    /home/cremant/lefessan/devel/efuns/xlib/xK.cmo 
+minibuffer.cmx: ebuffer.cmx efuns.cmx frame.cmx keymap.cmx local.cmx \
+    simple.cmx text.cmx top_window.cmx window.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xK.cmx 
+minor_mode_sample.cmo: ebuffer.cmi efuns.cmo keymap.cmo simple.cmi text.cmi \
+    top_window.cmo 
+minor_mode_sample.cmx: ebuffer.cmx efuns.cmx keymap.cmx simple.cmx text.cmx \
+    top_window.cmx 
+multi_frames.cmo: efuns.cmo frame.cmi text.cmi top_window.cmo window.cmo 
+multi_frames.cmx: efuns.cmx frame.cmx text.cmx top_window.cmx window.cmx 
+ocaml_mode.cmo: abbrevs.cmo compil.cmo complex.cmo ebuffer.cmi efuns.cmo \
+    eval.cmo interactive.cmo keymap.cmo \
+    /home/cremant/lefessan/devel/efuns/common/log.cmo \
+    /home/cremant/lefessan/devel/efuns/common/options.cmi select.cmi \
+    simple.cmi text.cmi /home/cremant/lefessan/devel/efuns/common/utils.cmi \
+    window.cmo /home/cremant/lefessan/devel/efuns/xlib/xK.cmo ocaml_mode.cmi 
+ocaml_mode.cmx: abbrevs.cmx compil.cmx complex.cmx ebuffer.cmx efuns.cmx \
+    eval.cmx interactive.cmx keymap.cmx \
+    /home/cremant/lefessan/devel/efuns/common/log.cmx \
+    /home/cremant/lefessan/devel/efuns/common/options.cmx select.cmx \
+    simple.cmx text.cmx /home/cremant/lefessan/devel/efuns/common/utils.cmx \
+    window.cmx /home/cremant/lefessan/devel/efuns/xlib/xK.cmx ocaml_mode.cmi 
+ocaml_toplevel.cmo: abbrevs.cmo ../ocamlsrc/compat_comp.cmi compil.cmo \
+    complex.cmo ebuffer.cmi efuns.cmo eval.cmo frame.cmi interactive.cmo \
+    keymap.cmo local.cmi ocaml_mode.cmi \
+    /home/cremant/lefessan/devel/efuns/common/options.cmi select.cmi \
+    simple.cmi text.cmi top_window.cmo \
+    /home/cremant/lefessan/devel/efuns/common/utils.cmi window.cmo \
+    /home/cremant/lefessan/devel/efuns/xlib/xK.cmo 
+ocaml_toplevel.cmx: abbrevs.cmx ../ocamlsrc/compat_comp.cmx compil.cmx \
+    complex.cmx ebuffer.cmx efuns.cmx eval.cmx frame.cmx interactive.cmx \
+    keymap.cmx local.cmx ocaml_mode.cmx \
+    /home/cremant/lefessan/devel/efuns/common/options.cmx select.cmx \
+    simple.cmx text.cmx top_window.cmx \
+    /home/cremant/lefessan/devel/efuns/common/utils.cmx window.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xK.cmx 
+paren_mode.cmo: ebuffer.cmi efuns.cmo keymap.cmo simple.cmi text.cmi \
+    top_window.cmo 
+paren_mode.cmx: ebuffer.cmx efuns.cmx keymap.cmx simple.cmx text.cmx \
+    top_window.cmx 
+search.cmo: efuns.cmo frame.cmi keymap.cmo minibuffer.cmo select.cmi \
+    simple.cmi text.cmi /home/cremant/lefessan/devel/efuns/common/time.cmo \
+    top_window.cmo window.cmo /home/cremant/lefessan/devel/efuns/xlib/xK.cmo \
+    search.cmi 
+search.cmx: efuns.cmx frame.cmx keymap.cmx minibuffer.cmx select.cmx \
+    simple.cmx text.cmx /home/cremant/lefessan/devel/efuns/common/time.cmx \
+    top_window.cmx window.cmx /home/cremant/lefessan/devel/efuns/xlib/xK.cmx \
+    search.cmi 
+select.cmo: ebuffer.cmi efuns.cmo frame.cmi keymap.cmo minibuffer.cmo \
+    multi_frames.cmo /home/cremant/lefessan/devel/efuns/common/options.cmi \
+    /home/cremant/lefessan/devel/efuns/common/parse_file.cmo simple.cmi \
+    /home/cremant/lefessan/devel/efuns/common/str2.cmo text.cmi \
+    top_window.cmo /home/cremant/lefessan/devel/efuns/common/utils.cmi \
+    window.cmo /home/cremant/lefessan/devel/efuns/xlib/xK.cmo select.cmi 
+select.cmx: ebuffer.cmx efuns.cmx frame.cmx keymap.cmx minibuffer.cmx \
+    multi_frames.cmx /home/cremant/lefessan/devel/efuns/common/options.cmx \
+    /home/cremant/lefessan/devel/efuns/common/parse_file.cmx simple.cmx \
+    /home/cremant/lefessan/devel/efuns/common/str2.cmx text.cmx \
+    top_window.cmx /home/cremant/lefessan/devel/efuns/common/utils.cmx \
+    window.cmx /home/cremant/lefessan/devel/efuns/xlib/xK.cmx select.cmi 
+server.cmo: ../concur/concur.cmi efuns.cmo frame.cmi text.cmi top_window.cmo \
+    /home/cremant/lefessan/devel/efuns/common/utils.cmi window.cmo \
+    /home/cremant/lefessan/devel/efuns/xlib/x.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xA.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi 
+server.cmx: ../concur/concur.cmi efuns.cmx frame.cmx text.cmx top_window.cmx \
+    /home/cremant/lefessan/devel/efuns/common/utils.cmx window.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/x.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xA.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmx 
+simple.cmo: ebuffer.cmi efuns.cmo \
+    /home/cremant/lefessan/devel/efuns/xlib/eloop.cmi frame.cmi keymap.cmo \
+    local.cmi /home/cremant/lefessan/devel/efuns/common/options.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/selection.cmi text.cmi \
+    top_window.cmo /home/cremant/lefessan/devel/efuns/common/utils.cmi \
+    ../toolkit/wX_xterm.cmi window.cmo \
+    /home/cremant/lefessan/devel/efuns/xlib/xA.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xK.cmo \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi simple.cmi 
+simple.cmx: ebuffer.cmx efuns.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/eloop.cmx frame.cmx keymap.cmx \
+    local.cmx /home/cremant/lefessan/devel/efuns/common/options.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/selection.cmx text.cmx \
+    top_window.cmx /home/cremant/lefessan/devel/efuns/common/utils.cmx \
+    ../toolkit/wX_xterm.cmx window.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xA.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xK.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmx simple.cmi 
+std_efunsrc.cmo: abbrevs.cmo compil.cmo complex.cmo ebuffer.cmi efuns.cmo \
+    eval.cmo frame.cmi interactive.cmo keymap.cmo \
+    /home/cremant/lefessan/devel/efuns/common/log.cmo multi_frames.cmo \
+    /home/cremant/lefessan/devel/efuns/common/options.cmi search.cmi \
+    select.cmi server.cmo simple.cmi system.cmo text.cmi top_window.cmo \
+    /home/cremant/lefessan/devel/efuns/common/utils.cmi \
+    /home/cremant/lefessan/devel/efuns/common/version.cmi \
+    ../toolkit/wX_filesel.cmi ../toolkit/wX_popup.cmi ../toolkit/wX_types.cmi \
+    window.cmo /home/cremant/lefessan/devel/efuns/xlib/xK.cmo 
+std_efunsrc.cmx: abbrevs.cmx compil.cmx complex.cmx ebuffer.cmx efuns.cmx \
+    eval.cmx frame.cmx interactive.cmx keymap.cmx \
+    /home/cremant/lefessan/devel/efuns/common/log.cmx multi_frames.cmx \
+    /home/cremant/lefessan/devel/efuns/common/options.cmx search.cmx \
+    select.cmx server.cmx simple.cmx system.cmx text.cmx top_window.cmx \
+    /home/cremant/lefessan/devel/efuns/common/utils.cmx \
+    /home/cremant/lefessan/devel/efuns/common/version.cmx \
+    ../toolkit/wX_filesel.cmx ../toolkit/wX_popup.cmx ../toolkit/wX_types.cmx \
+    window.cmx /home/cremant/lefessan/devel/efuns/xlib/xK.cmx 
+system.cmo: ../concur/concur.cmi ebuffer.cmi efuns.cmo frame.cmi keymap.cmo \
+    multi_frames.cmo select.cmi simple.cmi text.cmi top_window.cmo \
+    ../toolkit/wX_xterm.cmi window.cmo \
+    /home/cremant/lefessan/devel/efuns/xlib/xK.cmo 
+system.cmx: ../concur/concur.cmi ebuffer.cmx efuns.cmx frame.cmx keymap.cmx \
+    multi_frames.cmx select.cmx simple.cmx text.cmx top_window.cmx \
+    ../toolkit/wX_xterm.cmx window.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xK.cmx 
+tab_mode.cmo: ebuffer.cmi efuns.cmo keymap.cmo simple.cmi text.cmi \
+    top_window.cmo /home/cremant/lefessan/devel/efuns/xlib/xK.cmo 
+tab_mode.cmx: ebuffer.cmx efuns.cmx keymap.cmx simple.cmx text.cmx \
+    top_window.cmx /home/cremant/lefessan/devel/efuns/xlib/xK.cmx 
+tex_mode.cmo: abbrevs.cmo compil.cmo ebuffer.cmi efuns.cmo frame.cmi \
+    interactive.cmo keymap.cmo \
+    /home/cremant/lefessan/devel/efuns/common/log.cmo \
+    /home/cremant/lefessan/devel/efuns/common/options.cmi select.cmi \
+    server.cmo simple.cmi text.cmi \
+    /home/cremant/lefessan/devel/efuns/common/utils.cmi window.cmo \
+    /home/cremant/lefessan/devel/efuns/xlib/xK.cmo 
+tex_mode.cmx: abbrevs.cmx compil.cmx ebuffer.cmx efuns.cmx frame.cmx \
+    interactive.cmx keymap.cmx \
+    /home/cremant/lefessan/devel/efuns/common/log.cmx \
+    /home/cremant/lefessan/devel/efuns/common/options.cmx select.cmx \
+    server.cmx simple.cmx text.cmx \
+    /home/cremant/lefessan/devel/efuns/common/utils.cmx window.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xK.cmx 
+text.cmo: /home/cremant/lefessan/devel/efuns/common/options.cmi \
+    /home/cremant/lefessan/devel/efuns/common/str2.cmo text.cmi \
+    /home/cremant/lefessan/devel/efuns/common/utils.cmi \
+    ../toolkit/wX_text.cmo ../toolkit/wX_types.cmi text.cmi 
+text.cmx: /home/cremant/lefessan/devel/efuns/common/options.cmx \
+    /home/cremant/lefessan/devel/efuns/common/str2.cmx text.cmx \
+    /home/cremant/lefessan/devel/efuns/common/utils.cmx \
+    ../toolkit/wX_text.cmx ../toolkit/wX_types.cmx text.cmi 
+top_window.cmo: ../concur/concur.cmi ebuffer.cmi efuns.cmo frame.cmi \
+    keymap.cmo local.cmi \
+    /home/cremant/lefessan/devel/efuns/common/options.cmi text.cmi \
+    /home/cremant/lefessan/devel/efuns/common/utils.cmi \
+    ../toolkit/wX_adjust.cmi ../toolkit/wX_appli.cmi ../toolkit/wX_bar.cmi \
+    ../toolkit/wX_button.cmi ../toolkit/wX_scrollbar.cmi \
+    ../toolkit/wX_types.cmi ../toolkit/wX_xterm.cmi window.cmo \
+    /home/cremant/lefessan/devel/efuns/xlib/xK.cmo \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi 
+top_window.cmx: ../concur/concur.cmi ebuffer.cmx efuns.cmx frame.cmx \
+    keymap.cmx local.cmx \
+    /home/cremant/lefessan/devel/efuns/common/options.cmx text.cmx \
+    /home/cremant/lefessan/devel/efuns/common/utils.cmx \
+    ../toolkit/wX_adjust.cmx ../toolkit/wX_appli.cmx ../toolkit/wX_bar.cmx \
+    ../toolkit/wX_button.cmx ../toolkit/wX_scrollbar.cmx \
+    ../toolkit/wX_types.cmx ../toolkit/wX_xterm.cmx window.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xK.cmx \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmx 
+window.cmo: efuns.cmo 
+window.cmx: efuns.cmx 
+ebuffer.cmi: efuns.cmo local.cmi text.cmi 
+frame.cmi: efuns.cmo text.cmi 
+ocaml_mode.cmi: compil.cmo efuns.cmo \
+    /home/cremant/lefessan/devel/efuns/common/options.cmi text.cmi 
+search.cmi: efuns.cmo 
+select.cmi: efuns.cmo /home/cremant/lefessan/devel/efuns/common/options.cmi 
+simple.cmi: efuns.cmo local.cmi \
+    /home/cremant/lefessan/devel/efuns/common/options.cmi text.cmi 
+text.cmi: /home/cremant/lefessan/devel/efuns/common/options.cmi \
+    ../toolkit/wX_text.cmo ../toolkit/wX_types.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xpm.cmi \
+    /home/cremant/lefessan/devel/efuns/xlib/xtypes.cmi 

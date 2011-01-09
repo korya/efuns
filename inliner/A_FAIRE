@@ -1,0 +1,239 @@
+Une chose etrange:
+
+asmopt.opt -do_combine setint.s -stats  
+Statistiques:
+Jump to jump:       22
+*** Peepholes patterns: 0
+*** Dead instrs:        90
+*** Alloc removed:      9
+*** Combined ins:      15
+*** Node unrolled:     0
+***** 801 ins ---> 801 ins --> 723 ****
+
+asmopt.opt -do_combine setint.s -stats -I .. (pour utiliser asmopt.i386)
+Statistiques:
+Jump to jump:       8
+*** Peepholes patterns: 14
+*** Dead instrs:        26
+*** Alloc removed:      1
+*** Combined ins:      4
+***** 801 ins ---> 801 ins --> 749 ****
+
+Les peepholes decrites dans asmopt.i386 previennent d'autres optimisations
+(voir Setint_is_empty_... comme exemple). Quand on compte le nombre reel
+d'instructions generees (tiens, une nouvelle option a ajouter), on trouve
+une difference exacte de 117 ins (pour 1200 au mini):
+1375 (no opt) -> 1318 (po) -> 1201 (no po) [gain total= 14.4 %]
+
+A FAIRE:
+
+1) Essayer de remplacer les raises par des jumps quand ils ont lieu dans:
+try
+  if ... then raise Exit else ...
+with Exit -> ...
+
+1.1) Ajouter une options -no_unexpected_exn pour indiquer que les exceptions
+Out_of_memory, Invalid_argument (et Assertion_failure ?) ne sont pas
+attendues, et que des try_with ne levant aucune autre exception peuvent
+donc etre supprimes une fois que les autres raises ont ete supprimes.
+
+1.2) Supprimer la comparaison quand le resultat est connu (va avec une
+meilleure approximation du store).
+
+1.3) Supprimer les allocations inutiles.
+
+2) Essayer d'ameliorer le code produit par l'inlining de List_iter.
+
+2.1) Supprimer l'allocation de la closure si possible en inlinant le corps
+de la fonction appelee (deja resolue normalement).
+
+List_iter_73:
+.L67:
+        subl    $8, %esp
+.L68:
+        movl    %eax, %edx
+        cmpl    $1, %ebx
+        je      .L69
+.L70:
+        movl    %edx, 4(%esp)
+        movl    %ebx, (%esp)
+        movl    (%ebx), %eax
+        movl    (%edx), %ecx
+        movl    %edx, %ebx
+        call    *%ecx
+.L71:
+        movl    (%esp), %eax
+        movl    4(%eax), %ebx
+        movl    4(%esp), %eax
+        jmp     .L68
+.L69:
+        movl    $1, %eax
+        addl    $8, %esp
+        ret
+
+3) Les switches peuvent etre remplaces par des loads. Eviter ce load quand
+la valeurs chargee peut etre calculee (suite arithmetique par example,
+ou geometrique avec un facteur puissance de 2).
+
+4) On peut reconnaitre ces sequences comme une seule instruction pour 
+permettre une meilleure interpretation abstraite du code.
+
+r2 = length (r1, int)
+     <=>
+movl -4(%r1), %r2
+shrl $9, %r2
+orl  $1, %r2
+
+
+r2 = length (r1, float)
+     <=>
+movl -4(%r1), %r2
+shrl $10, %r2
+orl  $1, %r2
+
+r2 = length (r1, unknown) [r3 destroyed]
+     <=>
+movl    -4(%r1), %r2
+movl    %r2, %r3
+andl    $255, %r3
+cmpl    $254, %r3
+je      .L1
+shrl    $9, %r2
+jmp     .L2
+.L1
+shrl    $10, %r2
+.L2
+orl     $1, %r2
+
+5) En Caml, les valeurs accedees depuis un nom symbolique ne peuvent pas etre
+aliasees entre elles:
+
+movl Toto+4, %eax
+movl %ebx, Papa + 8
+movl Toto+4, %esi
+
+peut donc etre simplifie en
+
+movl Toto+4, %eax
+movl %ebx, Papa + 8
+movl %eax, %esi
+
+On peut donc placer toutes ces valeurs dans une sorte de store permanent.
+On obtient donc 3 stores:
+
+- alloc_store: blocs venant d'etre alloues et dont les adresses ne peuvent
+pas etre aliasees. Les adresses pointant vers ces objets peuvent se situer
+uniquement dans des registres, la pile, ces blocs, des locations connues dans
+les autres stores.
+
+- immutable store: blocs ne pouvant pas etre modifies (immutable). Ce sont
+les closures (blocs contenant un pointeur de code en position 1) et les blocs
+ obtenus par des noms symboliques (sauf certains, comme "young_ptr" et 
+"young_limit").
+
+- global_store: comme les adresses vers ces blocs sont aliasees, il faut
+etre tres prudent. Ce store peut contenir plusieurs blocs dont les valeurs sont
+connues, et est vide en cas d'ecriture dans la memoire, pour se reduire au
+seul bloc ecrit, et aux headers des autres blocs.
+
+Une allocation peut etre evitee si il existe une instruction ou:
+- le bloc est present dans l'alloc_store
+- l'adresse du bloc n'est presente dans aucune autre location, excepte
+  un registre mort.
+
+6) Faire un combiner plus puissant.
+
+7) Beaucoup de fonctions recursives sont de la forme: (PARTIALLY DONE)
+
+subl $n, %esp
+HEADER
+cmpl v1,v2
+jcond .Lret
+...
+
+.Lret:
+TRAILER(no %esp)
+addl $n, %esp
+ret
+
+==> optimization ==>
+
+cmpl v1,v2
+jcond .Lret
+subl $n, %esp
+HEADER
+...
+
+.Lret:
+HEADER - dead code
+TRAILER - dead code
+ret
+
+8) PRE (Partial Redundancy Elimination) + alias analysis. Pour l'instant,
+Caml ne fait pas du tout de PRE. C'est dommage. Un example pris dans
+efuns/text.ml montre qu'une boucle de 45 ins peut etre reduite a 35 ins
+simplement par PRE. Pour que la PRE soit efficace sur des programmes ou
+les calculs ne sont pas forcement frequents, mais ou les suites de 
+pointeurs le sont (closure -> record -> field), il faut faire un
+minimum de suppression d'alias. On peut pour cela utiliser les types.
+Les types permettent aussi de gerer les pointeurs au niveau du GC.
+
+9) En Ocaml, les boucles sont souvent exprimees par:
+- un iterateur sur le type, prenant une closure en argument.
+- une fonction recursive construite localement.
+
+Le plus souvent possible, on a interet a inliner ces boucles pour:
+- supprimer l'allocation de la closure et connaitre la valeur
+du branchement immediatement.
+- propager les constantes et detruire le code mort.
+- unroller la boucle, et placer les expressions communes dans la pile.
+
+Souvent, lorsque l'on trouve une boucle, il peut etre interessant de copier
+la fermeture dans la pile, de sorte que les acces aux champs de la closure
+se font par des acces a la pile. L'avantage immediat est que, pour utiliser
+une valeur de la closure, il n'est plus necessaire de charger d'abord la
+closure. On peut aussi se demander dans quelle mesure il n'est pas possible
+d'envisager de copier systematiquement la closure sur la pile pour
+chaque fonction. Ou au moins les valeurs de la closures qui sont
+utilisees. Notons que, dans approx.ml, on peut utiliser une valeur
+speciale pour la closure.
+
+Param1, Param2, Param3, ..., Closure.
+
+En particulier, Closure n'est jamais modifiee, par definition.
+
+D'ou:
+1- Marquer dans Closure les champs utilise's.
+2- Placer les champs utilises dans la pile au lancement de la fonction
+(a condition qu'un registre soit disponible pour cela).
+Avant le subl $n, %esp, on peut rajouter pushl p1(%clos); pushl p2(%clos); ...
+3- Modifier les frames dans la fonction pour tenir compte de l'extension de
+la pile. Les valeurs ajoutees doivent systematiquement etre scannees par le
+GC. On remarquera que la closure peut ensuite devenir inutile, et peut
+ainsi liberer un register lors de certains calculs. [Apres tout, les
+programmes fonctionnels semblent mettre dans la fermeture les valeurs
+des expressions communes].
+4- Remplacer tous les acces a la fermeture par des acces a la pile.
+
+Si on inline la fonction, on observe que l'allocation de la closure 
+n'est plus utile. On peut la remplacer par l'allocation en pile de la
+closure.
+
+ On peut aussi faire du systematique: copier systematiquement le contenu de
+la fermeture dans la pile de la fonction. Sachant que, de toute facon, les
+valeurs placees dans la fermeture sont forcement utilisees, le cout est assez
+reduit, et se limite a:
+
+1 load (heap ->)
+1 store (-> stack)
+   ---
+1 load (stack ->) a chaque utilisation a la place de 1 load (heap ->), 
+voir 2 (stack -> heap ->).
+
+10) En accord avec la section precedente, on peut remplacer les allocations
+dans le tas par des allocations en pile. L'avantage direct est que l'inlining
+d'une fonction dont la closure a ete allouees dans la pile implique que 
+l'acces aux champs de la fermeture se fait dans la pile (sans indirection !).
+
+11) Calculer les dominateurs de chaque node. Utiliser cette information 
+pour trouver les invariants de boucle.

@@ -1,0 +1,29 @@
+clean:
+	rm -f *.cm[iaxo] *.[ao] *.cmxa core *.mlg *.out *.exe *~ $(TMPFILES)
+
+depend: $(TMPFILES)
+	ocamldep $(INCLUDES)  *.ml *.mli > .depend
+
+.SUFFIXES: .mli .ml .cmx .cmo .o .c .cmi .out .exe .mll .mly
+
+.mli.cmi :
+	$(OCAMLC) -c $(INCLUDES) $<
+
+.ml.cmi :
+	$(OCAMLC) -c $(INCLUDES) $<
+
+.ml.cmo :
+	$(OCAMLC) -c $(INCLUDES) $<
+
+.mll.ml :
+	ocamllex $<
+
+.mly.ml :
+	ocamlyacc $<
+
+.mly.mli:
+	ocamlyacc $<
+
+.c.o :
+	$(OCAMLC) -o $*.o -c $<
+

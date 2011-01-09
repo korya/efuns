@@ -1,0 +1,12 @@
+/.cvsignore/1.1/Mon Nov 29 14:49:18 1999//
+/gram_aux.ml/1.1/Mon Nov 22 10:35:59 1999//
+/grammar.mly/1.1/Mon Nov 22 10:36:00 1999//
+/lexgen.ml/1.1/Mon Nov 22 10:36:00 1999//
+/main.ml/1.1/Mon Nov 22 10:36:00 1999//
+/output.ml/1.1/Mon Nov 22 10:36:00 1999//
+/scan_aux.ml/1.1/Mon Nov 22 10:36:01 1999//
+/scanner.mll/1.1/Mon Nov 22 10:36:01 1999//
+/syntax.ml/1.1/Mon Nov 22 10:36:01 1999//
+/testmain.ml/1.1/Mon Nov 22 10:36:01 1999//
+/testscanner.mll/1.1/Mon Nov 22 10:36:02 1999//
+D

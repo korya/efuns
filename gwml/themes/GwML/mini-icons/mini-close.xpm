@@ -1,0 +1,28 @@
+/* XPM */
+static char *mini-style-x-full[] = {
+/* width height num_colors chars_per_pixel */
+"    18    18        3            1",
+/* colors */
+". c #414141",
+"# c #b6b6b6",
+"a c #828282",
+/* pixels */
+"#################.",
+"################..",
+"##aaaaaaaaaaaaaa..",
+"##a###aaaaaa##.a..",
+"##a#aa#aaaa#aa.a..",
+"##a#aaa#aa#aaa.a..",
+"##aa.aaa#a#aa.aa..",
+"##aaa.aaa#aa.aaa..",
+"##aaaa.aaaa.aaaa..",
+"##aaaaa.aa.aaaaa..",
+"##aaaa#aa.a.aaaa..",
+"##aa##aa.a.a.aaa..",
+"##a#aaa.aa.a.aaa..",
+"##a.aa.aaaa.a.aa..",
+"##a...aaaaaa...a..",
+"##aaaaaaaaaaaaaa..",
+"#.................",
+".................."
+};

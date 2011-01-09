@@ -1,0 +1,49 @@
+
+       Dynkink for Native Code : linking .cmo files in native code executables
+       =======================   
+
+
+WARNING:   BETA VERSION 
+-----------------------
+  Probably some bugs...
+
+Comments:
+========
+  All bytecodes are now implemented. Nevertheless, some of them have
+not been tested. C Primitives are not directly available for bytecode
+files, except if the loader uses "Linker.export_prim" to make some
+primitives available (look at external.ml for example).
+
+  Patch files contain: for the native code compiler, some code to
+insert some "meta" information on how to access  native code modules
+from inside the program. For the native code runtime, some code to
+raise the Invalid_argument exception instead of aborting the program
+in case of out-of-bound access in arrays or strings. 
+  
+Installation:
+============
+
+1.1 move files asmlink.ml, cmmgen.ml and cmmgen.mli to ocaml-2.00/asmcomp/
+1.2 move files fail.c and array.c to ocaml-2.00/asmrun/
+2. re-build ocamlopt (make opt; make install in ocaml-2.00)
+3. make dynlink
+4. modify INSTALLDIR in Makefile to fit your installation
+5. make install
+
+Usage: 
+=====
+
+1. see dynlink.mli for the interface
+2. link your executable with "-cclib libdynlink.a dynlink.cmxa"
+
+Example:
+=======
+
+1. Read test.ml for an example (and external.ml for addings primitives)
+
+Comments and bugs: 
+=================
+Fabrice Le Fessant (Email : Fabrice.Le_fessant@inria.fr )
+PARA project
+INRIA Rocquencourt
+FRANCE

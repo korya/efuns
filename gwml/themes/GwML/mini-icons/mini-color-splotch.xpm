@@ -1,0 +1,21 @@
+/* XPM */
+static char * mini_color_splotch_xpm[] = {
+"16 14 4 1",
+" 	c #FFFF00000000",
+".	c None",
+"X	c #00000000FFFF",
+"o	c #0000FFFF0000",
+"       ..XXXXXXX",
+"        XXXXXXXX",
+"        XXXXXXXX",
+"        XXXXXXXX",
+"        XXXXXXXX",
+"        XXXXXXXX",
+"       ..XXXXXXX",
+".    oooooXXXXX.",
+"....ooooooo.....",
+"...ooooooooo....",
+"...ooooooooo....",
+"...ooooooooo....",
+"...ooooooooo....",
+"...ooooooooo...."};

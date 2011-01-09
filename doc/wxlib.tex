@@ -1,0 +1,722 @@
+\documentclass{report}
+
+\usepackage{url}
+\usepackage[dvips]{epsfig}
+\usepackage{epsf}
+
+\newcommand{\ocaml}{\emph{Objective-Caml}~}
+\newcommand{\version}{0.16}
+\newcommand{\wxlib}{\emph{WXlib}~}
+
+\newcommand{\psfigure}[3]{ % {scale}{filename=label}{caption}
+  \begin{quote}\let\normalsize\small\caption{#3\label{fig:#2}}\end{quote}
+  }
+
+
+\title{\wxlib tutorial}
+
+\author{Fabrice Le Fessant\\
+    (Email: Fabrice.Le\_Fessant@inria.fr)\\
+    INRIA Rocquencourt, B.P. 105, 78153 Le Chesnay Cedex, France }
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\chapter{Introduction}
+
+\section{Overview}
+
+\wxlib is a library for creating graphical user interfaces for Objective-Caml
+running under Unix X-windows system. This paper is a tutorial to help you 
+to build your own interfaces.
+
+ The first version of WXlib is 016, released in June 16th, 1999. Lattest
+versions of \wxlib are distributed as part of the Efuns\footnote{ Efuns is an
+editor for X-window written in \ocaml.} package, and can be downloaded from:
+
+\begin{verbatim}
+http:\/\/pauillac.inria.fr\/efuns
+\end{verbatim}
+
+  Contributions to the \wxlib, or any parts of the Efuns package, are 
+welcome, and can be sent to {\sf fabrice.le\_fessant@inria.fr}. Bug 
+reports, requests and questions should be sent to the same address.
+
+\section{Examples}
+
+  Many examples are available in the {\sf efuns\/toolkit\/examples} 
+directory. Other examples can be found in the {\sf efuns\/efuns} directory, 
+corresponding to programs used by Efuns, such as {\sf efuns\_filebrowser} 
+or {\sf efuns\_texbrowser}.
+
+\begin{figure}[t]
+\begin{center}
+%BEGIN IMAGE
+\epsfbox{figs/browser.eps}
+%END IMAGE
+%HEVEA\imageflush
+\psfigure{1}{browser}{The efuns\_filebrowser window.}
+\end{center}
+\end{figure}
+
+\chapter{Getting started}
+
+\section{How to compile programs}
+
+ \wxlib is available both as a bytecode library and a native one. A dedicated
+program, called \emph{wX\_config} is used to simplify compilation of \wxlib 
+programs by providing most useful compilation flags automatically.
+
+For example, the next section presents the Hello World program, which can 
+be found in the sources in {\sf efuns\/toolkit\/demo\_hello.ml}. To compile this 
+example, you can simply enter the following commands:
+
+\begin{verbatim}
+ocamlc `wX_config -byte` -o hello demo_hello.ml
+\end{verbatim}
+or
+\begin{verbatim}
+ocamlopt `wX_config -opt` -o hello demo_hello.ml
+\end{verbatim}
+
+  To list the options of wX\_config, use the -help option:
+
+\begin{verbatim}
+homard:~/devel/efuns/toolkit% wX_config -help
+WXlib config finder
+  -src : To compile without installing (from sources directory)
+  -str : add flags for Str regexp library
+  -c : print flags for compiling
+  -opt : print flags for native linking
+  -byte : print flags for bytecode linking
+\end{verbatim}
+
+\section{First example: Hello world}
+
+ Here is the simplest source of the Hello World program. This program does 
+nothing else than displaying a simple window with "Hello World" written 
+inside.
+
+\begin{verbatim}
+open WX_types
+
+let root = new WX_root.from_display "" 0
+let top = new WX_wmtop.t root []
+let label = new WX_label.t top#container "Hello World" []
+
+let _ =
+  top#container_add label#contained;
+  top#show;
+  loop ()
+\end{verbatim}
+
+ The first {\sf open} statement opens the modules describing the types and
+simple values used by the WXlib library. In our example, only one value
+depends on this module, the final {\sf loop} function.
+
+ We then create the {\sf root} object, of real class {\sf WX\_root.t}, by
+providing the display name ( empty string) and the screen number (default one
+is zero). This root object will be used as the parent of all toplevel 
+widgets (toplevel window, popup menus, etc).
+
+ We can now create the toplevel window {\sf top} of class {\sf WX\_wmtop. t}.
+This object only displays a simple window, containing a second child window.
+The {\sf WX\_wmtop.t} class is different from the {\sf WX\_top.t} class as it
+provides additional methods to communicate with the Window-Manager, such as
+{\sf setWM\_NAME}, {\sf setWM\_ICON\_NAME}, etc \ldots The [] parameter is a 
+list of standard options to configure widgets, which will be detailed in 
+section \ref{configuration}.
+
+ The child of the toplevel window is a simple {\sf WX\_label.t} object, a 
+widget that displays a string in its window (here "Hello World"). Most 
+children widgets require their parent to be passed with type {\sf 
+WX\_types.container} when created. To avoid typing coercions for all of 
+them, all objects contain a {\sf container} method, returning the object 
+coerced to the correct type.
+
+ Now, all objects have been created. Before mapping the windows on the
+screen, we must specify that the {\sf label} window is contained in the { \sf
+top} window. This is done by calling the {\sf container\_add} method ( a
+method defined by most container widgets), with the label as parameter. Most
+container widgets require their contained widgets to be passed with type {\sf
+WX\_types.contained}, which can be done automatically by calling the { \sf
+contained} method of the child widget.
+
+\section{A more elaborate Hello World}
+
+\begin{figure}[t]
+\begin{center}
+%BEGIN IMAGE
+\epsfbox{figs/hello.eps}
+%END IMAGE
+%HEVEA\imageflush
+\psfigure{0.3}{hello}{The Hello World widget demo.}
+\end{center}
+\end{figure}
+ 
+ 
+The previous program doesn't terminate nicely. Thus, we would like the 
+user to simply click on a button, or type the "q" letter to terminate.
+This is done in the following example.
+
+\begin{verbatim}
+open Xtypes
+open WX_types
+
+let root = new WX_root.from_display "" 0
+let top = new WX_wmtop.t root []
+let label = new WX_button.with_label top#container "Hello World" []
+
+let _ =
+  top#container_add label#contained;
+  label#set_action (fun _ -> exit 0);
+  top#configure [Bindings [Key(XK.xk_q, anyModifier), (fun _ -> exit 0)]];
+  top#show;
+  loop () 
+\end{verbatim}
+
+  Compared to the previous version, we simply replaced the label by a button
+containing the label. For simplicity, we used the {\sf WX\_button.
+with\_label} class, which is somewhat equivalent to:
+
+\begin{verbatim}
+let button = new WX_button.t top#container []
+let label = new WX_label.t button#container "Hello World" []
+let _ = button#container_add label#contained
+\end{verbatim}
+
+ We then bind some events to the termination action: For the button, we used
+the {\sf set\_action} which binds a click in the button to an action. For the
+toplevel window, we used the {\sf configure} (whose arguments are detailed in
+section~\ref{configuration}), to add the bindings between the "q" keystroke
+(XK.xk\_q is the corresponding constant for the Xwindow system\footnote{You
+can also use the following code, a bit slower:
+{\sf  List.assoc "q" XK.name\_to\_keysym}} and the action.
+
+\section{Widgets contained in widgets}
+
+To create your interface, you will probably need lots of widgets.  Thus, 
+you need a way to organize all these widgets inside your toplevel windows.
+This section describe the main different ways of organizing them. 
+
+\subsection{Using bars}
+
+ The simplest way to organize your interface is the use of bars: bars are 
+simple widgets in which you can insert other widgets. Inserted widgets 
+will be placed from left to right for horizontal bars and from top to 
+bottom for vertical bar. By inserting bars into other bars, you will able 
+to create various interesting effects.
+
+\begin{figure}[t]
+\begin{center}
+%BEGIN IMAGE
+\epsfbox{figs/bar.eps}
+%END IMAGE
+%HEVEA\imageflush
+\psfigure{0.3}{bar}{The demo\_bar widget demo.}
+\end{center}
+\end{figure}
+
+Here is a simple example of the use of bars.
+\begin{verbatim}
+open WX_types
+
+let root = new WX_root.from_display "" 0
+let top = new WX_top.t root None []
+let vbar = new WX_bar.v top#container []
+let text = new WX_text.of_string vbar#container 
+"Your program has raised a stack overflow exception
+Click OK if you want to continue.
+Click CANCEL if you want to abort.
+Click HELP if you need some help.
+" []
+let hbar = new WX_bar.h vbar#container [IpadX 5; IpadY 10]
+let attrs = [IpadX 3; IpadY 3; ExpandX true]
+
+let ok = new WX_button.with_label hbar#container "OK" attrs
+let cancel = new WX_button.with_label hbar#container "CANCEL" attrs
+let help = new WX_button.with_label hbar#container "HELP" attrs
+
+let _ =
+  ok#set_action (fun _ -> exit 0);
+  cancel#set_action (fun _ -> exit 1);
+  help#set_action (fun _ -> print_string "HELP"; print_newline ());
+  top#container_add vbar#contained;
+  vbar#container_add_s [text#contained; hbar#contained];
+  hbar#container_add_s [ok#contained; cancel#contained; help#contained];
+  top#show;
+  loop ()
+\end{verbatim}
+
+\subsection{Using tables}
+
+See example in section~\ref{table}.
+
+\section{Configuring widgets}
+\label{configuration}
+
+  Widgets can be configured in two ways: you can provide a list of options 
+when the widget object is created, or you can at any time use the {\sf 
+configure} method with a list of options to apply on the object.
+
+Here is the list of currently available options:
+
+\begin{verbatim}
+type base_attributes =
+| MinWidth of int
+| MinHeight of int
+| MaxWidth of int
+| MaxHeight of int
+| ExpandX of bool
+| ExpandY of bool
+| IpadX of int
+| IpadY of int
+| Position of int * int
+\end{verbatim}
+
+ {\sf ExpandX} and {\sf ExpandY} flags are used to indicate that the widget
+can receive more space than it requires. {\sf Position} is only used to
+specify the initial position of the {\sf WX\_top} widget. {\sf IpadX} and {
+\sf IpadY} are used to specify the distances between the rectangle actually
+used in the widget (for drawing or for contained widgets) and the window 
+of the widget.
+
+\chapter{Widgets description}
+
+For each widget called {\sf widget}, the corresponding class is {\sf 
+WX\_widget.t}. Look at the contain of the corresponding files to learn 
+which particular methods exist for each of these classes. Sometimes, the 
+files also contain derived classes easier to used. For example, the {\sf 
+WX\_text} module also contains the {\sf WX\_text.of\_file} and {\sf 
+WX\_text.of\_string} classes.
+
+\section{Basic widgets}
+
+\subsection{The {\sf display} object}
+
+Object used to manipulate the display.
+
+\subsection{The {\sf root} widget}
+
+Object used as the parent for all toplevel windows in a given screen.
+
+\subsection{The {\sf object} widget}
+
+The common ancestor (inherited) for all classes which create windows.
+This class can be used to create new widgets.
+
+\section{Toplevel widgets}
+
+\subsection{The {\sf top} widget}
+
+Widget used to display a toplevel window, containing a child window.
+
+\subsection{The {\sf wmtop} widget}
+
+Widget derived from the {\sf top} widget with methods to interact with the 
+Window-manager (following ICCCM conventions). 
+
+\subsection{The {\sf xterm} widget}
+
+Widget only used by Efuns (should be moved to Efuns directory ?).
+
+\subsection{The {\sf popup} widget}
+
+Widget used to create simple popup menus.
+
+\section{Drawing widgets}
+
+\subsection{The {\sf Graphics} widget}
+
+This widget emulates the Graphics module of the standard \ocaml library.
+Several such widgets can be created in a single application, switching 
+between widgets being provided using the {\sf active} method.
+
+\begin{figure}[t]
+\begin{center}
+%BEGIN IMAGE
+\epsfbox{figs/graphics.eps}
+%END IMAGE
+%HEVEA\imageflush
+\psfigure{0.7}{graphics}{The demo\_graphics widget demo.}
+\end{center}
+\end{figure}
+
+\begin{verbatim}
+open WX_types
+open XGraphics (* instead of Graphics *)
+
+let root = new WX_root.from_display "" 0
+let appli = new WX_appli.t root 
+  [Bindings [Key (XK.xk_q,0), (fun () -> exit 0)]]
+  (* This replace the open_graph call: *)
+let graphics = new WX_Graphics.t appli#container [] 600 400
+
+let help_menu = [|
+    "About", (fun _ -> Printf.printf "ABOUT HELP"; print_newline ());
+    "Index", (fun _ -> Printf.printf "INDEX HELP"; print_newline ());
+  |]
+  
+let redraw x y =
+  clear_graph();
+  set_color blue;
+  fill_poly [|100,100; 100,200; 200,200; 200,100; 100,100 |];
+  set_color red;
+  fill_poly [|x,y; x,y+100; x+100,y+100; x+100,y; x,y |];
+  update()
+
+let _ =
+  appli#container_add (graphics#contained);  
+  appli#add_menu "Help" help_menu;
+  appli#show;
+  set_update_style FlushAll;
+  let _ = wait_next_event[Button_down] in
+  redraw 0 0;
+  while 
+    let ev = wait_next_event[Button_up;Button_down;Mouse_motion;Key_pressed] in
+    if ev.button then redraw ev.mouse_x ev.mouse_y;
+    ev.key <> 'q'
+  do () done;
+  close_graph()
+\end{verbatim}
+
+\subsection{The {\sf label} widget}
+
+This widget displays a simple string in its window. Justification can be 
+specified through the {\sf set\_justification} method.
+
+\subsection{The {\sf ledit} widget}
+
+This widget is an editable label.
+
+\subsection{The {\sf pixmap} widget}
+
+This widget displays a pixmap in its window.
+
+\subsection{The {\sf scale} widget}
+
+This widget is used to allow the user to modify a value within a specific 
+range. An adjustement ({\sf WX\_adjust.t} must be used to specify the 
+value). 
+
+\subsection{The {\sf scrollbar} widget}
+
+This widget display a scrollbar. See section~\ref{viewport} for an example 
+of how to use scrollbars.
+
+\subsection{The {\sf selector} widget}
+
+ This widget displays a label, whose value can be selected by clicking on 
+it and selecting a new value in the associated popup menu.
+
+\section{Container widgets}
+
+\subsection{The {\sf bar} widget}
+
+ This widget allows to pack several widgets in a single bar, either
+horizontal or vertical.
+
+\subsection{The {\sf button} widget}
+
+ This widget displays a button. The {\sf set\_action} method specifies the 
+action executed when the button is pressed.
+
+\subsection{The {\sf table} widget}
+\label{table}
+
+ This widget is used to pack several widgets in a single window, with 
+position related to rows and columns in a table. Here is a small example 
+of what can be done with tables and not with bars.
+
+\begin{figure}[t]
+\begin{center}
+%BEGIN IMAGE
+\epsfbox{figs/table.eps}
+%END IMAGE
+%HEVEA\imageflush
+\psfigure{1}{table}{The demo\_table widget demo.}
+\end{center}
+\end{figure}
+
+\begin{verbatim}
+open Xtypes
+open WX_types
+  
+let display = new WX_display.t ""
+let root = new WX_root.t display 0
+let top = new WX_wmtop.t root [MinWidth 300; MinHeight 300]
+let table = new WX_table.t top#container [] 10 10 true
+  
+let list = [
+    1,1,2,3,"yellow"; 
+    2,5,2,2,"red";
+    5,2,2,2,"blue";
+    6,6,3,3,"pink";
+  ]
+
+let _ =
+  List.iter (fun (x,y,dx,dy,color) ->
+      let button = new WX_button.t table#container [] in
+      let obj = new WX_object.t button#container [
+          Background color; MinWidth (dx * 50); MinHeight (dy * 50)] in
+      button#set_action (fun _ -> Printf.printf "Select: %s" color;
+          print_newline ());
+      button#container_add obj#contained;
+      table#container_add button#contained x y dx dy;      
+  ) list;
+  top#container_add table#contained;
+  top#show;
+  loop ()
+
+\end{verbatim}
+
+\subsection{The {\sf tree} widget}
+
+ This widget is used to display several widgets as a tree, with branches 
+which can opened by clicking. Here is a simple example of program using 
+the tree widget.
+
+\begin{figure}[t]
+\begin{center}
+%BEGIN IMAGE
+\epsfbox{figs/tree.eps}
+%END IMAGE
+%HEVEA\imageflush
+\psfigure{0.3}{tree}{The demo\_tree widget demo.}
+\end{center}
+\end{figure}
+
+
+\begin{verbatim}
+open Xtypes
+open WX_types
+open WX_tree
+  
+let display = new WX_display.t ""
+let root = new WX_root.t display 0
+let top = new WX_wmtop.t root []
+let tree = new WX_tree.t top#container []
+let subtree = new WX_tree.t tree#container []
+let list = [ "Bonjour"; "Hello"; "Gutten tag" ]
+let sublist = [ "Salut"; "Coucou"; "Hi"; "Good morning" ]
+  
+let map = List.map (fun s ->
+   Leaf (0,(new WX_label.t tree#container s [])#contained)
+    ) list 
+let map3 = List.map (fun s ->
+        Leaf (0,(new WX_label.t tree#container s [])#contained)
+    ) list
+let submap = List.map (fun s ->
+        Leaf (0,(new WX_label.t subtree#container s [])#contained)
+    ) sublist
+let bigmap = map @ (Branch (false,
+        (new WX_label.t tree#container "Autres" [])#contained,
+        subtree#contained) :: map3)
+
+let _ =
+  subtree#set_desc submap;
+  tree#set_desc bigmap;
+  top#container_add tree#contained;
+  top#show;
+  loop ()
+\end{verbatim}
+
+\subsection{The {\sf text} widget}
+
+ This widget displays a text (not editable) with incrusted widgets. The {\sf
+WX\_text} module also contains the {\sf WX\_text.of\_file} and {\sf
+WX\_text.of\_string} classes, which are easier to create for displaying a 
+file or a simple string with newlines.
+
+\subsection{The {\sf radiobutton} widget}
+
+ This button is used to allow the user to select a value from a set.
+Each button is selected, if the current value is the value associated with 
+the button, or not selected otherwise.
+
+\subsection{The {\sf viewport} widget}
+\label{viewport}
+
+ This widget is used to partially display a widget. This is often used in 
+association with scrollbars to select the part of the child widget 
+displayed. Adjustements are used to communicate the position of the child 
+widget. 
+
+\begin{verbatim}
+open WX_types
+
+let filename = Sys.argv.(1)
+  
+let root = new WX_root.from_display "" 0
+
+let top = new WX_wmtop.t root []
+let hbar = new WX_bar.h top#container []
+
+let adx = new WX_adjust.t ()
+let ady = new WX_adjust.t ()
+let viewport = new WX_viewport.t hbar#container adx ady 
+    [MinHeight 50; MinWidth 50;ExpandX true]
+let vscroll = new WX_scrollbar.v hbar#container ady []
+
+let filetext = new WX_text.of_file viewport#container filename
+    [Relief ReliefRaised; Foreground "red"; Background "yellow"]
+  
+let _ =
+  hbar#container_add_s [viewport#contained; vscroll#contained];
+  viewport#container_add (filetext#contained);
+  top#container_add (hbar#contained);  
+  top#configure [Bindings [
+      Key(XK.xk_Prior,0),(fun _ -> ady#page_up);
+      Key(XK.xk_Next,0),(fun _ -> ady#page_down);
+      Key(XK.xk_q,0),(fun _ -> exit 0);
+    ]];
+  top#show;
+  loop ()
+\end{verbatim}
+
+\subsection{The {\sf panel} widget}
+
+ This widget is used to share one window between two widgets. The space 
+available for each child widget is specified by an adjustement. 
+The separation between the two children can be dragged with the mouse 
+using the {\sf WX\_panel.separator} widget.
+
+\begin{figure}[t]
+\begin{center}
+%BEGIN IMAGE
+\epsfbox{figs/panel.eps}
+%END IMAGE
+%HEVEA\imageflush
+\psfigure{1}{panel}{The demo\_panel widget demo.}
+\end{center}
+\end{figure}
+
+
+\begin{verbatim}
+open WX_types
+
+let _ = if Array.length Sys.argv <> 3 then 
+    failwith "Usage: demo_panel file1 file2"
+    
+let filename1 = Sys.argv.(1)
+let filename2 = Sys.argv.(2)
+
+let root = new WX_root.from_display "" 0
+
+let top = new WX_wmtop.t root  
+    [Bindings [Key (XK.xk_q,0), (fun () -> exit 0)]]
+
+let vbar = new WX_bar.v top#container []
+let adj = new WX_adjust.t ()
+let panel = new WX_panel.t Vertical vbar#container adj []
+  
+let viewtext parent filename =
+  let hbar = new WX_bar.h parent#container [] in
+  let adx = new WX_adjust.t () in
+  let ady = new WX_adjust.t () in
+  let viewport = new WX_viewport.t hbar#container adx ady 
+      [MinHeight 50; MinWidth 50;ExpandX true] in
+  let vscroll = new WX_scrollbar.v hbar#container ady [] in
+  let text = new WX_text.of_file viewport#container filename 
+       [Background "black"; ExpandX true] in
+  hbar#container_add_s [viewport#contained; vscroll#contained];  
+  viewport#container_add (text#contained);  
+  hbar#contained
+
+let text1 = viewtext panel filename1
+let text2 = viewtext panel filename2
+
+let sep = new WX_panel.separator panel adj []
+  
+let _ =
+  panel#set_first text1;
+  panel#set_second text2;
+  adj#set_pos 1 2; (* initial position is half panel for each window *)
+  panel#set_step 5;
+  vbar#container_add panel#contained;
+  top#container_add (vbar#contained);  
+  top#show;
+  loop ()
+\end{verbatim}
+
+\subsection{The {\sf swap} widget}
+
+  This widget is used to share one window between several widgets, only 
+one child widget being viewable at a given time.
+
+\subsection{The {\sf notebook} widget}
+
+ This widget is used to display a widget if its label has been selected 
+through a list of labels.
+
+\begin{figure}[t]
+\begin{center}
+%BEGIN IMAGE
+\epsfbox{figs/notebook.eps}
+%END IMAGE
+%HEVEA\imageflush
+\psfigure{1}{notebook}{The demo\_notebook widget demo.}
+\end{center}
+\end{figure}
+
+\begin{verbatim}
+open Xtypes
+open WX_types
+  
+let display = new WX_display.t ""
+let root = new WX_root.t display 0
+let top = new WX_wmtop.t root [MinWidth 10; MinHeight 10; 
+    MaxWidth 600; MaxHeight 700]
+let book = new WX_notebook.v top#container []
+  
+let files = [ "demo_tree.ml"; "demo_table.ml"; "demo_graphics.ml";
+    "demo_filesel.ml"; "demo_calc.ml";"demo_file.ml";"demo_notebook.ml"]
+  
+let _ =  
+  book#container_add_s (List.map (fun name -> name,
+        (new WX_text.of_file book#container name [])#contained
+        ) files);
+  top#container_add book#contained;
+  top#show;
+  loop ()
+\end{verbatim}
+
+\section{Widgets with no windows}
+
+\subsection{The {\sf adjust} widget}
+
+  This adjustement object is used to monitor the evolution of a value.
+Objects can specify hooks to be executed when the value is changed, using 
+the {\sf add\_subject} method.
+
+\subsection{The {\sf dummy} widget}
+
+ This widget can be used in any container to display ... well, a space 
+between other widgets. The main interest is that the size of the space can 
+be configured.
+
+\subsection{The {\sf deleg} objects}
+
+ These objects are used to delegate some methods to a given object.
+
+\section{Composite widgets}
+
+\subsection{The {\sf appli} widget}
+
+ This widget is used to create a toplevel window, with a menubar at its top.
+
+\subsection{The {\sf filesel} widget}
+
+ This widget is used to select a filename in a dialog box, with a filter 
+and two lists for directories and simple files.
+
+\subsection{The {\sf dialog} widget}
+
+ This widget is used to display a text and a list of button under the text.
+
+\end{document}
+

@@ -1,0 +1,13 @@
+/.cvsignore/1.1/Mon Sep 20 15:10:09 1999//
+/chess.ml/1.2/Mon May 22 08:34:46 2000//
+/movePointer.ml/1.1/Mon May 22 08:55:20 2000//
+/pacman.ml/1.2/Mon Nov 22 10:36:16 1999//
+/plateau1.txt/1.1/Mon Sep 20 15:10:11 1999//
+/sqmove.ml/1.1/Mon Sep 20 15:10:11 1999//
+/xpm2ml.ml/1.1/Mon Sep 20 15:10:11 1999//
+/xpmroot.ml/1.1/Mon Sep 20 15:10:12 1999//
+/xprop.ml/1.1/Mon Sep 20 15:10:12 1999//
+D/images////
+/sendKey.ml/1.3/Wed Feb  7 13:04:15 2001//
+/Makefile/1.4/Mon Feb 26 12:37:59 2001//
+/xbanner.ml/1.1/Mon Feb 26 13:01:10 2001//

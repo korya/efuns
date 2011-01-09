@@ -1,0 +1,34 @@
+fclean:
+	rm -f *.cm[iaxo] *.[ao] *.cmxa core *.mlg *.opt *.byte *.log *.out *.exe *~ $(TMPFILES)
+
+fdepend: $(TMPFILES)
+	$(OCAMLDEP) $(INCLUDES)  *.ml *.mli > .depend
+
+.SUFFIXES: .mli .ml .cmx .cmo .o .c .cmi .out .exe .mll .mly .ml_
+
+.mli.cmi :
+	$(OCAMLCI) $(OFLAGS) $(INCLUDES) -c $<
+
+.ml.cmi :
+	$(OCAMLC) $(OFLAGS) $(INCLUDES) -c $<
+
+.ml.cmx :
+	$(OCAMLOPT) $(OFLAGS) $(INCLUDES) -c $<
+
+.ml.cmo :
+	$(OCAMLC) $(OFLAGS) $(INCLUDES) -c $<
+
+.mll.ml :
+	ocamllex $<
+
+.mly.ml :
+	ocamlyacc $<
+
+.mly.mli:
+	ocamlyacc $<
+
+.c.o :
+	$(OCAMLC) -o $*.o $(CFLAGS) -c $<
+
+.ml_.ml:
+	$(CURDIR)/tools/versionpatch $(OCAMLVERSION) $<

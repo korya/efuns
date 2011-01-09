@@ -1,0 +1,24 @@
+/* XPM */
+static char *mini-keys[] = {
+"16 15 4 1",
+/* colors */
+". c #ffff00",
+"# c #dfdfdf",
+"a c #aaaaaa",
+"b c #000000",
+"#aaaaab#aaab#aaa",
+"#bbbbbb#bbbb#bbb",
+"bbbbbbbbbbbbbbbb",
+"################",
+"#aaaaaaab#aaab#a",
+"#aaaaaaab#aaab#a",
+"#aaaaaaab#aaab#a",
+"#bbbbbbbb#bbbb#b",
+"bbbbbbbbbbbbbbbb",
+"################",
+"#aaaaab#aaab#aaa",
+"aaaaaab#aaab#aaa",
+"#aaaaab#aaab#aaa",
+"#bbbbbb#bbbb#bbb",
+"bbbbbbbbbbbbbbbb"
+};

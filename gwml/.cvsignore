@@ -1,0 +1,13 @@
+twm_p.ml
+twm_p.mli
+twm_l.ml
+fvwm.ml
+gwml.byte
+gwml
+gwml.opt
+cpp.ml
+wmaker.ml
+afterstep.ml
+*.log
+gwml_install
+gwml.static
